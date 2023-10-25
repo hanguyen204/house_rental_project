@@ -11,7 +11,20 @@ public class User {
     private String userType;
     private String status;
 
-    public User() {
+    public User(int id, String username, String urlImage, String fullName, String address, String phone) {
+        this.id = id;
+        this.username = username;
+        this.urlImage = urlImage;
+        this.fullName = fullName;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public User(int id, String fullName, String phone, String status) {
+        this.id = id;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.status = status;
     }
 
     public User(String username, String phone, String password) {
@@ -27,12 +40,12 @@ public class User {
         this.userType = userType;
     }
 
-    public User(String urlImage, String fullName, String address, String phone, String password) {
+    public User(String username, String urlImage, String fullName, String address, String phone) {
+        this.username = username;
         this.urlImage = urlImage;
         this.fullName = fullName;
         this.address = address;
         this.phone = phone;
-        this.password = password;
     }
 
     public User(int id, String username, String urlImage, String fullName, String address, String phone, String password, String role, String status) {
