@@ -9,10 +9,11 @@ import java.sql.*;
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "2004";
+    private String password = "anhnam2005";
 
     private static final String INSERT_USER = "insert into user (username, phone, password) values (?,?,?);";
     private static final String CHECK_MAIL = "SELECT COUNT(*) FROM user WHERE username = ?";
+    private static final String SELECT_USER_EXIST = "SELECT COUNT(*) FROM user WHERE username = ?";
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -57,6 +58,24 @@ public class UserService implements IUserService {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean checkUsernameExist(String username) {
+        try (Connection connection = connection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_USER_EXIST)) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 
