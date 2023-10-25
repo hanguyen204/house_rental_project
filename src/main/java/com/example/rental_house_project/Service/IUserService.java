@@ -9,7 +9,6 @@ import java.util.List;
 public interface IUserService {
      void insertUser(User user) throws ClassNotFoundException;
 
-
      boolean checkEmail(String username);
 
     void updateStatusForUser(int id) throws SQLException, ClassNotFoundException;
@@ -19,4 +18,6 @@ public interface IUserService {
     List<User> showAccUser() throws SQLException, ClassNotFoundException;
 
     boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException;
+
+    boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException;
 }

@@ -141,5 +141,53 @@ public class UserService implements IUserService {
         }
         return list;
     }
+
+    @Override
+    public boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException {
+        PreparedStatement statement = connection().prepareStatement(UPDATE_USERS_SQL);
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getUrlImage());
+        statement.setString(3, user.getFullName());
+        statement.setString(4, user.getAddress());
+        statement.setString(5, user.getPhone());
+        statement.setInt(6, user.getId());
+        statement.executeUpdate();
+        statement.close();
+        return false;
+    }
+
+    public User showEditProfileProduct(int id) throws SQLException, ClassNotFoundException {
+        User product = null;
+        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            String username = rs.getString("username");
+            String url_image = rs.getString("url_image");
+            String full_name = rs.getString("full_name");
+            String address = rs.getString("address");
+            String phone = rs.getString("phone");
+            product = new User(username, url_image, full_name, address, phone);
+
+        }
+        return product;
+    }
+
+
+    public List<User> showProductInformation() throws ClassNotFoundException, SQLException {
+        List<User> list = new ArrayList<>();
+        PreparedStatement statement = connection().prepareStatement(SELECT_ALL_ACCUSER);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String username = rs.getString("username");
+            String urlImage = rs.getString("urlImage");
+            String fullName = rs.getString("fullName");
+            String address = rs.getString("address");
+            String phone = rs.getString("phone");
+            list.add(new User(id, username, urlImage, fullName, address, phone));
+        }
+        return list;
+    }
 }
 
