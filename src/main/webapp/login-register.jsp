@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | Register page</title>
+    <title>GARO ESTATE | Register/Login page</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -105,7 +105,7 @@
 
                 <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="properties.html">Properties</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="property.html">Property</a></li> -->
-                <!-- <li class="dropdown yamm-fw" data-wow-delay="0.1s">
+                 <%--<li class="dropdown yamm-fw" data-wow-delay="0.1s">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -181,7 +181,7 @@
                             /.yamm-content
                         </li>
                     </ul>
-                </li> -->
+                </li>--%>
 
                 <!-- <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="contact.html">Contact</a></li> -->
             </ul>
@@ -243,14 +243,14 @@
             <div class="box-for overflow">
                 <div class="col-md-12 col-xs-12 login-blocks">
                     <h2>Sign in : </h2>
-                    <form action="" method="post">
+                    <form action="login" method="get">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            <input type="text" class="form-control" id="name" name="username-login" placeholder="Enter your name">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            <input type="password" class="form-control" id="password" name="password-login" placeholder="Enter your password">
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-default"> Log in</button>
@@ -427,5 +427,12 @@
 <script src="assets/js/price-range.js"></script>
 
 <script src="assets/js/main.js"></script>
+
+<script>
+    function resetFields() {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    }
+</script>
 </body>
 </html>
