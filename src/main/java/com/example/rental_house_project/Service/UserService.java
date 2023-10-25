@@ -16,6 +16,9 @@ public class UserService implements IUserService {
     private static final String INSERT_USER = "insert into user (username, phone, password,userType) values (?,?,?,?);";
     private static final String CHECK_MAIL = "SELECT COUNT(*) FROM user WHERE username = ?";
     private static final String SELECT_ALL_USER = "select * from user";
+    private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
+    private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
+    private static final String SELECT_USER_BY_ID = "select username,urlImage,fullName,address,phone from user where id =?";
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -94,5 +97,49 @@ public class UserService implements IUserService {
         return list;
     }
 
+    @Override
+    public boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException {
+        PreparedStatement statement = connection().prepareStatement(UPDATE_USERS_SQL);
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getUrlImage());
+        statement.setString(3, user.getFullName());
+        statement.setString(4, user.getAddress());
+        statement.setString(5, user.getPhone());
+        statement.setInt(6, user.getId());
+        statement.executeUpdate();
+        statement.close();
+        return false;
+    }
+    public User showEditProfileUser(int id) throws SQLException, ClassNotFoundException {
+        User user1 = null;
+        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            String username = rs.getString("username");
+            String urlImage = rs.getString("urlImage");
+            String fullName = rs.getString("fullName");
+            String address = rs.getString("address");
+            String phone = rs.getString("phone");
+            user1 = new User(username, urlImage, fullName, address, phone);
+        }
+        return user1;
+    }
+
+    public List<User> showUserInformation() throws ClassNotFoundException, SQLException {
+        List<User> list = new ArrayList<>();
+        PreparedStatement statement = connection().prepareStatement(SELECT_ALL_ACCUSER);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String username = rs.getString("username");
+            String urlImage = rs.getString("urlImage");
+            String fullName = rs.getString("fullName");
+            String address = rs.getString("address");
+            String phone = rs.getString("phone");
+            list.add(new User(id, username, urlImage, fullName, address, phone));
+        }
+        return list;
+    }
 }
 

@@ -17,4 +17,6 @@ public interface IUserService {
     void updateLockStatusForUser(int id) throws SQLException, ClassNotFoundException;
 
     List<User> showAccUser() throws SQLException, ClassNotFoundException;
+
+    boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException;
 }
