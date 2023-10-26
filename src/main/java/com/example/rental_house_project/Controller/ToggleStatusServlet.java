@@ -48,7 +48,7 @@ public class ToggleStatusServlet extends HttpServlet {
         users.updateLockStatusForUser(id);
         List<User> listUser = users.showAccUser();
         request.setAttribute("list", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/showListUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -57,14 +57,14 @@ public class ToggleStatusServlet extends HttpServlet {
         users.updateStatusForUser(id);
         List<User>listUser = users.showAccUser();
         request.setAttribute("list", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/showListUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
         dispatcher.forward(request, response);
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         List<User> listUser = users.showAccUser();
         request.setAttribute("list", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/showListUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
         dispatcher.forward(request, response);
     }
 }
