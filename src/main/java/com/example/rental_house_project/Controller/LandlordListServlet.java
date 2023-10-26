@@ -10,54 +10,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ToggleStatusServlet", urlPatterns = "/toggleStatus")
-public class ToggleStatusServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/landlordlist", name = "LandlordList")
+public class LandlordListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserService users = new UserService();
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response){
-        String action = request.getParameter("action");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
         if (action == null) {
             action = "";
         }
         try {
             switch (action) {
                 case "active":
-                    active(request,response);
+                    active(req,resp);
                     break;
                 case "unActive" :
-                    unActive(request,response);
+                    unActive(req,resp);
                     break;
                 default:
-                    listUser(request, response);
+                    listUser(req, resp);
                     break;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void unActive(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("userId"));
         users.updateLockStatusForUser(id);
-        List<User> listUser = users.showAccUser();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
+        List<User> listUser = users.showAccLandlord();
+        request.setAttribute("listLandlord", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("landlordlist.jsp");
         dispatcher.forward(request, response);
     }
 
     private void active(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         int id = Integer.parseInt(request.getParameter("userId"));
         users.updateStatusForUser(id);
-        List<User>listUser = users.showAccUser();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
+        List<User>listUser = users.showAccLandlord();
+        request.setAttribute("listLandlord", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("landlordlist.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -73,7 +72,7 @@ public class ToggleStatusServlet extends HttpServlet {
         int start = (page - 1) * limit;
         int end = start + limit;
         try {
-            List<User> listUser = users.showAccUser();
+            List<User> listLandlord = users.showAccLandlord();
 
             // Lấy tổng số người dùng từ UserService
             int totalUsers = users.getTotalUsers();
@@ -82,11 +81,11 @@ public class ToggleStatusServlet extends HttpServlet {
             int totalPages = (int) Math.ceil((double) totalUsers / limit);
 
 
-            request.setAttribute("listUser", listUser);
+            request.setAttribute("listLandlord", listLandlord);
             request.setAttribute("currentPage", page);
             request.setAttribute("totalPages", totalPages);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("showListUser.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("landlordlist.jsp");
             dispatcher.forward(request, response);
         }catch (Exception e) {
             e.printStackTrace();

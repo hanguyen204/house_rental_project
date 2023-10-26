@@ -1,9 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: vang
+  Date: 31/10/2023
+  Time: 00:27
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>GARO ESTATE | Landlord Management Application</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -30,59 +36,68 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <style>
-        #avatar {
-            width: 50px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 50%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-<%--        caption {--%>
-<%--            font-size: 20px;--%>
-<%--            font-weight: bold;--%>
-<%--            margin-bottom: 10px;--%>
-<%--        }--%>
-
-        button {
-            padding: 5px 10px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        button a {
-            color: white;
-            text-decoration: none;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-<%--        tr:nth-child(even) {--%>
-<%--            background-color: #f2f2f2;--%>
-<%--        }--%>
-
-<%--        div {--%>
-<%--            margin-top: 20px;--%>
-<%--        }--%>
-    </style>
 </head>
+<style>
+    #avatar {
+        width: 50px;
+    }
+
+    body, .container {
+        text-align: center;
+    }
+
+    .avatar-img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    <%--        caption {--%>
+    <%--            font-size: 20px;--%>
+    <%--            font-weight: bold;--%>
+    <%--            margin-bottom: 10px;--%>
+    <%--        }--%>
+
+    button {
+        padding: 5px 10px;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    button a {
+        color: white;
+        text-decoration: none;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    <%--        tr:nth-child(even) {--%>
+    <%--            background-color: #f2f2f2;--%>
+    <%--        }--%>
+
+    <%--        div {--%>
+    <%--            margin-top: 20px;--%>
+    <%--        }--%>
+</style>
 <body>
     <nav class="navbar navbar-default ">
         <div class="container">
@@ -225,7 +240,7 @@
         <div class="container">
             <div class="row">
                 <div class="page-head-content">
-                    <h1 class="page-title">List User </h1>
+                    <h1 class="page-title">List Landlord </h1>
                 </div>
             </div>
         </div>
@@ -234,29 +249,39 @@
     <div align="center">
         <table border="1" cellpadding="5">
             <tr>
+                <th hidden="hidden">Id</th>
+                <th>Avatar</th>
                 <th>Username</th>
                 <th>Full name</th>
+                <th>Renvenue</th>
+                <th>Number Houser For Rent</th>
                 <th>Phone</th>
+                <th>Address</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
-            <c:forEach var="list" items="${listUser}">
+            <c:forEach var="list" items="${listLandlord}">
                 <tr>
+                    <td hidden="hidden"><c:out value="${list.id}"/></td>
+                    <td><img src="${list.urlImage}" alt="Avatar of User" class="avatar-img"></td>
                     <td><c:out value="${list.username}"/></td>
                     <td><c:out value="${list.fullName}"/></td>
+                    <td><c:out value="${list.revenue}"/></td>
+                    <td><c:out value="${list.numberHouseForRent}"/></td>
                     <td><c:out value="${list.phone}"/></td>
+                    <td><c:out value="${list.address}"/></td>
                     <td><c:out value="${list.status}"/></td>
                     <td>
                         <c:choose>
                             <c:when test="${list.getStatus() == 'Đang hoạt động'}">
                                 <input type="hidden" name="action" value="inactive">
                                 <input type="hidden" name="userId" value="${list.id}">
-                                <button><a href="toggleStatus?action=unActive&userId=${list.id}" style="text-decoration: none">Khóa</a></button>
+                                <button><a href="landlordlist?action=unActive&userId=${list.id}" style="text-decoration: none">Khóa</a></button>
                             </c:when>
                             <c:otherwise>
                                 <input type="hidden" name="action" value="active">
                                 <input type="hidden" name="userId" value="${list.id}">
-                                <button><a href="toggleStatus?action=active&userId=${list.id}" style="text-decoration: none">Kích hoạt</a></button>
+                                <button><a href="landlordlist?action=active&userId=${list.id}" style="text-decoration: none">Kích hoạt</a></button>
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -266,7 +291,7 @@
 
         <div class="pagination">
             <c:if test="${currentPage > 1}">
-                <a href="toggleStatus?page=${currentPage - 1}">Previous</a>
+                <a href="landlordlist?page=${currentPage - 1}">Previous</a>
             </c:if>
 
             <c:forEach var="pageNumber" begin="1" end="${totalPages}">
@@ -277,13 +302,13 @@
                     </c:when>
                     <%-- Hiển thị các trang khác có link --%>
                     <c:otherwise>
-                        <a href="toggleStatus?page=${pageNumber}">${pageNumber}</a>
+                        <a href="landlordlist?page=${pageNumber}">${pageNumber}</a>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
             <c:if test="${currentPage < totalPages}">
-                <a href="toggleStatus?page=${currentPage + 1}">Next</a>
+                <a href="landlordlist?page=${currentPage + 1}">Next</a>
             </c:if>
         </div>
     </div>
@@ -385,18 +410,7 @@
                                         <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
                                     </span>
                                 </div>
-                                /input-group
                             </form>
-
-                            <div class="social pull-right">
-                                <ul>
-                                    <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
