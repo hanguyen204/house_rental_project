@@ -8,4 +8,8 @@ public interface IUserService {
 
 
     public boolean checkEmail(String username);
+
+    public boolean isValidUser(String username,String password);
+
+
 }
