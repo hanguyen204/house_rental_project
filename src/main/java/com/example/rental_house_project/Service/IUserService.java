@@ -24,4 +24,6 @@ public interface IUserService {
 
     List<House> showAllHouse() throws ClassNotFoundException, SQLException;
 
+    void addHouse(House house) throws ClassNotFoundException, SQLException;
+
 }

@@ -27,6 +27,8 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_Landlord = "select * from user where userType='Landlord';";
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
     private static final String SHOW_ALL_HOUSE = "select * from House";
+    private static final String INSERT_INTO_HOUSE_SQL = "INSERT INTO House (houseName, address, numberBath, numberBed ,describeHouse, numberHouseForRent, urlImage) VALUES (?, ?, ?,?, ? ,?,?);";
+
 
 
     public Connection connection() throws ClassNotFoundException {
@@ -152,6 +154,22 @@ public class UserService implements IUserService {
         }
         return list;
     }
+
+    @Override
+    public void addHouse(House house) throws ClassNotFoundException, SQLException {
+
+        PreparedStatement statement = connection().prepareStatement(INSERT_INTO_HOUSE_SQL);
+        statement.setString(1, house.getHouseName());
+        statement.setString(2, house.getAddress());
+        statement.setInt(3, house.getNumberBath());
+        statement.setInt(4, house.getNumberBed());
+        statement.setString(5, house.getDescribeHouse());
+        statement.setInt(6, house.getNumberHouseForRent());
+        statement.setString(7, house.getUrlImage());
+        statement.executeUpdate();
+        statement.close();
+    }
+
     @Override
     public List<User> showAccUser() throws SQLException, ClassNotFoundException {
         List<User> list = new ArrayList<>();

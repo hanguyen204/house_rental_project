@@ -11,61 +11,8 @@ public class House {
     private String describeHouse;
     private String status;
 
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
-    public int getNumberHouseForRent() {
-        return numberHouseForRent;
-    }
-
-    public void setNumberHouseForRent(int numberHouseForRent) {
-        this.numberHouseForRent = numberHouseForRent;
-    }
-
     private String urlImage;
-
     private int numberHouseForRent;
-
-    public House() {
-    }
-    public House(int houseId, String houseName, String address, int numberBath, int numberBed, String describeHouse, int numberHouseForRent, String urlImage) {
-        this.houseId = houseId;
-        this.houseName = houseName;
-        this.address = address;
-        this.numberBath = numberBath;
-        this.numberBed = numberBed;
-        this.describeHouse = describeHouse;
-        this.numberHouseForRent = numberHouseForRent;
-        this.urlImage = urlImage;
-    }
-
-    public House(String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
-        this.houseName = houseName;
-        this.price = price;
-        this.address = address;
-        this.revenue = revenue;
-        this.numberBath = numberBath;
-        this.numberBed = numberBed;
-        this.describeHouse = describeHouse;
-        this.status = status;
-    }
-
-    public House(int houseId, String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
-        this.houseId = houseId;
-        this.houseName = houseName;
-        this.price = price;
-        this.address = address;
-        this.revenue = revenue;
-        this.numberBath = numberBath;
-        this.numberBed = numberBed;
-        this.describeHouse = describeHouse;
-        this.status = status;
-    }
 
     public int getHouseId() {
         return houseId;
@@ -138,5 +85,60 @@ public class House {
     public void setStatus(String status) {
         this.status = status;
     }
-}
 
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public int getNumberHouseForRent() {
+        return numberHouseForRent;
+    }
+
+    public void setNumberHouseForRent(int numberHouseForRent) {
+        this.numberHouseForRent = numberHouseForRent;
+    }
+
+
+    public House() {
+    }
+
+
+    public House(int houseId, String houseName, String address, int numberBath, int numberBed, String describeHouse, int numberHouseForRent, String urlImage) {
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+        this.numberHouseForRent = numberHouseForRent;
+        this.urlImage = urlImage;
+    }
+
+    public House(String houseName, String address, int numberBath, int numberBed, String describeHouse, String urlImage, int numberHouseForRent) {
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+        this.urlImage = urlImage;
+        this.numberHouseForRent = numberHouseForRent;
+    }
+
+    public House(int houseId, String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status, String urlImage, int numberHouseForRent) {
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.price = price;
+        this.address = address;
+        this.revenue = revenue;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+        this.status = status;
+        this.urlImage = urlImage;
+        this.numberHouseForRent = numberHouseForRent;
+    }
+}

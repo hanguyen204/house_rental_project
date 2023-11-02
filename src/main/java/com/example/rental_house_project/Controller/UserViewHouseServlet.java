@@ -28,6 +28,7 @@ public class UserViewHouseServlet extends HttpServlet {
         try {
             switch (action) {
 
+
                 default:
                     listHouse(req, resp);
                     break;
