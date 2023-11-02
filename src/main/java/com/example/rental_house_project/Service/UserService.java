@@ -1,6 +1,7 @@
 package com.example.rental_house_project.Service;
 
 
+import com.example.rental_house_project.Model.House;
 import com.example.rental_house_project.Model.User;
 
 import java.sql.*;
@@ -11,7 +12,7 @@ import java.util.List;
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "anhnam2005";
+    private String password = "1";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
@@ -25,6 +26,8 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_USER = "select * from user where userType='User';";
     private static final String SELECT_ALL_Landlord = "select * from user where userType='Landlord';";
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
+    private static final String SHOW_ALL_HOUSE = "select * from House";
+
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -128,6 +131,26 @@ public class UserService implements IUserService {
         statement.executeUpdate();
         statement.close();
         return false;
+    }
+    @Override
+    public List<House> showAllHouse() throws ClassNotFoundException, SQLException {
+        List<House> list = new ArrayList<>();
+        PreparedStatement preparedStatement = connection().prepareStatement(SHOW_ALL_HOUSE);
+        System.out.println(preparedStatement);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            int houseId = rs.getInt("houseId");
+            String houseName = rs.getString("houseName");
+            String address = rs.getString("address");
+            int numberBath = rs.getInt("numberBath");
+            int numberBed = rs.getInt("numberBed");
+            String describeHouse = rs.getString("describeHouse");
+            int numberHouseForRent = rs.getInt("numberHouseForRent");
+            String urlImage = rs.getString("urlImage");
+
+            list.add(new House(houseId, houseName, address, numberBath, numberBed, describeHouse, numberHouseForRent, urlImage));
+        }
+        return list;
     }
     @Override
     public List<User> showAccUser() throws SQLException, ClassNotFoundException {

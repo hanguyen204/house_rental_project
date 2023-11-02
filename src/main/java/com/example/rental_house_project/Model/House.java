@@ -6,32 +6,62 @@ public class House {
     private double price;
     private String address;
     private double revenue;
-    private int numbBath;
+    private int numberBath;
     private int numberBed;
     private String describeHouse;
     private String status;
 
-    public House() {
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public House(String houseName, double price, String address, double revenue, int numbBath, int numberBed, String describeHouse, String status) {
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public int getNumberHouseForRent() {
+        return numberHouseForRent;
+    }
+
+    public void setNumberHouseForRent(int numberHouseForRent) {
+        this.numberHouseForRent = numberHouseForRent;
+    }
+
+    private String urlImage;
+
+    private int numberHouseForRent;
+
+    public House() {
+    }
+    public House(int houseId, String houseName, String address, int numberBath, int numberBed, String describeHouse, int numberHouseForRent, String urlImage) {
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+        this.numberHouseForRent = numberHouseForRent;
+        this.urlImage = urlImage;
+    }
+
+    public House(String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
         this.houseName = houseName;
         this.price = price;
         this.address = address;
         this.revenue = revenue;
-        this.numbBath = numbBath;
+        this.numberBath = numberBath;
         this.numberBed = numberBed;
         this.describeHouse = describeHouse;
         this.status = status;
     }
 
-    public House(int houseId, String houseName, double price, String address, double revenue, int numbBath, int numberBed, String describeHouse, String status) {
+    public House(int houseId, String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
         this.houseId = houseId;
         this.houseName = houseName;
         this.price = price;
         this.address = address;
         this.revenue = revenue;
-        this.numbBath = numbBath;
+        this.numberBath = numberBath;
         this.numberBed = numberBed;
         this.describeHouse = describeHouse;
         this.status = status;
@@ -77,12 +107,12 @@ public class House {
         this.revenue = revenue;
     }
 
-    public int getNumbBath() {
-        return numbBath;
+    public int getNumberBath() {
+        return numberBath;
     }
 
-    public void setNumbBath(int numbBath) {
-        this.numbBath = numbBath;
+    public void setNumberBath(int numberBath) {
+        this.numberBath = numberBath;
     }
 
     public int getNumberBed() {

@@ -1,6 +1,7 @@
 package com.example.rental_house_project.Service;
 
 
+import com.example.rental_house_project.Model.House;
 import com.example.rental_house_project.Model.User;
 
 import java.sql.SQLException;
@@ -20,4 +21,7 @@ public interface IUserService {
     boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException;
 
     boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException;
+
+    List<House> showAllHouse() throws ClassNotFoundException, SQLException;
+
 }
