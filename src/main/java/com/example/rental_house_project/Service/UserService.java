@@ -431,5 +431,63 @@ public class UserService implements IUserService {
         }
         return null;
     }
+
+    public List<House> searchByStatusRooms(String statusRoom) throws ClassNotFoundException, SQLException {
+        List<House> list = new ArrayList<>();
+        String query = "SELECT  houseName,address,numberBath,numberBed,describeHouse,numberHouseForRent,urlImage from House WHERE status ='Còn Phòng'";
+        PreparedStatement statement = connection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String houseName = rs.getString("houseName");
+            String address = rs.getString("address");
+            int numberBath = rs.getInt("numberBath");
+            int numberBed = rs.getInt("numberBed");
+            String describeHouse = rs.getString("describeHouse");
+            int numberHouseForRent = rs.getInt("numberHouseForRent");
+            String urlImage = rs.getString("urlImage");
+
+            list.add(new House(houseName, address,numberBath,numberBed,describeHouse,urlImage,numberHouseForRent));
+        }
+        return list;
+    }
+
+    public List<House> searchByName(String nameProduct) throws ClassNotFoundException, SQLException {
+        List<House> list = new ArrayList<>();
+        String query = "Select houseName,address,numberBath,numberBed,describeHouse,numberHouseForRent,urlImage from House where housename like '%" + nameProduct + "%'";
+        PreparedStatement statement = connection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String houseName = rs.getString("houseName");
+            String address = rs.getString("address");
+            int numberBath = rs.getInt("numberBath");
+            int numberBed = rs.getInt("numberBed");
+            String describeHouse = rs.getString("describeHouse");
+            int numberHouseForRent = rs.getInt("numberHouseForRent");
+            String urlImage = rs.getString("urlImage");
+
+            list.add(new House(houseName, address,numberBath,numberBed,describeHouse,urlImage,numberHouseForRent));
+        }
+        return list;
+    }
+
+    public List<House> searchByStatusRoomOutOfRoom(String statusRoom) throws ClassNotFoundException, SQLException {
+        List<House> list = new ArrayList<>();
+        String query = "SELECT houseName,address,numberBath,numberBed,describeHouse,numberHouseForRent,urlImage from House WHERE status ='Hết Phòng'";
+        PreparedStatement statement = connection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String houseName = rs.getString("houseName");
+            String address = rs.getString("address");
+            int numberBath = rs.getInt("numberBath");
+            int numberBed = rs.getInt("numberBed");
+            String describeHouse = rs.getString("describeHouse");
+            int numberHouseForRent = rs.getInt("numberHouseForRent");
+            String urlImage = rs.getString("urlImage");
+
+            list.add(new House(houseName, address,numberBath,numberBed,describeHouse,urlImage,numberHouseForRent));
+        }
+        return list;
+    }
 }
 

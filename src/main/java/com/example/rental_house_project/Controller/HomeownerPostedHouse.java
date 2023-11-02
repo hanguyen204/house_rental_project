@@ -27,6 +27,15 @@ public class HomeownerPostedHouse extends HttpServlet {
         }
         try {
             switch (action) {
+                case "search":
+                    searchHousesByStatus(req, resp);
+                    break;
+                case "onRoom":
+                    searchByStatusRooms(req, resp);
+                    break;
+                case "offRoom":
+                    searchByStatusRoomOutOfRoom(req, resp);
+                    break;
                 case "add":
                     addHouse(req, resp);
                     break;
@@ -36,6 +45,26 @@ public class HomeownerPostedHouse extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void searchByStatusRoomOutOfRoom(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String status = req.getParameter("status");
+        List<House> list = homeowner.searchByStatusRooms(status);
+        req.setAttribute("list", list);
+        req.getRequestDispatcher("HomeownerPostedHouse/searchStatus.jsp").forward(req, resp);
+    }
+    private void searchByStatusRooms(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String status = req.getParameter("status");
+        List<House> list = homeowner.searchByStatusRoomOutOfRoom(status);
+        req.setAttribute("list", list);
+        req.getRequestDispatcher("HomeownerPostedHouse/searchStatus.jsp").forward(req, resp);
+    }
+
+    private void searchHousesByStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String houseName = req.getParameter("houseName");
+        List<House> list = homeowner.searchByName(houseName);
+        req.setAttribute("list", list);
+        req.getRequestDispatcher("HomeownerPostedHouse/search.jsp").forward(req, resp);
     }
 
     @Override
@@ -62,10 +91,25 @@ public class HomeownerPostedHouse extends HttpServlet {
     }
 
     private void listHouse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        int recordsPerPage = 10;
+        int currentPage = 1;
+        if (req.getParameter("page") != null) {
+            currentPage = Integer.parseInt(req.getParameter("page"));
+        }
         List<House> list = homeowner.showAllHouse();
+        int totalRecords = list.size();
+        int totalPages = (int) Math.ceil((double) totalRecords / recordsPerPage);
+        int startRecord = (currentPage - 1) * recordsPerPage;
+        int endRecord = Math.min(startRecord + recordsPerPage, totalRecords);
+        List<House> sublistUser = list.subList(startRecord, endRecord);
+        req.setAttribute("list", sublistUser);
+        req.setAttribute("currentPage", currentPage);
+        req.setAttribute("totalPages", totalPages);
+
         req.setAttribute("list", list);
         req.getRequestDispatcher("HomeownerPostedHouse/showList.jsp").forward(req, resp);
     }
+
 
     private void showNewForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("HomeownerPostedHouse/addHouse.jsp").forward(req, resp);
