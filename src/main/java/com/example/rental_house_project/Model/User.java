@@ -13,6 +13,9 @@ public class User {
     private String userType;
     private String status;
 
+    public User() {
+    }
+
     public User(int id, String username, String urlImage, String fullName, int revenue, int numberHouseForRent, String address, String phone, String status) {
         this.id = id;
         this.username = username;
