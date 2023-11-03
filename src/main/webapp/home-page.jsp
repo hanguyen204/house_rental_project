@@ -74,9 +74,10 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" style="margin-top: 0px; margin-right: 200px;">
-                                <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
+                                <li><a href="user-profile.jsp">Information manage</a></li>
                                 <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                    <li><a href="#">Quản lý đăng tin</a></li>
+                                    <li><a href="#">Posting management</a></li>
+                                    <li><a href="/listHouseForRent">Home management</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.userType eq 'Admin'}">
                                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>

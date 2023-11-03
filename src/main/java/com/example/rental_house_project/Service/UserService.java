@@ -1,6 +1,7 @@
 package com.example.rental_house_project.Service;
 
 
+import com.example.rental_house_project.Model.House;
 import com.example.rental_house_project.Model.User;
 
 import java.sql.*;
@@ -11,7 +12,7 @@ import java.util.List;
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "anhnam2005";
+    private String password = "2004";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
@@ -25,6 +26,7 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_USER = "select * from user where userType='User';";
     private static final String SELECT_ALL_Landlord = "select * from user where userType='Landlord';";
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
+
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -129,6 +131,8 @@ public class UserService implements IUserService {
         statement.close();
         return false;
     }
+
+
     @Override
     public List<User> showAccUser() throws SQLException, ClassNotFoundException {
         List<User> list = new ArrayList<>();
