@@ -2,37 +2,91 @@ package com.example.rental_house_project.Model;
 
 public class House {
     private int houseId;
+    private int userId;
+    private String imgHouse;
     private String houseName;
     private double price;
     private String address;
     private double revenue;
-    private int numbBath;
+    private int numberBath;
     private int numberBed;
+    private int width;
     private String describeHouse;
     private String status;
 
     public House() {
     }
 
-    public House(String houseName, double price, String address, double revenue, int numbBath, int numberBed, String describeHouse, String status) {
+    public House(String imgHouse, String houseName, double price, String address, double revenue, String status) {
+        this.imgHouse = imgHouse;
         this.houseName = houseName;
         this.price = price;
         this.address = address;
         this.revenue = revenue;
-        this.numbBath = numbBath;
+        this.status = status;
+    }
+
+    public House(String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
+        this.houseName = houseName;
+        this.price = price;
+        this.address = address;
+        this.revenue = revenue;
+        this.numberBath = numberBath;
         this.numberBed = numberBed;
         this.describeHouse = describeHouse;
         this.status = status;
     }
 
-    public House(int houseId, String houseName, double price, String address, double revenue, int numbBath, int numberBed, String describeHouse, String status) {
+    public House(int houseId, String houseName, double price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
         this.houseId = houseId;
         this.houseName = houseName;
         this.price = price;
         this.address = address;
         this.revenue = revenue;
-        this.numbBath = numbBath;
+        this.numberBath = numberBath;
         this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+        this.status = status;
+    }
+
+    public House(int houseId, String houseName, double price, String address, double revenue, int numberBath, int numberBed, int width, String describeHouse, String status) {
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.price = price;
+        this.address = address;
+        this.revenue = revenue;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.width = width;
+        this.describeHouse = describeHouse;
+        this.status = status;
+    }
+
+    public House(int houseId, String imgHouse, String houseName, double price, String address, double revenue, int numberBath, int numberBed, int width, String describeHouse, String status) {
+        this.houseId = houseId;
+        this.imgHouse = imgHouse;
+        this.houseName = houseName;
+        this.price = price;
+        this.address = address;
+        this.revenue = revenue;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.width = width;
+        this.describeHouse = describeHouse;
+        this.status = status;
+    }
+
+    public House(int houseId, int userId, String imgHouse, String houseName, double price, String address, double revenue, int numberBath, int numberBed, int width, String describeHouse, String status) {
+        this.houseId = houseId;
+        this.userId = userId;
+        this.imgHouse = imgHouse;
+        this.houseName = houseName;
+        this.price = price;
+        this.address = address;
+        this.revenue = revenue;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.width = width;
         this.describeHouse = describeHouse;
         this.status = status;
     }
@@ -77,12 +131,12 @@ public class House {
         this.revenue = revenue;
     }
 
-    public int getNumbBath() {
-        return numbBath;
+    public int getNumberBath() {
+        return numberBath;
     }
 
-    public void setNumbBath(int numbBath) {
-        this.numbBath = numbBath;
+    public void setNumberBath(int numberBath) {
+        this.numberBath = numberBath;
     }
 
     public int getNumberBed() {
@@ -107,6 +161,30 @@ public class House {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public String getImgHouse() {
+        return imgHouse;
+    }
+
+    public void setImgHouse(String imgHouse) {
+        this.imgHouse = imgHouse;
     }
 }
 
