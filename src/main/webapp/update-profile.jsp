@@ -222,7 +222,7 @@
                         <div class="col-sm-3 col-sm-offset-1">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="${urlImage}" class="picture-src" id="wizardPicturePreview" title="" name="urlImage"/>
+                                    <img src="${urlImage}" class="picture-src" id="wizardPicturePreview" name="urlImage"/>
                                     <input type="file" id="wizard-picture">
                                 </div>
                             </div>

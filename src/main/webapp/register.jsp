@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | Register/Login page</title>
+    <title>GARO ESTATE | ĐĂNG KÝ TÀI KHOẢN</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -45,114 +45,22 @@
     }
 </style>
 <body>
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-<!-- Body content -->
-
 <nav class="navbar navbar-default ">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
-                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('login.jsp')" data-wow-delay="0.4s">Sign in</button>
-                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('register.jsp')" data-wow-delay="0.5s">Sign up</button>
+                <button class="navbar-btn nav-button" onclick="redirectToLogin()">Đăng nhập</button>
+                <button class="navbar-btn nav-button login" onclick="redirectToRegister()">Đăng ký</button>
             </div>
-            <ul class="main-nav nav navbar-nav navbar-right">
-                <li class="dropdown ymm-sw " data-wow-delay="0.1s">
-                    <a href="home-page.jsp" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Home</a>
-                </li>
-
-                <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="properties.html">Properties</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="property.html">Property</a></li>
-                <li class="dropdown yamm-fw" data-wow-delay="0.1s">
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
-                   <ul class="dropdown-menu">
-                       <li>
-                           <div class="yamm-content">
-                               <div class="row">
-                                   <div class="col-sm-3">
-                                       <h5>Home pages</h5>
-                                       <ul>
-                                           <li>
-                                               <a href="index.html">Home Style 1</a>
-                                           </li>
-                                           <li>
-                                               <a href="index-2.html">Home Style 2</a>
-                                           </li>
-                                           <li>
-                                               <a href="index-3.html">Home Style 3</a>
-                                           </li>
-                                           <li>
-                                               <a href="index-4.html">Home Style 4</a>
-                                           </li>
-                                           <li>
-                                               <a href="index-5.html">Home Style 5</a>
-                                           </li>
-                                       </ul>
-                                   </div>
-                                   <div class="col-sm-3">
-                                       <h5>Pages and blog</h5>
-                                       <ul>
-                                           <li><a href="blog.html">Blog listing</a>  </li>
-                                           <li><a href="single.html">Blog Post (full)</a>  </li>
-                                           <li><a href="single-right.html">Blog Post (Right)</a>  </li>
-                                           <li><a href="single-left.html">Blog Post (left)</a>  </li>
-                                           <li><a href="contact.html">Contact style (1)</a> </li>
-                                           <li><a href="contact-3.html">Contact style (2)</a> </li>
-                                           <li><a href="contact_3.html">Contact style (3)</a> </li>
-                                           <li><a href="faq.html">FAQ page</a> </li>
-                                           <li><a href="404.html">404 page</a>  </li>
-                                       </ul>
-                                   </div>
-                                   <div class="col-sm-3">
-                                       <h5>Property</h5>
-                                       <ul>
-                                           <li><a href="property-1.html">Property pages style (1)</a> </li>
-                                           <li><a href="property-2.html">Property pages style (2)</a> </li>
-                                           <li><a href="property-3.html">Property pages style (3)</a> </li>
-                                       </ul>
-
-                                       <h5>Properties list</h5>
-                                       <ul>
-                                           <li><a href="properties.html">Properties list style (1)</a> </li>
-                                           <li><a href="properties-2.html">Properties list style (2)</a> </li>
-                                           <li><a href="properties-3.html">Properties list style (3)</a> </li>
-                                       </ul>
-                                   </div>
-                                   <div class="col-sm-3">
-                                       <h5>Property process</h5>
-                                       <ul>
-                                           <li><a href="submit-property.html">Submit - step 1</a> </li>
-                                           <li><a href="submit-property.html">Submit - step 2</a> </li>
-                                           <li><a href="submit-property.html">Submit - step 3</a> </li>
-                                       </ul>
-                                       <h5>User account</h5>
-                                       <ul>
-                                           <li><a href="register.html">Register / login</a>   </li>
-                                           <li><a href="user-properties.html">Your properties</a>  </li>
-                                           <li><a href="submit-property.html">Submit property</a>  </li>
-                                           <li><a href="change-password.html">Change password</a> </li>
-                                           <li><a href="user-profile.html">Your profile</a>  </li>
-                                       </ul>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                   </ul>
-               </li>
-                <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="contact.html">Contact</a></li>
+            <ul class="main-nav nav navbar-nav navbar-left">
+                <li><a href="home-page.jsp" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="properties.jsp" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -165,32 +73,36 @@
 
         <div class="col-md-9" style="padding-left: 300px">
             <div class="box-for overflow">
-                <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>Sign up : </h2>
+                <div class="col-md-12 col-xs-12 register-blocks" style="color: black">
+                    <h2>Đăng ký tài khoản </h2>
                     <form action="register" method="post">
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="username" placeholder="Enter your name">
+                            <label>Tên tài khoản</label>
+                            <input type="text" class="form-control" name="username" placeholder="Nhập tên tài khoản" style="color: black; font-size: 16px">
                         </div>
                         <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" name="phone" placeholder="Enter your phone">
+                            <label>Số điện thoại</label>
+                            <input type="text" class="form-control" name="phone" placeholder="Nhập số điện thoại" style="color: black; font-size: 16px">
                             <span class="error">${requestScope.usernameError}</span>
                             <span class="error">${requestScope.phoneError}</span>
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                            <label>Mật khẩu</label>
+                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" style="font-size: 16px">
                             <span class="error">${requestScope.passwordError}</span>
                         </div>
                         <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" class="form-control" name="confirm" placeholder="Enter confirm password">
+                            <label>Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" name="confirm" placeholder="Xác nhận mật khẩu" style="font-size: 16px">
                             <span class="error">${requestScope.confirmPasswordError}</span>
                         </div>
-                        <div class="form-group"><input type="checkbox" name="checkLandlord" value="true"> I want to register as a landlord</div>
+                        <div class="form-group" style="color: black;"><input type="checkbox" name="checkLandlord" value="true"><span style="color: black; font-size: 16px; font-weight: bold"> Tôi muốn đăng ký làm chủ nhà</span> và cam kết mọi điều khoản, chính sách đã đưa ra. Nếu vi phạm tôi sẽ chịu trách nhiệm và bồi thường tổn thất.</div    >
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default">Sign up</button>
+                            <button type="submit" class="btn btn-default">Đăng ký</button>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <p>Tôi đã có tài khoản? </span><a href="login.jsp">Đăng nhập</a></p>
                         </div>
                     </form>
                 </div>
@@ -199,128 +111,69 @@
     </div>
 </div>
 
-<!-- Footer area-->
 <div class="footer-area">
-
     <div class=" footer">
         <div class="container">
             <div class="row">
-
-                <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
-                        <h4>About us </h4>
+                        <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
                         <div class="footer-title-line"></div>
-
-                        <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
-                        <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
-                        <ul class="footer-adress">
-                            <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                            <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                            <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                        <img src="assets/img/footer-logo.png" alt="" class="wow pulse">
+                        <p style="color: black; font-weight: bold; font-size: 16px;">CÔNG TY CỔ PHẦN GARO ESTATE VIỆT NAM</p>
+                        <ul class="footer-adress" style="color: black; font-size: 16px;">
+                            <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
+                            <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
+                            <li><i class="pe-7s-call strong"> </i> (033) 617 2381</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
-                        <h4>Quick links </h4>
+                        <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
                         <div class="footer-title-line"></div>
                         <ul class="footer-menu">
-                            <li><a href="properties.html">Properties</a>  </li>
-                            <li><a href="#">Services</a>  </li>
-                            <li><a href="submit-property.html">Submit property </a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="faq.html">fqa</a>  </li>
-                            <li><a href="faq.html">Terms </a>  </li>
+                            <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
-                        <h4>Last News</h4>
+                        <h4 style="color: black; font-weight: 700;">QUY ĐỊNH</h4>
                         <div class="footer-title-line"></div>
-                        <ul class="footer-blog">
-                            <li>
-                                <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                    <a href="single.html">
-                                        <img src="assets/img/demo/small-proerty-2.jpg">
-                                    </a>
-                                    <span class="blg-date">12-12-2016</span>
-
-                                </div>
-                                <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                    <a href="single.html">
-                                        <img src="assets/img/demo/small-proerty-2.jpg">
-                                    </a>
-                                    <span class="blg-date">12-12-2016</span>
-
-                                </div>
-                                <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                    <a href="single.html">
-                                        <img src="assets/img/demo/small-proerty-2.jpg">
-                                    </a>
-                                    <span class="blg-date">12-12-2016</span>
-
-                                </div>
-                                <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                </div>
-                            </li>
+                        <ul class="footer-menu">
+                            <li><a href="#" style="color: black; font-size: 14px;">Quy định đăng tin</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Quy chế hoạt động</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Điều khoản thỏa thuận</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Chính sách bảo mật</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Giải quyết khiếu nại</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                    <div class="single-footer news-letter">
-                        <h4>Stay in touch</h4>
-                        <div class="footer-title-line"></div>
-                        <p>Lorem ipsum dolor sit amet, nulla  suscipit similique quisquam molestias. Vel unde, blanditiis.</p>
-
-                        <form>
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="E-mail ... ">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
-                                </span>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="footer-copy text-center">
         <div class="container">
             <div class="row">
                 <div class="pull-left">
-                    <span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a> , All rights reserved 2016  </span>
+                    <span><a href="#" style="font-size: 12px;">Copyright © 2023 garoestate.com.vn</a></span>
                 </div>
-                <div class="bottom-menu pull-right">
+                <div class="social pull-right">
                     <ul>
-                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Home</a></li>
-                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Property</a></li>
-                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Faq</a></li>
-                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.6s">Contact</a></li>
+                        <li><a href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/kimarotec"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://plus.google.com/kimarotec"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-dribbble"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -345,6 +198,12 @@
     function resetFields() {
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
+    }
+    function redirectToLogin() {
+        window.location.href = "login.jsp";
+    }
+    function redirectToRegister() {
+        window.location.href = "register.jsp";
     }
 </script>
 </body>
