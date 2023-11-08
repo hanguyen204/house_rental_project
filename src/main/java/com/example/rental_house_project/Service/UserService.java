@@ -29,6 +29,7 @@ public class UserService implements IUserService {
     private static final String SHOW_ALL_HOUSE = "select * from House";
     private static final String INSERT_INTO_HOUSE_SQL = "INSERT INTO House (houseName, address, numberBath, numberBed ,describeHouse, numberHouseForRent, urlImage) VALUES (?, ?, ?,?, ? ,?,?);";
 
+    private static final String UPDATE_HOUSE_SQL = "update House set houseName = ?,address= ?, numberBath =?, numberBed =?,describeHouse=? ,numberHouseForRent=? ,urlImage=?  where houseId = ?;";
 
 
     public Connection connection() throws ClassNotFoundException {
@@ -432,7 +433,7 @@ public class UserService implements IUserService {
         return null;
     }
 
-    public List<House> searchByStatusRooms(String statusRoom) throws ClassNotFoundException, SQLException {
+    public List<House>searchByStatusRooms(String statusRoom) throws ClassNotFoundException, SQLException {
         List<House> list = new ArrayList<>();
         String query = "SELECT  houseName,address,numberBath,numberBed,describeHouse,numberHouseForRent,urlImage from House WHERE status ='Còn Phòng'";
         PreparedStatement statement = connection().prepareStatement(query);
@@ -488,6 +489,37 @@ public class UserService implements IUserService {
             list.add(new House(houseName, address,numberBath,numberBed,describeHouse,urlImage,numberHouseForRent));
         }
         return list;
+    }
+
+    public House selectIdHouse(int id) throws ClassNotFoundException, SQLException {
+        House house = null;
+        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            String houseName = rs.getString("houseName");
+            String address = rs.getString("address");
+            int numberBath = rs.getInt("numberBath");
+            int numberBed = rs.getInt("numberBed");
+            String describeHouse = rs.getString("describeHouse");
+            int numberHouseForRent = rs.getInt("numberHouseForRent");
+            String urlImage = rs.getString("urlImage");
+            house = new House(id, houseName, address, numberBath, numberBed, describeHouse, numberHouseForRent, urlImage);
+        }
+        return house;
+    }
+
+    public void updateHouse(House house) throws ClassNotFoundException, SQLException {
+        PreparedStatement statement = connection().prepareStatement(UPDATE_HOUSE_SQL);
+        statement.setString(1, house.getHouseName());
+        statement.setString(2, house.getAddress());
+        statement.setInt(3, house.getNumberBath());
+        statement.setInt(4, house.getNumberBed());
+        statement.setString(5, house.getDescribeHouse());
+        statement.setInt(6, house.getNumberHouseForRent());
+        statement.setString(7, house.getUrlImage());
+        statement.setInt(8, house.getHouseId());
+        statement.executeUpdate();
     }
 }
 

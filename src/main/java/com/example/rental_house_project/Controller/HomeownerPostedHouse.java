@@ -39,12 +39,30 @@ public class HomeownerPostedHouse extends HttpServlet {
                 case "add":
                     addHouse(req, resp);
                     break;
+                case "update":
+                    updateHouse(req,resp);
+                    break;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void updateHouse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        int houseId = Integer.parseInt(req.getParameter("houseId"));
+        String houseName = req.getParameter("houseName");
+        String address  = req.getParameter("address");
+        int numberBath = Integer.parseInt(req.getParameter("numberBath"));
+        int numberBed = Integer.parseInt(req.getParameter("numberBed"));
+        String describeHouse = req.getParameter("describeHouse");
+        int numberHouseForRent = Integer.parseInt(req.getParameter("numberHouseForRent"));
+        String urlImage = req.getParameter("urlImage");
+
+        House newHouse = new House(houseId,houseName,address,numberBath,numberBed,describeHouse,numberHouseForRent,urlImage);
+        homeowner.updateHouse(newHouse);
+        req.getRequestDispatcher("edit.jsp").forward(req,resp);
     }
 
     private void searchByStatusRoomOutOfRoom(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
@@ -79,6 +97,8 @@ public class HomeownerPostedHouse extends HttpServlet {
                 case "add":
                     showNewForm(req, resp);
                     break;
+                case "update":
+                    showEditForm(req,resp);
                 default:
                     listHouse(req, resp);
                     break;
@@ -88,6 +108,14 @@ public class HomeownerPostedHouse extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        int houseId = Integer.parseInt(req.getParameter("houseId"));
+        House house = homeowner.selectIdHouse(houseId);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("edit.jsp");
+        req.setAttribute("list", house);
+        dispatcher.forward(req, resp);
     }
 
     private void listHouse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
