@@ -42,7 +42,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,7 +59,7 @@
                                 <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                 <c:if test="${sessionScope.userType eq 'Landlord'}">
                                     <li><a href="#">Quản lý đăng tin</a></li>
-                                    <li><a href="#">Quản lý nhà</a></li>
+                                    <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.userType eq 'Admin'}">
                                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
@@ -79,7 +79,7 @@
                 </c:otherwise>
             </c:choose>
             <ul class="main-nav nav navbar-nav navbar-left">
-                <li><a href="home-page.jsp" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="/listHouse" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -98,9 +98,9 @@
     <div class="row" style="padding-top: 10px;">
         <div class="col-lg-4 col-lg-offset-4 col-md-10 col-md-offset-1 col-sm-12 center" style="margin-top: 10px;">
             <div class="search-form">
-                <form action="" class=" form-inline">
+                <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" style="color: black; font-size: 18px;">
+                        <input type="text" class="form-control" placeholder="Nhập tên cần nhà tìm kiếm" style="color: black; font-size: 18px;" name="houseName">
                     </div>
                     <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -121,75 +121,32 @@
         </div>
         <div class="row">
             <div class="proerty-th">
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-two proerty-item">
-                        <div class="item-thumb">
-                            <a href="property-3.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5><a href="property-3.html" >Super nice villa </a></h5>
-                            <div class="dot-hr"></div>
-                            <span class="pull-left"><b>Area :</b> 120m </span>
-                            <span class="proerty-price pull-right">$ 300,000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-two proerty-item">
-                        <div class="item-thumb">
-                            <a href="property-1.html" ><img src="assets/img/demo/property-4.jpg"></a>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5><a href="property-1.html" >Super nice villa </a></h5>
-                            <div class="dot-hr"></div>
-                            <span class="pull-left"><b>Area :</b> 120m </span>
-                            <span class="proerty-price pull-right">$ 300,000</span>
+                <c:forEach var="house" items="${houses}" >
+                    <div class="col-sm-7 col-md-4 p0">
+                        <div class="box-two proerty-item">
+                            <div class="item-thumb">
+                                <a href="property-3.html"><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
+                            </div>
+                            <div class="item-entry overflow">
+                                <h5><a href="property-3.html" >${house.houseName}</a></h5>
+                                <div class="dot-hr"></div>
+                                <span class="pull-left"><b>Area :</b> ${house.width} </span>
+                                <c:choose>
+                                    <c:when test="${house.price != 'Thảo thuận'}">
+                                        <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="proerty-price pull-right">${house.price}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-two proerty-item">
-                        <div class="item-thumb">
-                            <a href="property-3.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5><a href="property-3.html" >Super nice villa </a></h5>
-                            <div class="dot-hr"></div>
-                            <span class="pull-left"><b>Area :</b> 120m </span>
-                            <span class="proerty-price pull-right">$ 300,000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-two proerty-item">
-                        <div class="item-thumb">
-                            <a href="property-2.html" ><img src="assets/img/demo/property-4.jpg"></a>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5><a href="property-2.html" >Super nice villa </a></h5>
-                            <div class="dot-hr"></div>
-                            <span class="pull-left"><b>Area :</b> 120m </span>
-                            <span class="proerty-price pull-right">$ 300,000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-two proerty-item">
-                        <div class="item-thumb">
-                            <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5><a href="property-1.html" >Super nice villa </a></h5>
-                            <div class="dot-hr"></div>
-                            <span class="pull-left"><b>Area :</b> 120m </span>
-                            <span class="proerty-price pull-right">$ 300,000</span>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
                 <div class="col-sm-7 col-md-4 p0">
                     <div class="box-tree more-proerty text-center">
                         <div class="item-tree-icon">
-                            <i class="fa fa-th"></i>
+                            <i class="fa fa-th" onclick="redirectToProperties()"></i>
                         </div>
                         <div class="item-entry overflow">
                             <h5 class="tree-sub-ttl">Show all properties</h5>

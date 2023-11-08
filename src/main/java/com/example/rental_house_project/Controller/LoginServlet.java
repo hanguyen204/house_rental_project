@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
                     } else {
                         session.setAttribute("userType", "Landlord");
                     }
-                    response.sendRedirect("home-page.jsp");
+                    response.sendRedirect("/home-page");
                 } else {
                     request.setAttribute("error", "Failed to retrieve user information");
                     request.getRequestDispatcher("login.jsp").forward(request, response);

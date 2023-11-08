@@ -41,7 +41,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,7 +51,7 @@
                 <button class="navbar-btn nav-button login" onclick="redirectToRegister()">Đăng ký</button>
             </div>
             <ul class="main-nav nav navbar-nav navbar-left">
-                <li><a href="index.html" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="properties.html" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

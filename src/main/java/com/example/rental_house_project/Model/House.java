@@ -54,6 +54,35 @@ public class House {
         this.status = status;
     }
 
+    public House(String imgHouse, String houseName, String address, int numberBath, int numberBed, String describeHouse) {
+        this.imgHouse = imgHouse;
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+    }
+
+    public House(String imgHouse, int houseId, String houseName, String address, int numberBath, int numberBed, String describeHouse) {
+        this.imgHouse = imgHouse;
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+    }
+
+    public House(int houseId, String houseName, String address, int numberBath, int numberBed, String describeHouse, String imgHouse) {
+        this.imgHouse = imgHouse;
+        this.houseId = houseId;
+        this.houseName = houseName;
+        this.address = address;
+        this.numberBath = numberBath;
+        this.numberBed = numberBed;
+        this.describeHouse = describeHouse;
+    }
+
     public int getHouseId() {
         return houseId;
     }

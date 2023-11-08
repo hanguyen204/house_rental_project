@@ -43,29 +43,36 @@
     #avatar {
         width: 50px;
     }
+    .description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 6x00px; /* Điều chỉnh độ rộng tối đa của phần mô tả */
+    }
 </style>
 <body>
 <nav class="navbar navbar-default ">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
-            <div class="button navbar-right" style="font-weight: bold;">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.username}">
-                        <div class="dropdown">
+            <c:choose>
+                <c:when test="${not empty sessionScope.username}">
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="dropdown ymm-sw">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar">
+                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;">  ${sessionScope.username}</span>
                                 <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu" style="margin-top: 0px; margin-right: 200px;">
+                            <ul class="dropdown-menu navbar-nav">
                                 <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                 <c:if test="${sessionScope.userType eq 'Landlord'}">
                                     <li><a href="#">Quản lý đăng tin</a></li>
+                                    <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.userType eq 'Admin'}">
                                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
@@ -74,20 +81,22 @@
                                 <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                 <li><a href="logout">Đăng xuất</a></li>
                             </ul>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
+                        </li>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <div class="button navbar-right" style="font-weight: bold;">
                         <button class="navbar-btn nav-button" onclick="redirectToLogin()">Đăng nhập</button>
                         <button class="navbar-btn nav-button login" onclick=" redirectToRegister()">Đăng ký</button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <ul class="main-nav nav navbar-nav navbar-left">
-                <li><a href="home-page.jsp" style="color: black; font-weight: 500;">Trang chủ</a></li>
-                <li><a href="properties.jsp" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
+                <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="/listHouse" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
             </ul>
-        </div>
-    </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 <!-- End of nav bar -->
 
@@ -98,169 +107,63 @@
             <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
                 <div class="section">
                     <div id="list-type" class="proerty-th-list">
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
+                        <c:forEach items="${pagedList}" var="house">
+                            <div class="col-md-4 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="#" ><img src="${house.imgHouse}"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="#"> ${house.houseName} </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
+                                        <c:choose>
+                                            <c:when test="${house.price != 'Thảo thuận'}">
+                                                <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="proerty-price pull-right">${house.price}</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <p style="display: none;" class="description">${house.describeHouse}</p>
+                                        <div class="property-icon">
+                                            <img src="assets/img/icon/bed.png">(${house.numberBed})|
+                                            <img src="assets/img/icon/shawer.png">(${house.numberBath})
+                                            <div class="dealer-action pull-right">
+                                                <a href="#" class="button">Edit </a>
+                                                <a href="#" class="button delete_user_car">Delete</a>
+                                                <a href="#" class="button">View</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow ">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="section">
                     <div class="pull-right">
                         <div class="pagination">
                             <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
+                                <li>
+                                    <a href="listHouse?page=${currentPage - 1}"
+                                       class="${currentPage == 1 ? 'disabled' : ''}">
+                                        Prev
+                                    </a>
+                                </li>
+                                <c:forEach var="pageNumber" begin="1" end="${totalPages}">
+                                    <li class="${pageNumber == currentPage ? 'active' : ''}">
+                                        <a href="listHouse?page=${pageNumber}">
+                                                ${pageNumber}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                                <li>
+                                    <a href="listHouse?page=${currentPage + 1}"
+                                       class="${currentPage == totalPages ? 'disabled' : ''}">
+                                        Next
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

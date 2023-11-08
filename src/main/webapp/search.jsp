@@ -61,7 +61,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,7 +72,8 @@
                         <li class="dropdown ymm-sw">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
-                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;"> ${sessionScope.username}</span>
+                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span
+                                    style="color: black;"> ${sessionScope.username}</span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu navbar-nav">
@@ -99,7 +100,7 @@
                 </c:otherwise>
             </c:choose>
             <ul class="main-nav nav navbar-nav navbar-left">
-                <li><a href="home-page.jsp" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="/listHouse" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -131,27 +132,28 @@
 
                 <div class="section clear">
                     <div id="list-type" class="proerty-th">
-                        <c:forEach var="house" items="${pagedList}">
+                        <c:forEach var="list" items="${list}">
                             <div class="col-sm-6 col-md-4 p0 item">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="#"><img src="${house.imgHouse}"></a>
+                                        <a href="#"><img src="${list.imgHouse}"></a>
                                     </div>
                                     <div class="item-entry overflow">
-                                        <h5><a href="#"> ${house.houseName} </a></h5>
+                                        <h5><a href="#"> ${list.houseName} </a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
+                                        <span class="pull-left"><b> Area :</b> ${list.width}m<sup>2</sup> </span>
                                         <c:choose>
-                                            <c:when test="${house.price != 'Thảo thuận'}">
-                                                <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
+                                            <c:when test="${list.price != 'Thảo thuận'}">
+                                                <span class="proerty-price pull-right">${list.price}/${list.timeRental}</span>
                                             </c:when>
                                             <c:otherwise>
-                                                <span class="proerty-price pull-right">${house.price}</span>
+                                                <span class="proerty-price pull-right">${list.price}</span>
                                             </c:otherwise>
                                         </c:choose>
+<%--                                        <a><c:out value="${list.describeHouse}"/></a>--%>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(${house.numberBed})|
-                                            <img src="assets/img/icon/shawer.png">(${house.numberBath})
+                                            <img src="assets/img/icon/bed.png">(${list.numberBed})|
+                                            <img src="assets/img/icon/shawer.png">(${list.numberBath})
                                         </div>
                                     </div>
                                 </div>
