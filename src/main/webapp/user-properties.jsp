@@ -94,8 +94,9 @@
                 <c:choose>
                     <c:when test="${not empty username}">
                         <div class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img src="${urlImage}" alt="Avatar" class="img-circle" id="avatar">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <img src="${urlImage}" alt="Avatar" class="img-circle" id="avatar" width="50px">
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" style="margin-top: 0px; margin-right: 200px;">
@@ -124,13 +125,15 @@
             </div>
             <ul class="main-nav nav navbar-nav navbar-right">
                 <li class="dropdown ymm-sw " data-wow-delay="0.1s">
-                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Home</a>
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown"
+                       data-delay="200">Home</a>
                 </li>
 
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="properties.html">Properties</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="property.html">Property</a></li>
                 <li class="dropdown yamm-fw" data-wow-delay="0.1s">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template
+                        <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="yamm-content">
@@ -155,46 +158,46 @@
                                     <div class="col-sm-3">
                                         <h5>Pages and blog</h5>
                                         <ul>
-                                            <li><a href="blog.html">Blog listing</a>  </li>
-                                            <li><a href="single.html">Blog Post (full)</a>  </li>
-                                            <li><a href="single-right.html">Blog Post (Right)</a>  </li>
-                                            <li><a href="single-left.html">Blog Post (left)</a>  </li>
-                                            <li><a href="contact.html">Contact style (1)</a> </li>
-                                            <li><a href="contact-3.html">Contact style (2)</a> </li>
-                                            <li><a href="contact_3.html">Contact style (3)</a> </li>
-                                            <li><a href="faq.html">FAQ page</a> </li>
-                                            <li><a href="404.html">404 page</a>  </li>
+                                            <li><a href="blog.html">Blog listing</a></li>
+                                            <li><a href="single.html">Blog Post (full)</a></li>
+                                            <li><a href="single-right.html">Blog Post (Right)</a></li>
+                                            <li><a href="single-left.html">Blog Post (left)</a></li>
+                                            <li><a href="contact.html">Contact style (1)</a></li>
+                                            <li><a href="contact-3.html">Contact style (2)</a></li>
+                                            <li><a href="contact_3.html">Contact style (3)</a></li>
+                                            <li><a href="faq.html">FAQ page</a></li>
+                                            <li><a href="404.html">404 page</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-3">
                                         <h5>Property</h5>
                                         <ul>
-                                            <li><a href="property-pages_1.html">Property pages (1)</a> </li>
-                                            <li><a href="property-pages_2.html">Property pages (2)</a> </li>
-                                            <li><a href="property-pages_3.html">Property pages (3)</a> </li>
+                                            <li><a href="property-pages_1.html">Property pages (1)</a></li>
+                                            <li><a href="property-pages_2.html">Property pages (2)</a></li>
+                                            <li><a href="property-pages_3.html">Property pages (3)</a></li>
                                         </ul>
 
                                         <h5>Properties list</h5>
                                         <ul>
-                                            <li><a href="property-list_1.html">Properties list (1)</a> </li>
-                                            <li><a href="property-list_2.html">Properties list (2)</a> </li>
-                                            <li><a href="property-list_3.html">Properties list (3)</a> </li>
+                                            <li><a href="property-list_1.html">Properties list (1)</a></li>
+                                            <li><a href="property-list_2.html">Properties list (2)</a></li>
+                                            <li><a href="property-list_3.html">Properties list (3)</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-3">
                                         <h5>Property process</h5>
                                         <ul>
-                                            <li><a href="submit-property.html">Submit - step 1</a> </li>
-                                            <li><a href="submit-property.html">Submit - step 2</a> </li>
-                                            <li><a href="submit-property.html">Submit - step 3</a> </li>
+                                            <li><a href="submit-property.html">Submit - step 1</a></li>
+                                            <li><a href="submit-property.html">Submit - step 2</a></li>
+                                            <li><a href="submit-property.html">Submit - step 3</a></li>
                                         </ul>
                                         <h5>User account</h5>
                                         <ul>
-                                            <li><a href="register.html">Register / login</a>   </li>
-                                            <li><a href="user-properties.html">Your properties</a>  </li>
-                                            <li><a href="submit-property.html">Submit property</a>  </li>
-                                            <li><a href="change-password.html">Change password</a> </li>
-                                            <li><a href="user-profile.html">Your profile</a>  </li>
+                                            <li><a href="register.html">Register / login</a></li>
+                                            <li><a href="user-properties.html">Your properties</a></li>
+                                            <li><a href="submit-property.html">Submit property</a></li>
+                                            <li><a href="change-password.html">Change password</a></li>
+                                            <li><a href="user-profile.html">Your profile</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -235,12 +238,14 @@
 
                         <ul class="sort-by-list pull-left">
                             <li class="active">
-                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
+                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date"
+                                   data-order="ASC">
                                     Property Date <i class="fa fa-sort-amount-asc"></i>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price"
+                                   data-order="DESC">
                                     Property Price <i class="fa fa-sort-numeric-desc"></i>
                                 </a>
                             </li>
@@ -263,210 +268,37 @@
                         </div><!--/ .items-per-page-->
                     </div>
 
-                </div>
-
-                <div class="section">
-                    <div id="list-type" class="proerty-th-list">
+                    <form action="/listHouseForRent" method="get">
                         <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
+                            <div>
+                            <c:forEach var="item" items="${list}">
 
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="#"><img src="${item.imgHouse}" alt="picture house"
+                                                         style="width: auto"></a>
                                     </div>
 
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow ">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="property-1.html">${item.houseName} </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Address :</b> ${item.address} </span>
+                                        <span class="proerty-price pull-right"> <b> Revenue: </b> ${item.revenue} </span>
+                                        <span> <b> Status: </b> ${item.status} </span>
+                                        <span class="font-weight-bold">${item.price}$</span>
+                                        <div class="property-icon">
+                                            <div class="dealer-action pull-right">
+                                                <a href="#" class="button">Edit</a>
+                                                <a href="#" class="button delete_user_car">Delete</a>
+                                                <a href="#" class="button">View</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </c:forEach>
                             </div>
                         </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
-                                </div>
-
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <span class="pull-left"><b> Area :</b> 120m </span>
-                                    <span class="proerty-price pull-right"> $ 300,000</span>
-                                    <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    <div class="property-icon">
-                                        <img src="assets/img/icon/bed.png">(5)|
-                                        <img src="assets/img/icon/shawer.png">(2)|
-                                        <img src="assets/img/icon/cars.png">(1)
-
-                                        <div class="dealer-action pull-right">
-                                            <a href="submit-property.html" class="button">Edit </a>
-                                            <a href="#" class="button delete_user_car">Delete</a>
-                                            <a href="property-1.html" class="button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="section">
@@ -488,7 +320,7 @@
 
             <div class="col-md-3 p0 padding-top-40">
                 <div class="blog-asside-right">
-                    <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
                         <div class="panel-heading">
                             <h3 class="panel-title">Hello Kimaro</h3>
                         </div>
@@ -537,12 +369,12 @@
                         <h4>Quick links </h4>
                         <div class="footer-title-line"></div>
                         <ul class="footer-menu">
-                            <li><a href="properties.html">Properties</a>  </li>
-                            <li><a href="#">Services</a>  </li>
+                            <li><a href="properties.html">Properties</a></li>
+                            <li><a href="#">Services</a></li>
                             <li><a href="submit-property.html">Submit property </a></li>
                             <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="faq.html">fqa</a>  </li>
-                            <li><a href="faq.html">Terms </a>  </li>
+                            <li><a href="faq.html">fqa</a></li>
+                            <li><a href="faq.html">Terms </a></li>
                         </ul>
                     </div>
                 </div>
@@ -560,8 +392,9 @@
 
                                 </div>
                                 <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
+                                    <h6><a href="single.html">Add news functions </a></h6>
+                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla
+                                        ...</p>
                                 </div>
                             </li>
 
@@ -574,8 +407,9 @@
 
                                 </div>
                                 <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
+                                    <h6><a href="single.html">Add news functions </a></h6>
+                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla
+                                        ...</p>
                                 </div>
                             </li>
 
@@ -588,8 +422,9 @@
 
                                 </div>
                                 <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                    <h6> <a href="single.html">Add news functions </a></h6>
-                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
+                                    <h6><a href="single.html">Add news functions </a></h6>
+                                    <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla
+                                        ...</p>
                                 </div>
                             </li>
 
@@ -601,13 +436,15 @@
                     <div class="single-footer news-letter">
                         <h4>Stay in touch</h4>
                         <div class="footer-title-line"></div>
-                        <p>Lorem ipsum dolor sit amet, nulla  suscipit similique quisquam molestias. Vel unde, blanditiis.</p>
+                        <p>Lorem ipsum dolor sit amet, nulla suscipit similique quisquam molestias. Vel unde,
+                            blanditiis.</p>
 
                         <form>
                             <div class="input-group">
                                 <input class="form-control" type="text" placeholder="E-mail ... ">
                                 <span class="input-group-btn">
-                                            <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
+                                            <button class="btn btn-primary subscribe" type="button"><i
+                                                    class="pe-7s-paper-plane pe-2x"></i></button>
                                         </span>
                             </div>
                             <!-- /input-group -->
@@ -615,11 +452,16 @@
 
                         <div class="social pull-right">
                             <ul>
-                                <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
-                                <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i
+                                        class="fa fa-twitter"></i></a></li>
+                                <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec"
+                                       data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec"
+                                       data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec"
+                                       data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
+                                <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec"
+                                       data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
                             </ul>
                         </div>
                     </div>

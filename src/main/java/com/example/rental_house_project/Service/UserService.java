@@ -26,7 +26,9 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_USER = "select * from user where userType='User';";
     private static final String SELECT_ALL_Landlord = "select * from user where userType='Landlord';";
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
+    private static final String SELECT_ALL_HOUSE = "select imgHouse,houseName,price,address,revenue,status from house where userId = ?";
 
+    House house = new House();
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -38,6 +40,7 @@ public class UserService implements IUserService {
         }
         return con;
     }
+
     @Override
     public void insertUser(User user) throws ClassNotFoundException {
         Connection connection = connection();
@@ -56,6 +59,7 @@ public class UserService implements IUserService {
             throw new RuntimeException(e);
         }
     }
+
     public void insertLandlord(User user) throws ClassNotFoundException {
         Connection connection = connection();
         PreparedStatement preparedStatement = null;
@@ -73,6 +77,7 @@ public class UserService implements IUserService {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public boolean checkEmail(String username) {
         try {
@@ -91,6 +96,7 @@ public class UserService implements IUserService {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public void updateStatusForUser(int id) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = connection().prepareStatement("update user set status = 'Đang hoạt động' where id = ?");
@@ -98,6 +104,7 @@ public class UserService implements IUserService {
         preparedStatement.executeUpdate();
         connection().close();
     }
+
     @Override
     public void updateLockStatusForUser(int id) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = connection().prepareStatement("update user set status = 'Khóa' where id = ?");
@@ -105,6 +112,7 @@ public class UserService implements IUserService {
         preparedStatement.executeUpdate();
         connection().close();
     }
+
     @Override
     public boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException {
         PreparedStatement statement = connection().prepareStatement(UPDATE_USERS_SQL);
@@ -118,6 +126,7 @@ public class UserService implements IUserService {
         statement.close();
         return false;
     }
+
     @Override
     public boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException {
         PreparedStatement statement = connection().prepareStatement(UPDATE_USERS_SQL);
@@ -149,6 +158,7 @@ public class UserService implements IUserService {
         }
         return list;
     }
+
     public List<User> showAccLandlord() throws ClassNotFoundException, SQLException {
         List<User> list = new ArrayList<>();
         Connection connection = connection();
@@ -164,10 +174,11 @@ public class UserService implements IUserService {
             int revenue = rs.getInt("revenue");
             int numberHouseForRent = rs.getInt("numberHouseForRent");
             String status = rs.getString("status");
-            list.add(new User(id, username, urlImg, fullName,revenue, numberHouseForRent, address, phone, status));
+            list.add(new User(id, username, urlImg, fullName, revenue, numberHouseForRent, address, phone, status));
         }
         return list;
     }
+
     public List<User> getUserList(int start, int end) {
         List<User> userList = new ArrayList<>();
 
@@ -197,6 +208,7 @@ public class UserService implements IUserService {
         }
         return userList;
     }
+
     public int getTotalUsers() {
         int totalUsers = 0;
 
@@ -215,6 +227,7 @@ public class UserService implements IUserService {
 
         return totalUsers;
     }
+
     public User showEditProfileUser(int id) throws SQLException, ClassNotFoundException {
         User user1 = null;
         PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
@@ -230,6 +243,7 @@ public class UserService implements IUserService {
         }
         return user1;
     }
+
     public List<User> showUserInformation() throws ClassNotFoundException, SQLException {
         List<User> list = new ArrayList<>();
         PreparedStatement statement = connection().prepareStatement(SELECT_ALL_ACCUSER);
@@ -245,7 +259,8 @@ public class UserService implements IUserService {
         }
         return list;
     }
-    public void updatePassword(String username,String password) throws ClassNotFoundException {
+
+    public void updatePassword(String username, String password) throws ClassNotFoundException {
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PASSWORD);) {
             statement.setString(1, password);
@@ -256,6 +271,7 @@ public class UserService implements IUserService {
             e.printStackTrace();
         }
     }
+
     public User showEditProfileProduct(int id) throws SQLException, ClassNotFoundException {
         User product = null;
         PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
@@ -272,6 +288,7 @@ public class UserService implements IUserService {
         }
         return product;
     }
+
     public List<User> showProductInformation() throws ClassNotFoundException, SQLException {
         List<User> list = new ArrayList<>();
         PreparedStatement statement = connection().prepareStatement(SELECT_ALL_ACCUSER);
@@ -287,10 +304,11 @@ public class UserService implements IUserService {
         }
         return list;
     }
-    public void updateProfile(String username,String urlImage, String fullName, String phone, String address) {
+
+    public void updateProfile(String username, String urlImage, String fullName, String phone, String address) {
         try (Connection connection = connection();
              PreparedStatement statement = connection().prepareStatement(UPDATE_PROFILE)) {
-            statement.setString(1,urlImage);
+            statement.setString(1, urlImage);
             statement.setString(2, fullName);
             statement.setString(3, phone);
             statement.setString(4, address);
@@ -303,6 +321,7 @@ public class UserService implements IUserService {
             e.printStackTrace();
         }
     }
+
     public boolean checkUsernameExist(String username) {
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SELECT_USER_EXIST)) {
@@ -320,6 +339,7 @@ public class UserService implements IUserService {
         }
         return false;
     }
+
     public boolean checkCredentials(String username, String password) {
         try {
             Connection conn = connection();
@@ -345,6 +365,7 @@ public class UserService implements IUserService {
 
         return false;
     }
+
     public String checkUserType(String username) {
         try (Connection connection = connection();
              PreparedStatement statement = connection.prepareStatement(SELECT_USER_TYPE);) {
@@ -365,6 +386,7 @@ public class UserService implements IUserService {
 
         return null;
     }
+
     public User getUser(String username) {
         try (Connection connection = connection();
              PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER)) {
@@ -384,7 +406,7 @@ public class UserService implements IUserService {
                 String userType = rs.getString("userType");
                 String status = rs.getString("status");
 
-                User user = new User(id,username, password ,urlImage,fullname,address,phone,revenue,numberHouseForRent,userType,status);
+                User user = new User(id, username, password, urlImage, fullname, address, phone, revenue, numberHouseForRent, userType, status);
                 return user;
             }
         } catch (SQLException e) {
@@ -393,6 +415,24 @@ public class UserService implements IUserService {
             e.printStackTrace();
         }
         return null;
+    }
+    @Override
+    public List<House> showAllHouse(int userId) throws SQLException, ClassNotFoundException {
+        List<House> list = new ArrayList<>();
+        Connection connection = connection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_HOUSE);
+        preparedStatement.setInt(1,userId);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            String houseName = rs.getString("houseName");
+            Double price = rs.getDouble("price");
+            String address = rs.getString("address");
+            int revenue = rs.getInt("revenue");
+            String status = rs.getString("status");
+            String imgHouse = rs.getString("imgHouse");
+            list.add(new House(imgHouse,houseName,price,address,revenue,status));
+        }
+        return list;
     }
 }
 
