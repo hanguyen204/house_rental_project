@@ -21,4 +21,5 @@ public interface IUserService {
     boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException;
 
     boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException;
+    List<House> showAllHouse(int userId) throws SQLException, ClassNotFoundException;
 }
