@@ -250,26 +250,26 @@
         <table border="1" cellpadding="5">
             <tr>
                 <th hidden="hidden">Id</th>
-                <th>Avatar</th>
+<%--                <th>Avatar</th>--%>
                 <th>Username</th>
-                <th>Full name</th>
-                <th>Renvenue</th>
-                <th>Number Houser For Rent</th>
-                <th>Phone</th>
-                <th>Address</th>
+<%--                <th>Full name</th>--%>
+<%--                <th>Renvenue</th>--%>
+<%--                <th>Number Houser For Rent</th>--%>
+<%--                <th>Phone</th>--%>
+<%--                <th>Address</th>--%>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
             <c:forEach var="list" items="${listLandlord}">
                 <tr>
                     <td hidden="hidden"><c:out value="${list.id}"/></td>
-                    <td><img src="${list.urlImage}" alt="Avatar of User" class="avatar-img"></td>
+<%--                    <td><img src="${list.urlImage}" alt="Avatar of User" class="avatar-img"></td>--%>
                     <td><c:out value="${list.username}"/></td>
-                    <td><c:out value="${list.fullName}"/></td>
-                    <td><c:out value="${list.revenue}"/></td>
-                    <td><c:out value="${list.numberHouseForRent}"/></td>
-                    <td><c:out value="${list.phone}"/></td>
-                    <td><c:out value="${list.address}"/></td>
+<%--                    <td><c:out value="${list.fullName}"/></td>--%>
+<%--                    <td><c:out value="${list.revenue}"/></td>--%>
+<%--                    <td><c:out value="${list.numberHouseForRent}"/></td>--%>
+<%--                    <td><c:out value="${list.phone}"/></td>--%>
+<%--                    <td><c:out value="${list.address}"/></td>--%>
                     <td><c:out value="${list.status}"/></td>
                     <td>
                         <c:choose>
@@ -284,6 +284,7 @@
                                 <button><a href="landlordlist?action=active&userId=${list.id}" style="text-decoration: none">Kích hoạt</a></button>
                             </c:otherwise>
                         </c:choose>
+                        <button><a href="" style="text-decoration: none">Xem chi tiết</a></button>
                     </td>
                 </tr>
             </c:forEach>
