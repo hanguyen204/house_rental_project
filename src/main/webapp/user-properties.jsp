@@ -65,7 +65,7 @@
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa fa-vine"></i></a></li>
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribble"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
@@ -89,7 +89,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse yamm" id="navigation">
+        <div class="collapse navbar-collapse yam" id="navigation">
             <div class="button navbar-right">
                 <c:choose>
                     <c:when test="${not empty username}">
@@ -109,7 +109,7 @@
                                     <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
                                 </c:if>
                                 <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
-                                <li><a href="logout">Đăng xuất</a></li>
+                                <li><a href="logout">Logout</a></li>
                             </ul>
                         </div>
                     </c:when>
@@ -131,12 +131,12 @@
 
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="properties.html">Properties</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="property.html">Property</a></li>
-                <li class="dropdown yamm-fw" data-wow-delay="0.1s">
+                <li class="dropdown yam-fw" data-wow-delay="0.1s">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <div class="yamm-content">
+                            <div class="yam-content">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h5>Home pages</h5>
@@ -202,7 +202,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.yamm-content -->
+                            <!-- /.yam-content -->
                         </li>
                     </ul>
                 </li>
@@ -273,17 +273,15 @@
                             <div>
                             <c:forEach var="item" items="${list}">
 
-                                <div class="box-two proerty-item">
+                                <div class="box-two property-item">
                                     <div class="item-thumb">
-                                        <a href="#"><img src="${item.imgHouse}" alt="picture house"
-                                                         style="width: auto"></a>
+                                        <a href="#"><img src="${item.imgHouse}" alt="picture house" style="width: auto"></a>
                                     </div>
-
                                     <div class="item-entry overflow">
                                         <h5><a href="property-1.html">${item.houseName} </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Address :</b> ${item.address} </span>
-                                        <span class="proerty-price pull-right"> <b> Revenue: </b> ${item.revenue} </span>
+                                        <span class="property-price pull-right"> <b> Revenue: </b> ${item.revenue} </span>
                                         <span> <b> Status: </b> ${item.status} </span>
                                         <span class="font-weight-bold">${item.price}$</span>
                                         <div class="property-icon">
@@ -319,7 +317,7 @@
             </div>
 
             <div class="col-md-3 p0 padding-top-40">
-                <div class="blog-asside-right">
+                <div class="blog-aside-right">
                     <div class="panel panel-default sidebar-menu wow fadeInRight animated">
                         <div class="panel-heading">
                             <h3 class="panel-title">Hello Kimaro</h3>
@@ -357,7 +355,7 @@
 
                         <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
                         <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
-                        <ul class="footer-adress">
+                        <ul class="footer-address">
                             <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
                             <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
                             <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
@@ -401,7 +399,7 @@
                             <li>
                                 <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                     <a href="single.html">
-                                        <img src="assets/img/demo/small-proerty-2.jpg">
+                                        <img src="assets/img/demo/small-property-2.jpg">
                                     </a>
                                     <span class="blg-date">12-12-2016</span>
 
@@ -416,7 +414,7 @@
                             <li>
                                 <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                     <a href="single.html">
-                                        <img src="assets/img/demo/small-proerty-2.jpg">
+                                        <img src="assets/img/demo/small-property-2.jpg">
                                     </a>
                                     <span class="blg-date">12-12-2016</span>
 
