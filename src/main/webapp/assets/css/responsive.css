@@ -177,7 +177,7 @@
     }
     .slider .owl-pagination {
         bottom: 165px;
-        right: 0;
+        left: 0;
         width: 30px;
     }
     .page-title{
@@ -479,7 +479,7 @@
     }
     .slider .owl-pagination {
         bottom: 165px;
-        right: 0;
+        left: 0;
         width: 30px;
     }
     .page-title{
@@ -647,7 +647,7 @@
     }
     .slider .owl-pagination {
         bottom: 165px;
-        right: 0;
+        left: 0;
         width: 30px;
     }
     .page-title{

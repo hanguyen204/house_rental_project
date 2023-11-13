@@ -1,17 +1,17 @@
 package com.example.rental_house_project.Model;
 
 public class House {
-    private int width;
-    private String timeRental;
-    private String imgHouse;
-    private int userId;
     private int houseId;
+    private int userId;
+    private String imgHouse;
     private String houseName;
     private String price;
+    private String timeRental;
     private String address;
-    private double revenue;
+    private int revenue;
     private int numberBath;
     private int numberBed;
+    private int width;
     private String describeHouse;
     private String status;
 
@@ -31,7 +31,7 @@ public class House {
         this.status = status;
     }
 
-    public House(String houseName, String price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
+    public House(String houseName, String price, String address, int revenue, int numberBath, int numberBed, String describeHouse, String status) {
         this.houseName = houseName;
         this.price = price;
         this.address = address;
@@ -42,7 +42,7 @@ public class House {
         this.status = status;
     }
 
-    public House(int houseId, String houseName, String price, String address, double revenue, int numberBath, int numberBed, String describeHouse, String status) {
+    public House(int houseId, String houseName, String price, String address, int revenue, int numberBath, int numberBed, String describeHouse, String status) {
         this.houseId = houseId;
         this.houseName = houseName;
         this.price = price;
@@ -83,6 +83,8 @@ public class House {
         this.describeHouse = describeHouse;
     }
 
+    public House() {}
+
     public int getHouseId() {
         return houseId;
     }
@@ -119,7 +121,7 @@ public class House {
         return revenue;
     }
 
-    public void setRevenue(double revenue) {
+    public void setRevenue(int revenue) {
         this.revenue = revenue;
     }
 
@@ -199,6 +201,25 @@ public class House {
         } else {
             return price;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "houseId=" + houseId +
+                ", userId=" + userId +
+                ", imgHouse='" + imgHouse + '\'' +
+                ", houseName='" + houseName + '\'' +
+                ", price='" + price + '\'' +
+                ", timeRental='" + timeRental + '\'' +
+                ", address='" + address + '\'' +
+                ", revenue=" + revenue +
+                ", numberBath=" + numberBath +
+                ", numberBed=" + numberBed +
+                ", width=" + width +
+                ", describeHouse='" + describeHouse + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
 

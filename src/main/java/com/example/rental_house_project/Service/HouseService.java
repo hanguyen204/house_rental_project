@@ -14,7 +14,10 @@ public class HouseService {
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
     private static final String SELECT_FIVE_HOUSE = "SELECT * FROM House ORDER BY revenue DESC LIMIT 5;";
     private static final String SELECT_All_HOUSE_OF_LANDLORD = "SELECT * FROM House INNER JOIN user ON House.userId = user.id WHERE user.id = ?;";
-    private static final String SHOW_ALL_HOUSE = "select * from House";
+//    private static final String SHOW_ALL_HOUSE = "select * from House";
+    private static final String INSERT_HOUSE_SQL = "INSERT INTO House (userId, imgHouse, housename, price, timeRental, address, numberBath, numberBed, width, describeHouse, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_HOUSES_BY_USER_ID_SQL = "SELECT * FROM House WHERE userId = ?";
+    private static final String SELECT_ID_HOUSE_BY_HOUSE_NAME_SQL = "SELECT houseId FROM House WHERE housename = ?";
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -121,7 +124,7 @@ public class HouseService {
 
     public List<House> showAllHouse() throws ClassNotFoundException, SQLException {
         List<House> list = new ArrayList<>();
-        PreparedStatement preparedStatement = connection().prepareStatement(SHOW_ALL_HOUSE);
+        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_ALL_HOUSE);
         System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
@@ -194,4 +197,60 @@ public class HouseService {
         return list;
     }
 
+    public void insertHouse(House house) throws SQLException, ClassNotFoundException {
+        PreparedStatement statement = connection().prepareStatement(INSERT_HOUSE_SQL);
+        statement.setInt(1, house.getUserId());
+        statement.setString(2,  house.getImgHouse());
+        statement.setString(3, house.getHouseName());
+        statement.setString(4, house.getPrice());
+        statement.setString(5, house.getTimeRental());
+        statement.setString(6, house.getAddress());
+        statement.setInt(7, house.getNumberBath());
+        statement.setInt(8, house.getNumberBed());
+        statement.setInt(9, house.getWidth());
+        statement.setString(10, house.getDescribeHouse());
+        statement.setString(11, house.getStatus());
+        statement.executeUpdate();
+    }
+
+    public List<House> getHousesByUserId(int userId) throws SQLException, ClassNotFoundException {
+        List<House> houses = new ArrayList<>();
+        House house = new House();
+
+        PreparedStatement statement = connection().prepareStatement(SELECT_HOUSES_BY_USER_ID_SQL);
+        statement.setInt(1, userId);
+
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            house.setHouseId(resultSet.getInt("houseId"));
+            house.setUserId(resultSet.getInt("userId"));
+            house.setImgHouse(resultSet.getString("imgHouse"));
+            house.setHouseName(resultSet.getString("housename"));
+            house.setPrice(resultSet.getString("price"));
+            house.setTimeRental(resultSet.getString("timeRental"));
+            house.setAddress(resultSet.getString("address"));
+            house.setRevenue(resultSet.getInt("revenue"));
+            house.setNumberBath(resultSet.getInt("numberBath"));
+            house.setNumberBed(resultSet.getInt("numberBed"));
+            house.setWidth(resultSet.getInt("width"));
+            house.setDescribeHouse(resultSet.getString("describeHouse"));
+            house.setStatus(resultSet.getString("status"));
+            houses.add(house);
+        }
+        return houses;
+    }
+
+    public int getHouseByHouseName(String housename) throws ClassNotFoundException, SQLException {
+        int houseId = 0;
+
+        PreparedStatement statement = connection().prepareStatement(SELECT_ID_HOUSE_BY_HOUSE_NAME_SQL);
+        statement.setString(1, housename);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            houseId = resultSet.getInt("houseId");
+        }
+        return  houseId;
+    }
 }
