@@ -16,6 +16,17 @@ public class User {
     public User() {
     }
 
+    public User(String username, String urlImage, String fullName, int revenue, int numberHouseForRent, String address, String phone, String status) {
+        this.username = username;
+        this.urlImage = urlImage;
+        this.fullName = fullName;
+        this.revenue = revenue;
+        this.numberHouseForRent = numberHouseForRent;
+        this.address = address;
+        this.phone = phone;
+        this.status = status;
+    }
+
     public User(int id, String username, String urlImage, String fullName, int revenue, int numberHouseForRent, String address, String phone, String status) {
         this.id = id;
         this.username = username;
