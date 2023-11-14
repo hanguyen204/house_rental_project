@@ -12,7 +12,7 @@ import java.util.List;
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "anhnam2005";
+    private String password = "2004";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
@@ -28,6 +28,7 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
     private static final String SELECT_ALL_HOUSE = "select imgHouse,houseName,price,address,revenue,status from house where userId = ?";
     private static final String SELECT_USER_BY_ID_ALL = "SELECT * FROM user WHERE id =?;";
+
     House house = new House();
 
     public User getUserByID(int id) throws ClassNotFoundException, SQLException {
@@ -455,6 +456,27 @@ public class UserService implements IUserService {
             String status = rs.getString("status");
             String imgHouse = rs.getString("imgHouse");
             list.add(new House(imgHouse,houseName,address,price,revenue,status));
+        }
+        return list;
+    }
+
+    @Override
+    public List<User> selectLandLord(int id) throws ClassNotFoundException, SQLException {
+        List<User> list = new ArrayList<>();
+        Connection connection = connection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LANDLORD_BY_ID);
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            String userName = resultSet.getString("userName");
+            String urlImage = resultSet.getString("urlImage");
+            String fullName = resultSet.getString("fullName");
+            String phone = resultSet.getString("phone");
+            String address = resultSet.getString("address");
+            String status = resultSet.getString("status");
+            int revenue = resultSet.getInt("revenue");
+            int numberHouseForRent = resultSet.getInt("numberHouseForRent");
+            list.add(new User(userName,urlImage,fullName,revenue,numberHouseForRent,address,phone,status));
         }
         return list;
     }

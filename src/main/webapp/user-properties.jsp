@@ -67,14 +67,17 @@
     }
 </style>
 <body>
+
 <nav class="navbar navbar-default">
     <div class="container-navbar">
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
+
         <div class="collapse navbar-collapse yamm" id="navigation">
             <c:choose>
                 <c:when test="${not empty sessionScope.username}">
@@ -114,6 +117,7 @@
             <ul class="main-nav nav navbar-nav navbar-left" style="padding-top: 18px">
                 <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="/listHouse" style="color: black; font-weight: 500;">Thuê nhà</a></li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -126,16 +130,19 @@
         <div class="row">
             <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
                 <div class="section">
+
                     <div id="list-type" class="proerty-th-list">
                         <c:forEach items="${pagedList}" var="house">
                             <div class="col-md-4 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
                                         <a href="#" ><img src="${house.imgHouse}"></a>
+
                                     </div>
                                     <div class="item-entry overflow">
                                         <h5><a href="#"> ${house.houseName} </a></h5>
                                         <div class="dot-hr"></div>
+
                                         <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
                                         <c:choose>
                                             <c:when test="${house.price != 'Thảo thuận'}">
@@ -146,6 +153,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                         <p style="display: none;" class="description">${house.describeHouse}</p>
+
                                         <div class="property-icon">
                                             <img src="assets/img/icon/bed.png">(${house.numberBed})|
                                             <img src="assets/img/icon/shawer.png">(${house.numberBath})
@@ -189,9 +197,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-3 pl0 padding-top-40">
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
+
                         <div class="panel-heading">
                             <h3 class="panel-title">Mục tìm kiếm</h3>
                         </div>
@@ -227,10 +237,12 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox">
                                     <a href="#"> 5 - 10 triệu </a>
+
                                 </div>
                             </div>
                         </div>
@@ -239,12 +251,14 @@
                                 <div class="checkbox">
                                     <a href="#"> 10 - 50 triệu </a>
                                 </div>
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox">
                                     <a href="#"> 50 - 100 triệu </a>
+
                                 </div>
                             </div>
                         </div>
@@ -253,6 +267,7 @@
                                 <div class="checkbox">
                                     <a href="#"> Thỏa thuận</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -264,6 +279,7 @@
                             <div class="col-xs-12">
                                 <div class="checkbox">
                                     <a href="#"> 50 - 100m<sup>2</sup></a>
+
                                 </div>
                             </div>
                         </div>
