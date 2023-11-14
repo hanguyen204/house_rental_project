@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class RentalBillService implements IRentalBillService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "1";
+    private String password = "anhnam2005";
 
     private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.rentalDate,RentalBill.payDate,user.fullName, House.houseName,House.price ,RentalBill.totalHouse,RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId ";
 

@@ -29,7 +29,5 @@ public class ListFiveHouseServlet extends HttpServlet {
         req.setAttribute("houses", houses);
         RequestDispatcher dispatcher = req.getRequestDispatcher("home-page.jsp");
         dispatcher.forward(req, resp);
-
-
     }
 }
