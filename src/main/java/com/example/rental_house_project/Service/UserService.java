@@ -27,8 +27,32 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_Landlord = "select * from user where userType='Landlord';";
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
     private static final String SELECT_ALL_HOUSE = "select imgHouse,houseName,price,address,revenue,status from house where userId = ?";
-
+    private static final String SELECT_USER_BY_ID_ALL = "SELECT * FROM user WHERE id =?;";
     House house = new House();
+
+    public User getUserByID(int id) throws ClassNotFoundException, SQLException {
+        PreparedStatement statement = connection().prepareStatement(SELECT_USER_BY_ID_ALL);
+        statement.setInt(1, id);
+
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            int userId = resultSet.getInt("id");
+            String username = resultSet.getString("username");
+            String password = resultSet.getString("password");
+            String urlImage = resultSet.getString("urlImage");
+            String fullname = resultSet.getString("fullname");
+            String address = resultSet.getString("address");
+            int revenue = resultSet.getInt("revenue");
+            int numberHouseForRent = resultSet.getInt("numberHouseForRent");
+            String phone = resultSet.getString("phone");
+            String userType = resultSet.getString("userType");
+            String status = resultSet.getString("status");
+
+            User user = new User(id, username, password, urlImage, fullname, address, phone, revenue, numberHouseForRent, userType, status);
+            return user;
+        }
+        return null;
+    }
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -425,12 +449,12 @@ public class UserService implements IUserService {
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             String houseName = rs.getString("houseName");
-            Double price = rs.getDouble("price");
+            String price = rs.getString("price");
             String address = rs.getString("address");
             int revenue = rs.getInt("revenue");
             String status = rs.getString("status");
             String imgHouse = rs.getString("imgHouse");
-            list.add(new House(imgHouse,houseName,price,address,revenue,status));
+            list.add(new House(imgHouse,houseName,address,price,revenue,status));
         }
         return list;
     }

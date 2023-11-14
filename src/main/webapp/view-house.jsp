@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | TRANG CHỦ</title>
+    <title>GARO ESTATE | THÔNG TIN CĂN NHÀ</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-<%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
+    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -81,21 +81,17 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
-                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="#">Quản lý thuê nhà</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                    <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -116,73 +112,120 @@
 </nav>
 <!-- End of nav bar -->
 
-<div class="slider-area">
-    <div class="slider">
-        <div id="bg-slider" class="owl-carousel owl-theme">
-            <div class="item"><img src="assets/img/slide1/zyro-image.png" alt="GTA V"></div>
-            <div class="item"><img src="assets/img/slide1/zyro-image-1.png" alt="The Last of us"></div>
-            <div class="item"><img src="assets/img/slide1/zyro-image-2.png" alt="GTA V"></div>
-        </div>
-    </div>
-    <div class="row" style="padding-top: 20px;">
-        <div class="col-lg-4 col-lg-offset-4 col-md-10 col-md-offset-1 col-sm-12 center" style="margin-top: 10px;">
-            <div class="search-form">
-                <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm" style="color: black; font-size: 18px;" name="houseName">
-                    </div>
-                    <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- property area -->
-<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
+<div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center padding-top-25">
-                <!-- /.feature title -->
-                <h2 style="font-weight: bold; color: black;">NHỮNG NHÀ CHO THUÊ HÀNG ĐẦU</h2>
-                <p>Đây là bảng xếp hạng được đánh giá theo tiêu chuẩn đã được đưa ra. Bạn cũng có thể tìm kiếm những ngôi nhà khác ưng ý hơn.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="proerty-th">
-                <c:forEach var="house" items="${houses}" >
-                    <div class="col-sm-7 col-md-4 p0">
-                        <div class="box-two proerty-item">
-                            <div class="item-thumb">
-                                <a href=""><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
-                            </div>
-                            <div class="item-entry overflow">
-                                <h5><a href="">${house.houseName}</a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b>Area :</b> ${house.width}m<sup>2</sup></span>
-                                <c:choose>
-                                    <c:when test="${house.price != 'Thảo thuận'}">
-                                        <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="proerty-price pull-right">${house.price}</span>
-                                    </c:otherwise>
-                                </c:choose>
+        <div class="clearfix padding-top-40" >
+            <div class="col-md-8 single-property-content prp-style-2">
+                <div class="">
+                    <div class="row">
+                        <div class="light-slide-item">
+                            <div class="clearfix">
+                                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                    <li>
+                                        <img src="${house.imgHouse}"/>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </c:forEach>
-                <div class="col-sm-7 col-md-4 p0">
-                    <div class="box-tree more-proerty text-center">
-                        <div class="item-tree-icon">
-                            <i class="fa fa-th" onclick="redirectToProperties()"></i>
-                        </div>
-                        <div class="item-entry overflow">
-                            <h5 class="tree-sub-ttl">Show all properties</h5>
-                            <button class="btn border-btn more-black" value="All properties" onclick="redirectToProperties()">All properties</button>
+                    <div class="single-property-wrapper" style="padding-top: 20px">
+                        <div class="section" >
+                            <h4 class="s-property-title">MÔ TẢ NHÀ</h4>
+                            <div class="s-property-content">
+                                <p>${house.describeHouse}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-4 p0">
+                <aside class="sidebar sidebar-property blog-asside-right property-style2">
+                    <div class="dealer-widget">
+                        <div class="dealer-content">
+                            <div class="inner-wrapper">
+                                <div class="single-property-header">
+                                    <h1 class="property-title" style="font-weight: 700">${house.houseName}</h1>
+                                    <span class="property-price">${house.price}/${house.timeRental}</span>
+                                </div>
+
+                                <div class="property-meta entry-meta clearfix ">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-tag">
+                                                    <img src="assets/img/icon/sale-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Trạng thái</span>
+                                                    <span class="property-info-value">${house.status}</span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info icon-area">
+                                                    <img src="assets/img/icon/room-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Diện tích</span>
+                                                    <span class="property-info-value">${house.width}m<sup>2</sup></span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-bed">
+                                                    <img src="assets/img/icon/bed-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng ngủ</span>
+                                                    <span class="property-info-value">${house.numberBed}</span>
+                                                </span>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-garage">
+                                                    <img src="assets/img/icon/shawer-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng vệ sinh</span>
+                                                    <span class="property-info-value">${house.numberBath}</span>
+                                                </span>
+                                    </div>
+                                </div>
+                                <div class="dealer-section-space">
+                                    <span style="font-weight: 600">CHỦ NHÀ</span>
+                                </div>
+                                <div class="clear">
+                                    <div class="col-xs-4 col-sm-4 dealer-face">
+                                        <a href="">
+                                            <img src="${user.urlImage}" class="img-circle">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 ">
+                                        <h3 class="dealer-name">
+                                            <a href="" style="color: black">${user.username}</a><br>
+                                            <span><i class="pe-7s-call strong"> </i>${user.phone}</span>
+                                            <%--<span>Real Estate Agent</span>--%>
+                                        </h3>
+                                        <div class="dealer-social-media">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu" >
+                        <div class="panel-body search-widget">
+                            <form action="" class=" form-inline">
+                                <fieldset >
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input class="button btn largesearch-btn" value="Đặt thuê căn nhà này" type="submit">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </div>
@@ -273,8 +316,6 @@
         window.location.href = "/submit-properties.jsp";
     }
 </script>
-
-
-</script>
 </body>
 </html>
+

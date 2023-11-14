@@ -1,6 +1,7 @@
 package com.example.rental_house_project.Model;
 
 public class House {
+    private User user;
     private int houseId;
     private int userId;
     private String imgHouse;
@@ -83,7 +84,23 @@ public class House {
         this.describeHouse = describeHouse;
     }
 
+    public House(String imgHouse, String houseName, String address, String price, int revenue, String status) {
+        this.imgHouse = imgHouse;
+        this.houseName = houseName;
+        this.address = address;
+        this.price = price;
+        this.revenue = revenue;
+        this.status = status;
+    }
     public House() {}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getHouseId() {
         return houseId;

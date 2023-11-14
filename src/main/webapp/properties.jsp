@@ -149,26 +149,26 @@
                 </div>
 
                 <div class="section clear">
-                    <div id="list-type" class="proerty-th">
+                    <div id="list-type" class="proerty-th" >
                         <c:forEach var="house" items="${pagedList}">
-                            <div class="col-sm-6 col-md-4 p0 item">
+                            <div class="col-sm-6 col-md-4 p0" style="width: 285px;height: 380px;">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="#"><img src="${house.imgHouse}"></a>
+                                        <a href="/view-house?id=${house.houseId}"><img src="${house.imgHouse}"></a>
                                     </div>
                                     <div class="item-entry overflow">
-                                        <h5><a href="#"> ${house.houseName} </a></h5>
+                                        <h5><a href="/view-house?id=${house.houseId}" style="letter-spacing: -1px;" id="content"> ${house.houseName}</a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
+                                        <span class="pull-left" style="color: black"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
                                         <c:choose>
                                             <c:when test="${house.price != 'Thảo thuận'}">
-                                                <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
+                                                <span class="proerty-price pull-right" style="color: black">${house.price}/${house.timeRental}</span>
                                             </c:when>
                                             <c:otherwise>
-                                                <span class="proerty-price pull-right">${house.price}</span>
+                                                <span class="proerty-price pull-right" style="color: black">${house.price}</span>
                                             </c:otherwise>
                                         </c:choose>
-                                        <div class="property-icon">
+                                        <div class="property-icon" style="color: black">
                                             <img src="assets/img/icon/bed.png">(${house.numberBed})|
                                             <img src="assets/img/icon/shawer.png">(${house.numberBath})
                                         </div>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 pl0 padding-top-40">
+            <div class="col-md-3 pl0 padding-top-40" >
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
@@ -239,62 +239,62 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 2 - 5 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 2 - 5 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 5 - 10 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 5 - 10 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 10 - 50 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 10 - 50 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 50 - 100 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> Thỏa thuận</a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> Thỏa thuận</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo diện tích nhà</h3>
+                            <h3 class="panel-title" >Lọc theo diện tích nhà</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100m<sup>2</sup></a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 50 - 100m<sup>2</sup></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 100 - 300m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 100 - 300m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 300 - 500m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 300 - 500m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
@@ -383,6 +383,25 @@
     function redirectToRegister() {
         window.location.href = "register.jsp";
     }
+
+    var contentElement = document.getElementById("content");
+    var content = contentElement.textContent.trim();
+    var maxLength = 20; // Chiều dài tối đa của mỗi dòng
+    var lineCount = 1; // Số dòng tối đa
+
+    var lines = content.split("\n"); // Phân tách đoạn văn thành các dòng
+    var truncatedLines = [];
+
+    for (var i = 0; i < lineCount; i++) {
+        if (lines[i] && lines[i].length > maxLength) {
+            truncatedLines.push(lines[i].substring(0, maxLength) + "...");
+        } else {
+            truncatedLines.push(lines[i]);
+        }
+    }
+
+    var truncatedContent = truncatedLines.join("\n");
+    contentElement.textContent = truncatedContent;
 </script>
 </body>
 </html>
