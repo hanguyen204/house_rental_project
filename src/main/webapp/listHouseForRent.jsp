@@ -292,6 +292,40 @@
         </c:if>
     </div>
 </div>
+<div class="panel panel-default sidebar-menu">
+    <div class="panel-heading">
+        <h3 class="panel-title">Mục tìm kiếm</h3>
+    </div>
+    <div class="panel-body search-widget">
+        <form action="/HouseForRentServlet?action=searchTime" method="post">
+            <label for="startDateTime">Ngày và giờ bắt đầu:</label>
+            <input type="datetime-local" id="startDateTime" name="startDateTime">
+
+            <label for="endDateTime">Ngày và giờ kết thúc:</label>
+            <input type="datetime-local" id="endDateTime" name="endDateTime">
+
+            <input type="submit" value="searchResults">
+        </form>
+        <form action="/HouseForRentServlet?action=search" method="post" class=" form-inline">
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" name="houseName"
+                               placeholder="Nhập tên cần tìm kiếm"
+                               style="color: black; font-size: 18px;">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input class="button btn largesearch-btn" value="Search" type="submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
 
 <%--Footer--%>
 <div class="footer-area">
