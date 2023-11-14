@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.css">
+<%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -36,10 +36,31 @@
     #avatar {
         width: 50px;
     }
+    .item {
+        width: 1000px;
+        height: 290px;
+        margin-left: 425px;
+    }
+    .container-navbar {
+        padding-top: 7px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .margin-top {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .padding-bottom-5 {
+        padding-bottom: 5px;
+    }
+    #padding-top-but {
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
 </style>
 <body>
-<nav class="navbar navbar-default ">
-    <div class="container">
+<nav class="navbar navbar-default">
+    <div class="container-navbar">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
@@ -49,27 +70,35 @@
         <div class="collapse navbar-collapse yamm" id="navigation">
             <c:choose>
                 <c:when test="${not empty sessionScope.username}">
-                    <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="dropdown ymm-sw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;">  ${sessionScope.username}</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu navbar-nav">
-                                <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
-                                <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                    <li><a href="#">Quản lý đăng tin</a></li>
-                                    <li><a href="/user-properties.jsp">Quản lý nhà</a></li>
-                                </c:if>
-                                <c:if test="${sessionScope.userType eq 'Admin'}">
-                                    <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                    <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
-                                </c:if>
-                                <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
-                                <li><a href="logout">Đăng xuất</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="button navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown ymm-sw">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu navbar-nav">
+                                    <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
+                                    <c:if test="${sessionScope.userType eq 'Landlord'}">
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="">Quản lý đặt lịch</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'Admin'}">
+                                        <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="#">Quản lý thuê nhà</a></li>
+                                    </c:if>
+                                    <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
+                                    <li><a href="logout">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                            <c:if test="${sessionScope.userType eq 'Landlord'}">
+                                    <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                            </c:if>
+                        </ul>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <div class="button navbar-right" style="font-weight: bold;">
@@ -78,9 +107,9 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            <ul class="main-nav nav navbar-nav navbar-left">
+            <ul class="main-nav nav navbar-nav navbar-left" style="padding-top: 18px">
                 <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
-                <li><a href="/listHouse" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
+                <li><a href="/listHouse" style="color: black; font-weight: 500;">Thuê nhà</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -90,17 +119,17 @@
 <div class="slider-area">
     <div class="slider">
         <div id="bg-slider" class="owl-carousel owl-theme">
-            <div class="item"><img src="assets/img/slide1/slider-img-01.png" alt="GTA V"></div>
-            <div class="item"><img src="assets/img/slide1/slider-img-03.png" alt="The Last of us"></div>
-            <div class="item"><img src="assets/img/slide1/slider-img-02.png" al t="GTA V"></div>
+            <div class="item"><img src="assets/img/slide1/zyro-image.png" alt="GTA V"></div>
+            <div class="item"><img src="assets/img/slide1/zyro-image-1.png" alt="The Last of us"></div>
+            <div class="item"><img src="assets/img/slide1/zyro-image-2.png" alt="GTA V"></div>
         </div>
     </div>
-    <div class="row" style="padding-top: 10px;">
+    <div class="row" style="padding-top: 20px;">
         <div class="col-lg-4 col-lg-offset-4 col-md-10 col-md-offset-1 col-sm-12 center" style="margin-top: 10px;">
             <div class="search-form">
                 <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nhập tên cần nhà tìm kiếm" style="color: black; font-size: 18px;" name="houseName">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" style="color: black; font-size: 18px;" name="houseName">
                     </div>
                     <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -113,7 +142,7 @@
 <div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center padding-top-25">
                 <!-- /.feature title -->
                 <h2 style="font-weight: bold; color: black;">NHỮNG NHÀ CHO THUÊ HÀNG ĐẦU</h2>
                 <p>Đây là bảng xếp hạng được đánh giá theo tiêu chuẩn đã được đưa ra. Bạn cũng có thể tìm kiếm những ngôi nhà khác ưng ý hơn.</p>
@@ -125,12 +154,12 @@
                     <div class="col-sm-7 col-md-4 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href="property-3.html"><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
+                                <a href=""><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
                             </div>
                             <div class="item-entry overflow">
-                                <h5><a href="property-3.html" >${house.houseName}</a></h5>
+                                <h5><a href="">${house.houseName}</a></h5>
                                 <div class="dot-hr"></div>
-                                <span class="pull-left"><b>Area :</b> ${house.width} </span>
+                                <span class="pull-left"><b>Area :</b> ${house.width}m<sup>2</sup></span>
                                 <c:choose>
                                     <c:when test="${house.price != 'Thảo thuận'}">
                                         <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
@@ -159,6 +188,7 @@
     </div>
 </div>
 
+<!-- Footer area-->
 <div class="footer-area">
     <div class=" footer">
         <div class="container">
@@ -166,9 +196,8 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
-                        <div class="footer-title-line"></div>
-                        <img src="assets/img/footer-logo.png" alt="" class="wow pulse">
-                        <p style="color: black; font-weight: bold; font-size: 16px;">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+                        <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
+                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
                         <ul class="footer-adress" style="color: black; font-size: 16px;">
                             <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
                             <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
@@ -179,7 +208,6 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
-                        <div class="footer-title-line"></div>
                         <ul class="footer-menu">
                             <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
@@ -191,7 +219,6 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">QUY ĐỊNH</h4>
-                        <div class="footer-title-line"></div>
                         <ul class="footer-menu">
                             <li><a href="#" style="color: black; font-size: 14px;">Quy định đăng tin</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Quy chế hoạt động</a></li>
@@ -209,15 +236,6 @@
             <div class="row">
                 <div class="pull-left">
                     <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
-                </div>
-                <div class="social pull-right">
-                    <ul>
-                        <li><a href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.facebook.com/kimarotec"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://plus.google.com/kimarotec"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-dribbble"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -250,6 +268,9 @@
     }
     function redirectToProperties() {
         window.location.href = "/listHouse";
+    }
+    function redirectToSubmitProperties() {
+        window.location.href = "/submit-properties.jsp";
     }
 </script>
 

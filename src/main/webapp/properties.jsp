@@ -55,41 +55,60 @@
         background-color: #B192EF;
         color: #fff;
     }
+    .container-navbar {
+        padding-top: 7px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .margin-top {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .padding-bottom-5 {
+        padding-bottom: 5px;
+    }
+    #padding-top-but {
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
 </style>
 <body>
-<nav class="navbar navbar-default ">
-    <div class="container">
+<nav class="navbar navbar-default">
+    <div class="container-navbar">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="home-page.jsp"><img src="assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <c:choose>
                 <c:when test="${not empty sessionScope.username}">
-                    <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="dropdown ymm-sw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;"> ${sessionScope.username}</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu navbar-nav">
-                                <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
-                                <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                    <li><a href="#">Quản lý đăng tin</a></li>
-                                    <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
-                                </c:if>
-                                <c:if test="${sessionScope.userType eq 'Admin'}">
-                                    <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                    <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
-                                </c:if>
-                                <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
-                                <li><a href="logout">Đăng xuất</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="button navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown ymm-sw">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu navbar-nav">
+                                    <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
+                                    <c:if test="${sessionScope.userType eq 'Landlord'}">
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'Admin'}">
+                                        <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                    </c:if>
+                                    <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
+                                    <li><a href="logout">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                            <c:if test="${sessionScope.userType eq 'Landlord'}">
+                                <button class="navbar-btn nav-button" onclick="">Đăng tin</button>
+                            </c:if>
+                        </ul>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <div class="button navbar-right" style="font-weight: bold;">
@@ -98,9 +117,9 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            <ul class="main-nav nav navbar-nav navbar-left">
-                <li><a href="home-page.jsp" style="color: black; font-weight: 500;">Trang chủ</a></li>
-                <li><a href="/listHouse" style="color: black; font-weight: 500;">Nhà đất cho thuê</a></li>
+            <ul class="main-nav nav navbar-nav navbar-left" style="padding-top: 18px">
+                <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
+                <li><a href="/listHouse" style="color: black; font-weight: 500;">Thuê nhà</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -124,32 +143,32 @@
                         </ul>
                     </div>
 
-                    <div class="col-xs-2 layout-switcher">
+                    <div class="col-xs-2 layout-switcher" style="padding-top: 10px">
                         <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
                     </div>
                 </div>
 
                 <div class="section clear">
-                    <div id="list-type" class="proerty-th">
+                    <div id="list-type" class="proerty-th" >
                         <c:forEach var="house" items="${pagedList}">
-                            <div class="col-sm-6 col-md-4 p0 item">
+                            <div class="col-sm-6 col-md-4 p0" style="width: 285px;height: 380px;">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="#"><img src="${house.imgHouse}"></a>
+                                        <a href="/view-house?id=${house.houseId}"><img src="${house.imgHouse}"></a>
                                     </div>
                                     <div class="item-entry overflow">
-                                        <h5><a href="#"> ${house.houseName} </a></h5>
+                                        <h5><a href="/view-house?id=${house.houseId}" style="letter-spacing: -1px;" id="content"> ${house.houseName}</a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
+                                        <span class="pull-left" style="color: black"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
                                         <c:choose>
                                             <c:when test="${house.price != 'Thảo thuận'}">
-                                                <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
+                                                <span class="proerty-price pull-right" style="color: black">${house.price}/${house.timeRental}</span>
                                             </c:when>
                                             <c:otherwise>
-                                                <span class="proerty-price pull-right">${house.price}</span>
+                                                <span class="proerty-price pull-right" style="color: black">${house.price}</span>
                                             </c:otherwise>
                                         </c:choose>
-                                        <div class="property-icon">
+                                        <div class="property-icon" style="color: black">
                                             <img src="assets/img/icon/bed.png">(${house.numberBed})|
                                             <img src="assets/img/icon/shawer.png">(${house.numberBath})
                                         </div>
@@ -187,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 pl0 padding-top-40">
+            <div class="col-md-3 pl0 padding-top-40" >
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
@@ -220,62 +239,62 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 2 - 5 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 2 - 5 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 5 - 10 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 5 - 10 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 10 - 50 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 10 - 50 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100 triệu </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 50 - 100 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> Thỏa thuận</a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> Thỏa thuận</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo diện tích nhà</h3>
+                            <h3 class="panel-title" >Lọc theo diện tích nhà</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100m<sup>2</sup></a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 50 - 100m<sup>2</sup></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 100 - 300m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 100 - 300m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 300 - 500m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black"> 300 - 500m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
@@ -294,10 +313,8 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
-                        <div class="footer-title-line"></div>
-                        <img src="assets/img/footer-logo.png" alt="">
-                        <p style="color: black; font-weight: bold; font-size: 16px;">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT
-                            NAM</p>
+                        <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
+                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
                         <ul class="footer-adress" style="color: black; font-size: 16px;">
                             <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
                             <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
@@ -308,10 +325,9 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
-                        <div class="footer-title-line"></div>
                         <ul class="footer-menu">
                             <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
-                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
                             <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>
@@ -320,7 +336,6 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">QUY ĐỊNH</h4>
-                        <div class="footer-title-line"></div>
                         <ul class="footer-menu">
                             <li><a href="#" style="color: black; font-size: 14px;">Quy định đăng tin</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Quy chế hoạt động</a></li>
@@ -337,17 +352,7 @@
         <div class="container">
             <div class="row">
                 <div class="pull-left">
-                    <span><a href="http://www.KimaroTec.com"
-                             style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
-                </div>
-                <div class="social pull-right">
-                    <ul>
-                        <li><a href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.facebook.com/kimarotec"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://plus.google.com/kimarotec"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://instagram.com/kimarotec"><i class="fa fa-dribbble"></i></a></li>
-                    </ul>
+                    <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
                 </div>
             </div>
         </div>
@@ -378,6 +383,25 @@
     function redirectToRegister() {
         window.location.href = "register.jsp";
     }
+
+    var contentElement = document.getElementById("content");
+    var content = contentElement.textContent.trim();
+    var maxLength = 20; // Chiều dài tối đa của mỗi dòng
+    var lineCount = 1; // Số dòng tối đa
+
+    var lines = content.split("\n"); // Phân tách đoạn văn thành các dòng
+    var truncatedLines = [];
+
+    for (var i = 0; i < lineCount; i++) {
+        if (lines[i] && lines[i].length > maxLength) {
+            truncatedLines.push(lines[i].substring(0, maxLength) + "...");
+        } else {
+            truncatedLines.push(lines[i]);
+        }
+    }
+
+    var truncatedContent = truncatedLines.join("\n");
+    contentElement.textContent = truncatedContent;
 </script>
 </body>
 </html>

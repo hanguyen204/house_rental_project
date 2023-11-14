@@ -1,17 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vang
-  Date: 30/10/2023
-  Time: 10:54
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | QUẢN LÝ NHÀ</title>
+    <title>GARO ESTATE | CHO THUÊ NHÀ ĐẤT</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -43,11 +36,24 @@
     #avatar {
         width: 50px;
     }
-    .description {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 600px; /* Điều chỉnh độ rộng tối đa của phần mô tả */
+
+    .listPage {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+    .listPage li {
+        background-color: #ffffffBD;
+        padding: 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage .active {
+        background-color: #B192EF;
+        color: #fff;
     }
     .container-navbar {
         padding-top: 7px;
@@ -67,17 +73,14 @@
     }
 </style>
 <body>
-
 <nav class="navbar navbar-default">
     <div class="container-navbar">
-
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-
         <div class="collapse navbar-collapse yamm" id="navigation">
             <c:choose>
                 <c:when test="${not empty sessionScope.username}">
@@ -92,17 +95,21 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="#">Quản lý thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -117,7 +124,6 @@
             <ul class="main-nav nav navbar-nav navbar-left" style="padding-top: 18px">
                 <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="/listHouse" style="color: black; font-weight: 500;">Thuê nhà</a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -125,63 +131,46 @@
 <!-- End of nav bar -->
 
 <!-- property area -->
-<div class="content-area recent-property" style="background-color: #FFF;">
+<div class="properties-area recent-property" style="background-color: #FFF;">
     <div class="container">
         <div class="row">
-            <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
-                <div class="section">
-
-                    <div id="list-type" class="proerty-th-list">
-                        <c:forEach items="${pagedList}" var="house">
-                            <div class="col-md-4 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="#" ><img src="${house.imgHouse}"></a>
-
-                                    </div>
-                                    <div class="item-entry overflow">
-                                        <h5><a href="#"> ${house.houseName} </a></h5>
-                                        <div class="dot-hr"></div>
-
-                                        <span class="pull-left"><b> Area :</b> ${house.width}m<sup>2</sup> </span>
-                                        <c:choose>
-                                            <c:when test="${house.price != 'Thảo thuận'}">
-                                                <span class="proerty-price pull-right">${house.price}/${house.timeRental}</span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="proerty-price pull-right">${house.price}</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <p style="display: none;" class="description">${house.describeHouse}</p>
-
-                                        <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(${house.numberBed})|
-                                            <img src="assets/img/icon/shawer.png">(${house.numberBath})
-                                            <div class="dealer-action pull-right">
-                                                <a href="#" class="button">Edit </a>
-                                                <a href="#" class="button delete_user_car">Delete</a>
-                                                <a href="#" class="button">View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="col-md-9 padding-top-40 properties-page">
+                <div class="section clear">
+                    <table border="1" cellpadding="5" width="100%" style="color: black">
+                        <tr style="background-color: yellow">
+                            <th style="text-align: center;">Thời gian thuê</th>
+                            <th style="text-align: center;">Tên của ngôi nhà</th>
+                            <th style="text-align: center;">Tên khách hàng</th>
+                            <th style="text-align: center;">Tổng giá</th>
+                            <th style="text-align: center;">Tổng số căn nhà</th>
+                            <th style="text-align: center;">Trạng thái đơn</th>
+                        </tr>
+                        <c:forEach var="searchResults" items="${searchResults}">
+                            <tr>
+                                <td><c:out value="${searchResults.rentalPeriod}"/></td>
+                                <td><c:out value="${searchResults.houseName}"/></td>
+                                <td><c:out value="${searchResults.fullName}"/></td>
+                                <td><c:out value="${searchResults.result}"/></td>
+                                <td><c:out value="${searchResults.totalHouse}"/></td>
+                                <td><c:out value="${searchResults.status}"/></td>
+                            </tr>
                         </c:forEach>
-                    </div>
+                    </table>
                 </div>
                 <div class="section">
                     <div class="pull-right">
+
                         <div class="pagination">
                             <ul>
                                 <li>
-                                    <a href="listHouse?page=${currentPage - 1}"
+                                    <a href="HouseForRentServlet?page=${currentPage - 1}"
                                        class="${currentPage == 1 ? 'disabled' : ''}">
                                         Prev
                                     </a>
                                 </li>
                                 <c:forEach var="pageNumber" begin="1" end="${totalPages}">
                                     <li class="${pageNumber == currentPage ? 'active' : ''}">
-                                        <a href="listHouse?page=${pageNumber}">
+                                        <a href="HouseForRentServlet?page=${pageNumber}">
                                                 ${pageNumber}
                                         </a>
                                     </li>
@@ -197,15 +186,22 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-3 pl0 padding-top-40">
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
-
                         <div class="panel-heading">
                             <h3 class="panel-title">Mục tìm kiếm</h3>
                         </div>
                         <div class="panel-body search-widget">
+                            <form action="/HomeownerPostedHouse?action=searchTime" method="post">
+                                <label for="startDateTime">Ngày và giờ bắt đầu:</label>
+                                <input type="datetime-local" id="startDateTime" name="startDateTime">
+
+                                <label for="endDateTime">Ngày và giờ kết thúc:</label>
+                                <input type="datetime-local" id="endDateTime" name="endDateTime">
+
+                                <input type="submit" value="searchResults">
+                            </form>
                             <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
                                 <fieldset>
                                     <div class="row">
@@ -226,112 +222,90 @@
                             </form>
                         </div>
                     </div>
-                    <div class="panel panel-default sidebar-menu">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo giá</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 2 - 5 triệu </a>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 5 - 10 triệu </a>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 10 - 50 triệu </a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100 triệu </a>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> Thỏa thuận</a>
-                                </div>
-
-                            </div>
+    <!-- Footer area-->
+    <div class="footer-area">
+        <div class=" footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-footer">
+                            <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
+                            <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
+                            <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+                            <ul class="footer-adress" style="color: black; font-size: 16px;">
+                                <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
+                                <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
+                                <li><i class="pe-7s-call strong"> </i> (033) 617 2381</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="panel panel-default sidebar-menu">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo diện tích nhà</h3>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-footer">
+                            <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
+                            <ul class="footer-menu">
+                                <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
+                            </ul>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100m<sup>2</sup></a>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 100 - 300m<sup>2</sup> </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 300 - 500m<sup>2</sup> </a>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-footer">
+                            <h4 style="color: black; font-weight: 700;">QUY ĐỊNH</h4>
+                            <ul class="footer-menu">
+                                <li><a href="#" style="color: black; font-size: 14px;">Quy định đăng tin</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Quy chế hoạt động</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Điều khoản thỏa thuận</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Chính sách bảo mật</a></li>
+                                <li><a href="#" style="color: black; font-size: 14px;">Giải quyết khiếu nại</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="footer-copy text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="pull-left">
+                        <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="assets/js/modernizr-2.6.2.min.js"></script>
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/bootstrap-hover-dropdown.js"></script>
+    <script src="assets/js/easypiechart.min.js"></script>
+    <script src="assets/js/jquery.easypiechart.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/icheck.min.js"></script>
+    <script src="assets/js/price-range.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function formatPrice(price) {
+            return (price / 1000000) + " Triệu";
+        }
+
+        function redirectToLogin() {
+            window.location.href = "login.jsp";
+        }
+
+        function redirectToRegister() {
+            window.location.href = "register.jsp";
+        }
+    </script>
 </div>
-
-<script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
-<script src="assets/js//jquery-1.10.2.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/bootstrap-hover-dropdown.js"></script>
-<script src="assets/js/easypiechart.min.js"></script>
-<script src="assets/js/jquery.easypiechart.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/wow.js"></script>
-<script src="assets/js/icheck.min.js"></script>
-
-<script src="assets/js/price-range.js"></script>
-<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
-<script src="assets/js/wizard.js"></script>
-
-<script src="assets/js/main.js"></script>
-<script>
-    function redirectToLogin() {
-        window.location.href = "login.jsp";
-    }
-    function redirectToRegister() {
-        window.location.href = "register.jsp";
-    }
-    function redirectToProperties() {
-        window.location.href = "/listHouse";
-    }
-</script>
-
 </body>
 </html>

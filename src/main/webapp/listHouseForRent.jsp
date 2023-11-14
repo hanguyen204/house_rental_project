@@ -1,11 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | ĐĂNG TIN CHO THUÊ</title>
+    <title>User Management Application</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -32,28 +30,66 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        #avatar {
+            width: 50px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .item {
+            width: 1000px;
+            height: 290px;
+            margin-left: 425px;
+        }
+        .container-navbar {
+            padding-top: 7px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .margin-top {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .padding-bottom-5 {
+            padding-bottom: 5px;
+        }
+        #padding-top-but {
+            padding-top: 8px;
+            padding-bottom: 0;
+        }
+    </style>
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -77,10 +113,14 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="#">Quản lý thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
@@ -106,86 +146,101 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<!-- End of nav bar -->
 
-<div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
-    <div class="container">
-        <div class="clearfix" >
-            <div class="wizard-container">
-                <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                    <form action="/submit-property" method="post" enctype="multipart/form-data">
-                        <div class="wizard-header" style="color: black; text-align: center">
-                            <h3>
-                                <b>ĐĂNG NHÀ CHO THUÊ</b><br>
-                                <br>
-                            </h3>
-                        </div>
-                        <div class="tab-pane">
-                            <div class="row p-b-15  ">
-                                <div class="col-sm-3 col-sm-offset-1">
-                                    <div class="picture-container">
-                                        <div class="picture">
-                                            <input type="file" id="wizard-picture" name="image" accept="image/jpeg, image/png" onchange="previewImage(event)">
-                                            <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Tên căn nhà</label>
-                                        <input name="houseName" type="text" class="form-control" placeholder="Nhập tên nhà" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorHouseName}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Địa chỉ</label>
-                                        <input name="address" type="text" class="form-control" placeholder="Nhập địa chỉ nhà" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorAddress}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Số lượng phòng ngủ </label>
-                                        <input type="number" style="border: 1px black inset; color: black;font-size: 16px;width: 80px;margin-right: 24px" min="1" max="10" name="numberBed">
-                                        <label style="color: black;font-size: 18px">Số lượng phòng tắm </label>
-                                        <input type="number" style="border: 1px black inset; color: black;font-size: 16px;width: 80px" min="1" max="3" name="numberBath">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Diện tích nhà (m<sup>2</sup>) </label>
-                                        <input type="text" style="color: black; font-size: 16px; border: 1px black inset;" name="width">
-                                        <span>${requestScope.errorWidth}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Giá tiền (VNĐ) </label>
-                                        <input name="price" type="text" class="form-control" placeholder="3330000" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorPrice}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Giá theo </label>
-                                        <select name="timeRental" style="color: black; font-size: 16px; width: 85px; height: 50px;padding-left: 10px">
-                                            <option value="ngày">Ngày</option>
-                                            <option value="tháng">Tháng</option>
-                                            <option value="năm">Năm</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Mô tả chung</label>
-                                        <textarea name="description" class="form-control" style="border: 1px black inset;color: black;font-size: 16px;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wizard-footer">
-                            <div class="pull-right" style="padding-right: 195px">
-                                <input type='submit' class='btn btn-default' name='finish' value='Đăng nhà'/>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </form>
+<div align="center">
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Rental period</th>
+            <th>Name of the house</th>
+            <th>Customer name</th>
+            <th>Total price</th>
+            <th>Total house unit</th>
+            <th>Single state</th>
+        </tr>
+        <c:forEach var="list" items="${list}">
+            <tr>
+                <td><c:out value="${list.rentalPeriod}"/></td>
+                <td><c:out value="${list.houseName}"/></td>
+                <td><c:out value="${list.fullName}"/></td>
+                <td><c:out value="${list.result}"/></td>
+                <td><c:out value="${list.totalHouse}"/></td>
+                <td><c:out value="${list.status}"/></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
+                            <input type="hidden" name="action" value="inactive">
+                            <input type="hidden" name="rentalId" value="${list.rentalId}">
+                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}" style="text-decoration: none">Checkin</a></button>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" name="action" value="active">
+                            <input type="hidden" name="rentalId" value="${list.rentalId}">
+                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}" style="text-decoration: none">Checkout</a></button>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+    <div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="HouseForRentServlet?page=${currentPage - 1}">Previous</a>
+        </c:if>
+
+        <c:forEach var="pageNumber" begin="1" end="${totalPages}">
+            <c:choose>
+                <%-- Hiển thị trang hiện tại không có link --%>
+                <c:when test="${pageNumber == currentPage}">
+                    <span>${pageNumber}</span>
+                </c:when>
+                <%-- Hiển thị các trang khác có link --%>
+                <c:otherwise>
+                    <a href="HouseForRentServlet?page=${pageNumber}">${pageNumber}</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <c:if test="${currentPage < totalPages}">
+            <a href="HouseForRentServlet?page=${currentPage + 1}">Next</a>
+        </c:if>
+    </div>
+</div>
+<div class="panel panel-default sidebar-menu">
+    <div class="panel-heading">
+        <h3 class="panel-title">Mục tìm kiếm</h3>
+    </div>
+    <div class="panel-body search-widget">
+        <form action="/HouseForRentServlet?action=searchTime" method="post">
+            <label for="startDateTime">Ngày và giờ bắt đầu:</label>
+            <input type="datetime-local" id="startDateTime" name="startDateTime">
+
+            <label for="endDateTime">Ngày và giờ kết thúc:</label>
+            <input type="datetime-local" id="endDateTime" name="endDateTime">
+
+            <input type="submit" value="searchResults">
+        </form>
+        <form action="/HouseForRentServlet?action=search" method="post" class=" form-inline">
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" name="houseName"
+                               placeholder="Nhập tên cần tìm kiếm"
+                               style="color: black; font-size: 18px;">
+                    </div>
                 </div>
-                <!-- End submit form -->
-            </div>
-        </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input class="button btn largesearch-btn" value="Search" type="submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>
 
+<!-- Footer area-->
 <div class="footer-area">
     <div class=" footer">
         <div class="container">
@@ -256,29 +311,5 @@
 <script src="assets/js/price-range.js"></script>
 
 <script src="assets/js/main.js"></script>
-<script>
-    function redirectToLogin() {
-        window.location.href = "login.jsp";
-    }
-
-    function redirectToRegister() {
-        window.location.href = "register.jsp";
-    }
-
-    function redirectToProperties() {
-        window.location.href = "/listHouse";
-    }
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('wizardPicturePreview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-    function redirectToSubmitProperties() {
-        window.location.href = "/submit-properties.jsp";
-    }
-</script>
 </body>
 </html>

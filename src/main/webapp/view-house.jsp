@@ -1,11 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GARO ESTATE | ĐĂNG TIN CHO THUÊ</title>
+    <title>GARO ESTATE | THÔNG TIN CĂN NHÀ</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -28,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.css">
+    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -36,6 +35,11 @@
 <style>
     #avatar {
         width: 50px;
+    }
+    .item {
+        width: 1000px;
+        height: 290px;
+        margin-left: 425px;
     }
     .container-navbar {
         padding-top: 7px;
@@ -108,84 +112,126 @@
 </nav>
 <!-- End of nav bar -->
 
-<div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
+<div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
     <div class="container">
-        <div class="clearfix" >
-            <div class="wizard-container">
-                <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                    <form action="/submit-property" method="post" enctype="multipart/form-data">
-                        <div class="wizard-header" style="color: black; text-align: center">
-                            <h3>
-                                <b>ĐĂNG NHÀ CHO THUÊ</b><br>
-                                <br>
-                            </h3>
+        <div class="clearfix padding-top-40" >
+            <div class="col-md-8 single-property-content prp-style-2">
+                <div class="">
+                    <div class="row">
+                        <div class="light-slide-item">
+                            <div class="clearfix">
+                                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                    <li>
+                                        <img src="${house.imgHouse}"/>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="tab-pane">
-                            <div class="row p-b-15  ">
-                                <div class="col-sm-3 col-sm-offset-1">
-                                    <div class="picture-container">
-                                        <div class="picture">
-                                            <input type="file" id="wizard-picture" name="image" accept="image/jpeg, image/png" onchange="previewImage(event)">
-                                            <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview"/>
+                    </div>
+                    <div class="single-property-wrapper" style="padding-top: 20px">
+                        <div class="section" >
+                            <h4 class="s-property-title">MÔ TẢ NHÀ</h4>
+                            <div class="s-property-content">
+                                <p>${house.describeHouse}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 p0">
+                <aside class="sidebar sidebar-property blog-asside-right property-style2">
+                    <div class="dealer-widget">
+                        <div class="dealer-content">
+                            <div class="inner-wrapper">
+                                <div class="single-property-header">
+                                    <h1 class="property-title" style="font-weight: 700">${house.houseName}</h1>
+                                    <span class="property-price">${house.price}/${house.timeRental}</span>
+                                </div>
+
+                                <div class="property-meta entry-meta clearfix ">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-tag">
+                                                    <img src="assets/img/icon/sale-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Trạng thái</span>
+                                                    <span class="property-info-value">${house.status}</span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info icon-area">
+                                                    <img src="assets/img/icon/room-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Diện tích</span>
+                                                    <span class="property-info-value">${house.width}m<sup>2</sup></span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-bed">
+                                                    <img src="assets/img/icon/bed-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng ngủ</span>
+                                                    <span class="property-info-value">${house.numberBed}</span>
+                                                </span>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-garage">
+                                                    <img src="assets/img/icon/shawer-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng vệ sinh</span>
+                                                    <span class="property-info-value">${house.numberBath}</span>
+                                                </span>
+                                    </div>
+                                </div>
+                                <div class="dealer-section-space">
+                                    <span style="font-weight: 600">CHỦ NHÀ</span>
+                                </div>
+                                <div class="clear">
+                                    <div class="col-xs-4 col-sm-4 dealer-face">
+                                        <a href="">
+                                            <img src="${user.urlImage}" class="img-circle">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 ">
+                                        <h3 class="dealer-name">
+                                            <a href="" style="color: black">${user.username}</a><br>
+                                            <span><i class="pe-7s-call strong"> </i>${user.phone}</span>
+                                            <%--<span>Real Estate Agent</span>--%>
+                                        </h3>
+                                        <div class="dealer-social-media">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Tên căn nhà</label>
-                                        <input name="houseName" type="text" class="form-control" placeholder="Nhập tên nhà" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorHouseName}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Địa chỉ</label>
-                                        <input name="address" type="text" class="form-control" placeholder="Nhập địa chỉ nhà" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorAddress}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Số lượng phòng ngủ </label>
-                                        <input type="number" style="border: 1px black inset; color: black;font-size: 16px;width: 80px;margin-right: 24px" min="1" max="10" name="numberBed">
-                                        <label style="color: black;font-size: 18px">Số lượng phòng tắm </label>
-                                        <input type="number" style="border: 1px black inset; color: black;font-size: 16px;width: 80px" min="1" max="3" name="numberBath">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Diện tích nhà (m<sup>2</sup>) </label>
-                                        <input type="text" style="color: black; font-size: 16px; border: 1px black inset;" name="width">
-                                        <span>${requestScope.errorWidth}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Giá tiền (VNĐ) </label>
-                                        <input name="price" type="text" class="form-control" placeholder="3330000" style="color: black; font-size: 16px; border: 1px black inset;">
-                                        <span>${requestScope.errorPrice}</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Giá theo </label>
-                                        <select name="timeRental" style="color: black; font-size: 16px; width: 85px; height: 50px;padding-left: 10px">
-                                            <option value="ngày">Ngày</option>
-                                            <option value="tháng">Tháng</option>
-                                            <option value="năm">Năm</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="color: black;font-size: 18px">Mô tả chung</label>
-                                        <textarea name="description" class="form-control" style="border: 1px black inset;color: black;font-size: 16px;"></textarea>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="wizard-footer">
-                            <div class="pull-right" style="padding-right: 195px">
-                                <input type='submit' class='btn btn-default' name='finish' value='Đăng nhà'/>
-                            </div>
-                            <div class="clearfix"></div>
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu" >
+                        <div class="panel-body search-widget">
+                            <form action="" class=" form-inline">
+                                <fieldset >
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <input class="button btn largesearch-btn" value="Đặt thuê căn nhà này" type="submit">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <!-- End submit form -->
+                    </div>
+                </aside>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Footer area-->
 <div class="footer-area">
     <div class=" footer">
         <div class="container">
@@ -260,21 +306,11 @@
     function redirectToLogin() {
         window.location.href = "login.jsp";
     }
-
     function redirectToRegister() {
         window.location.href = "register.jsp";
     }
-
     function redirectToProperties() {
         window.location.href = "/listHouse";
-    }
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('wizardPicturePreview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
     }
     function redirectToSubmitProperties() {
         window.location.href = "/submit-properties.jsp";
@@ -282,3 +318,4 @@
 </script>
 </body>
 </html>
+
