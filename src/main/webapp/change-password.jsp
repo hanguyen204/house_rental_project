@@ -135,15 +135,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Mật khẩu cũ <small>(required)</small></label>
-                                <input name="current-password" type="password" class="form-control">
+                                <input name="current-password" type="password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Mật khẩu mới <small>(required)</small></label>
-                                <input name="new-password" type="password" class="form-control">
+                                <input name="new-password" type="password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Xác nhận mật khẩu <small>(required)</small></label>
-                                <input type="password" class="form-control" name="confirm-password">
+                                <input type="password" class="form-control" name="confirm-password" required>
                             </div>
                         </div>
                         <div class="col-sm-10 col-sm-offset-1">

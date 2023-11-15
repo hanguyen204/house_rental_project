@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "root";
+    private String user = "namca";
     private String password = "2004";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
@@ -28,6 +28,7 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
     private static final String SELECT_ALL_HOUSE = "select imgHouse,houseName,price,address,revenue,status from house where userId = ?";
     private static final String SELECT_USER_BY_ID_ALL = "SELECT * FROM user WHERE id =?;";
+    private static final String SELECT_LANDLORD_BY_ID = "SELECT * FROM user WHERE id = ?";
 
     House house = new House();
 

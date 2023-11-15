@@ -48,7 +48,7 @@
 
         button {
             padding: 5px 10px;
-            border: none;
+            border: 1px;
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
@@ -60,33 +60,42 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color:#45a049;
         }
 
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color:#b2dba1;
+            color: black;
         }
+
         .item {
             width: 1000px;
-            height: 290px;
+            height: 50px;
             margin-left: 425px;
         }
+
         .container-navbar {
             padding-top: 7px;
             margin-left: 5px;
             margin-right: 5px;
         }
+
         .margin-top {
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .padding-bottom-5 {
             padding-bottom: 5px;
         }
+
         #padding-top-but {
             padding-top: 8px;
             padding-bottom: 0;
+        }
+
+        .container {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -105,8 +114,11 @@
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
+                                         id="avatar"><span
+                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
@@ -127,7 +139,8 @@
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
+                                </button>
                             </c:if>
                         </ul>
                     </div>
@@ -146,16 +159,55 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
+<div class="home-lager-shearch" style="background-color: #FFF;">
+    <div class="container padding-bottom-40" style="width: 100%;">
+        <div class="col-md-12 large-search">
+            <div class="search-form wow pulse">
+                <form action="/HouseForRentServlet?action=searchTime" class=" form-inline">
+                    <div class="col-md-12" style="height: 40px">
+                        <div class="col-md-3">
+                            <label style="color: black;">Tìm kiếm</label>
+                            <input type="text" class="form-control" value="Tên Tìm Kiếm"
+                                   style="color: black; font-size: 14px;">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="startDateTime" style="color: black;">Bắt đầu:</label>
+                            <input type="date" id="startDateTime" name="startDateTime" class="form-control"
+                                   style="color: black; font-size: 14px;">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="endDateTime" style="color: black;">Kết thúc:</label>
+                            <input type="date" id="endDateTime" name="endDateTime" class="form-control"
+                                   style="color: black; font-size: 14px;">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="order-status" style="color: black">Trạng Thái</label>
+                            <select class="form-control" aria-label="Disabled select example" style="width: 100%; height: 40px; color: black">
+                                <option selected style="font-size: xx-small">Trạng Thái</option>
+                                <option>Chờ nhận phòng</option>
+                                <option>Đang ở</option>
+                                <option>Đã trả phòng</option>
+                                <option>Đã hủy</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <input type="submit" value="" class="btn btn-default btn-lg-sheach">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div align="center">
-    <table border="1" cellpadding="5">
+    <table class="table table-success table-striped-columns" style="width: 96%">
         <tr>
-            <th>Rental period</th>
-            <th>Name of the house</th>
-            <th>Customer name</th>
-            <th>Total price</th>
-            <th>Total house unit</th>
-            <th>Single state</th>
+            <th>Thời Gian thuê</th>
+            <th>Tên Căn Nhà</th>
+            <th>Tên Khách Hàng</th>
+            <th>Tổng Giá </th>
+            <th>Tổng Số Căn</th>
+            <th>Trạng Thái</th>
         </tr>
         <c:forEach var="list" items="${list}">
             <tr>
@@ -170,12 +222,14 @@
                         <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
                             <input type="hidden" name="action" value="inactive">
                             <input type="hidden" name="rentalId" value="${list.rentalId}">
-                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}" style="text-decoration: none">Checkin</a></button>
+                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}"
+                                       style="text-decoration: none">Checkin</a></button>
                         </c:when>
                         <c:otherwise>
                             <input type="hidden" name="action" value="active">
                             <input type="hidden" name="rentalId" value="${list.rentalId}">
-                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}" style="text-decoration: none">Checkout</a></button>
+                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}"
+                                       style="text-decoration: none">Checkout</a></button>
                         </c:otherwise>
                     </c:choose>
                 </td>
@@ -205,40 +259,6 @@
         </c:if>
     </div>
 </div>
-<div class="panel panel-default sidebar-menu">
-    <div class="panel-heading">
-        <h3 class="panel-title">Mục tìm kiếm</h3>
-    </div>
-    <div class="panel-body search-widget">
-        <form action="/HouseForRentServlet?action=searchTime" method="post">
-            <label for="startDateTime">Ngày và giờ bắt đầu:</label>
-            <input type="datetime-local" id="startDateTime" name="startDateTime">
-
-            <label for="endDateTime">Ngày và giờ kết thúc:</label>
-            <input type="datetime-local" id="endDateTime" name="endDateTime">
-
-            <input type="submit" value="searchResults">
-        </form>
-        <form action="/HouseForRentServlet?action=search" method="post" class=" form-inline">
-            <fieldset>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="text" name="houseName"
-                               placeholder="Nhập tên cần tìm kiếm"
-                               style="color: black; font-size: 18px;">
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <input class="button btn largesearch-btn" value="Search" type="submit">
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
 
 <!-- Footer area-->
 <div class="footer-area">
@@ -249,7 +269,8 @@
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
                         <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
-                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY
+                            NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
                         <ul class="footer-adress" style="color: black; font-size: 16px;">
                             <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
                             <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
@@ -262,7 +283,7 @@
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
                         <ul class="footer-menu">
                             <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
-                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>
@@ -287,7 +308,8 @@
         <div class="container">
             <div class="row">
                 <div class="pull-left">
-                    <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
+                    <span><a href="http://www.KimaroTec.com"
+                             style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
                 </div>
             </div>
         </div>

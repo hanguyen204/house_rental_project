@@ -18,6 +18,7 @@ import java.util.List;
 public class UpdateProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         String urlImage = req.getParameter("urlImage");

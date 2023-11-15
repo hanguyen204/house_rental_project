@@ -81,11 +81,11 @@
                         <span class="error">${error}</span>
                         <div class="form-group">
                             <label for="name">Tên tài khoản</label>
-                            <input type="text" class="form-control" id="name" name="username-login" placeholder="Enter your name" style="color: black; font-size: 16px">
+                            <input type="text" class="form-control" id="name" name="username-login" placeholder="Enter your name" style="color: black; font-size: 16px" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password-login" placeholder="Enter your password" style="font-size: 16px">
+                            <input type="password" class="form-control" id="password" name="password-login" placeholder="Enter your password" style="font-size: 16px" required>
                         </div>
                         <div class="text-center" style="padding-top: 15px">
                             <button type="submit" class="btn btn-default">Đăng nhập</button>

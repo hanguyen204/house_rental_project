@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HouseService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "root";
+    private String user = "namca";
     private String password = "2004";
 
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
