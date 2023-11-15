@@ -17,15 +17,6 @@ public class House {
     private String status;
     public House(){}
 
-    public House(String imgHouse, String houseName, String price, String address, double revenue, String status) {
-        this.imgHouse = imgHouse;
-        this.houseName = houseName;
-        this.price = price;
-        this.address = address;
-        this.revenue = revenue;
-        this.status = status;
-    }
-
     public House(int houseId, int userId, String imgHouse, String houseName, String price, String timeRental, String address, int revenue, int numberBath, int numberBed, int width, String describeHouse, String status) {
         this.houseId = houseId;
         this.userId = userId;
@@ -102,7 +93,7 @@ public class House {
         this.revenue = revenue;
         this.status = status;
     }
-    public House() {}
+
 
     public User getUser() {
         return user;

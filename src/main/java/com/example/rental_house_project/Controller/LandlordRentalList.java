@@ -1,7 +1,6 @@
 package com.example.rental_house_project.Controller;
 
 import com.example.rental_house_project.Model.House;
-import com.example.rental_house_project.Model.User;
 import com.example.rental_house_project.Service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -15,20 +14,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "LandLordDetailServlet",value = "/landLordDetail")
-public class LandLordDetailServlet extends HttpServlet {
-    UserService userService = new UserService();
+@WebServlet(name = "LandlordRentalList",value = "/landlordRentalList")
+public class LandlordRentalList extends HttpServlet {
+    UserService house = new UserService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id =  Integer.parseInt(req.getParameter("idUser"));
-        List<User> landLordDetail;
+        int userId =  Integer.parseInt(req.getParameter("userId"));
+        List<House> listHouse = null;
         try {
-            landLordDetail = userService.selectLandLord(id);
-        } catch (ClassNotFoundException | SQLException e) {
+            listHouse = house.showAllHouse(userId);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        req.setAttribute("landLordDetail",landLordDetail );
-        RequestDispatcher dispatcher = req.getRequestDispatcher("landlord-details.jsp");
+        req.setAttribute("list", listHouse);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("landlordRentalList.jsp");
         dispatcher.forward(req, resp);
     }
 }

@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     private static final String SELECT_ALL_ACCUSER = "select id,username,urlImage,fullName,address,phone from user";
     private static final String SELECT_ALL_HOUSE = "select imgHouse,houseName,price,address,revenue,status from house where userId = ?";
     private static final String SELECT_USER_BY_ID_ALL = "SELECT * FROM user WHERE id =?;";
-
+    private static final String SELECT_LANDLORD_BY_ID = "SELECT * FROM user where id = ?";
     House house = new House();
 
     public User getUserByID(int id) throws ClassNotFoundException, SQLException {
@@ -476,7 +476,7 @@ public class UserService implements IUserService {
             String status = resultSet.getString("status");
             int revenue = resultSet.getInt("revenue");
             int numberHouseForRent = resultSet.getInt("numberHouseForRent");
-            list.add(new User(userName,urlImage,fullName,revenue,numberHouseForRent,address,phone,status));
+            list.add(new User(id,userName,urlImage,fullName,revenue,numberHouseForRent,address,phone,status));
         }
         return list;
     }
