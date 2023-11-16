@@ -132,23 +132,6 @@
         <div class="row">
             <div class="col-md-9 padding-top-40 properties-page">
                 <div class="section clear">
-                    <div class="col-xs-10 page-subheader sorting pl0">
-                        <ul class="sort-by-list">
-                            <li class="active">
-                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date"
-                                   data-order="ASC">
-                                    Property Date <i class="fa fa-sort-amount-asc"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-xs-2 layout-switcher" style="padding-top: 10px">
-                        <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
-                    </div>
-                </div>
-
-                <div class="section clear">
                     <div id="list-type" class="proerty-th" >
                         <c:forEach var="house" items="${pagedList}">
                             <div class="col-sm-6 col-md-4 p0" style="width: 285px;height: 380px;">
@@ -210,7 +193,7 @@
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Mục tìm kiếm</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Mục tìm kiếm</h3>
                         </div>
                         <div class="panel-body search-widget">
                             <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
@@ -235,66 +218,66 @@
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo giá</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Lọc theo giá</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 2 - 5 triệu </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 2 - 5 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 5 - 10 triệu </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 5 - 10 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 10 - 50 triệu </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 10 - 50 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 50 - 100 triệu </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 50 - 100 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> Thỏa thuận</a>
+                                    <a href="#" style="color: black;font-weight: 500"> Thỏa thuận</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title" >Lọc theo diện tích nhà</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Lọc theo diện tích</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 50 - 100m<sup>2</sup></a>
+                                    <a href="#" style="color: black;font-weight: 500"> 50 - 100m<sup>2</sup></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 100 - 300m<sup>2</sup> </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 100 - 300m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
-                                    <a href="#" style="color: black"> 300 - 500m<sup>2</sup> </a>
+                                    <a href="#" style="color: black;font-weight: 500"> 300 - 500m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>

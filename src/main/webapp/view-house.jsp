@@ -201,7 +201,7 @@
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
                                             <a href="" style="color: black">${user.username}</a><br>
-                                            <span><i class="pe-7s-call strong"> </i>${user.phone}</span>
+                                            <span><i class="pe-7s-call strong"> </i> ${user.phone}</span>
                                             <%--<span>Real Estate Agent</span>--%>
                                         </h3>
                                         <div class="dealer-social-media">
@@ -214,7 +214,7 @@
 
                     <div class="panel panel-default sidebar-menu" >
                         <div class="panel-body search-widget">
-                            <form action="" class=" form-inline">
+                            <form action="book-house.jsp" class=" form-inline">
                                 <fieldset >
                                     <div class="row">
                                         <div class="col-xs-12">

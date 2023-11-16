@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>User Management Application</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GARO ESTATE | THÔNG TIN CĂN NHÀ</title>
     <meta name="description" content="GARO is a real-estate template">
     <meta name="author" content="Kimarotec">
     <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -26,48 +27,32 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.css">
+    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <style>
-        #avatar {
-            width: 50px;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: yellow;
-            color: black;
-        }
-        .item {
-            width: 1000px;
-            height: 290px;
-            margin-left: 425px;
-        }
-        .container-navbar {
-            padding-top: 7px;
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-        .margin-top {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .padding-bottom-5 {
-            padding-bottom: 5px;
-        }
-        #padding-top-but {
-            padding-top: 8px;
-            padding-bottom: 0;
-        }
-    </style>
 </head>
+<style>
+    #avatar {
+        width: 50px;
+    }
+    .container-navbar {
+        padding-top: 7px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .margin-top {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .padding-bottom-5 {
+        padding-bottom: 5px;
+    }
+    #padding-top-but {
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
+</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -91,14 +76,10 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
-                                        <li><a href="">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="#">Quản lý thuê nhà</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
@@ -124,127 +105,41 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<!-- End of nav bar -->
 
-<div class="home-lager-shearch" style="background-color: #FFF;">
-    <div class="container padding-bottom-40">
-        <div class="col-md-12 large-search">
-            <div class="search-form wow pulse">
-                <form action="" class="form-inline">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <label style="color: black;">Tìm kiếm</label>
-                            <input type="text" class="form-control" placeholder="Key word" style="color: black; font-size: 14px;">
-                        </div>
-                        <div class="col-md-4">
-                            <label style="color: black;">Bắt đầu:</label>
-                            <input type="date" name="startDateTime" class="form-control" style="color: black; font-size: 14px;">
-                        </div>
-                        <div class="col-md-4">
-                            <label style="color: black;">Kết thúc:</label>
-                            <input type="date" name="endDateTime" class="form-control" style="color: black; font-size: 14px;">
-                        </div>
-                    </div>
-                    <div class="center">
-                        <input type="submit" value="" class="btn btn-default btn-lg-sheach">
-                    </div>
-                </form>
+<div class="container padding-top-40" style="padding-bottom: 25px">
+    <div class="col-md-12 border-btn">
+        <div>
+            <div class="col-md-6 border-btn">
+                <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NHÀ VÀ CHỦ NHÀ</p>
+                <hr style="margin-top: 5px; color: black;">
+                <p style="color: black; font-weight: 500;">Tên nhà: </p>
+                <p style="color: black; font-weight: 500;">Địa chỉ nhà: </p>
+                <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: </p>
+                <p style="color: black; font-weight: 500;">Số điện thoại: </p>
+            </div>
+            <div class="col-md-6 border-btn" style="padding-bottom: 12px;">
+                <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NGƯỜI THUÊ</p>
+                <hr style="margin-top: 5px; color: black;">
+                <p style="color: black; font-weight: 500;">Họ và tên người thuê: </p>
+                <p style="color: black; font-weight: 500;">Số điện thoại: </p>
+                <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày: <input type="date" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
+                <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-top: 10px;">
+            <div class="col-md-6 left">
+                <p style="text-transform: uppercase; font-weight: bold; color: black; font-size: 26px;">TỔNG SỐ TIỀN CẦN THANH TOÁN:</p>
+            </div>
+            <div class="col-md-6 right">
+                <p class="right" style="color: black; font-weight: bold; font-size: 26px">100.000.000 VND</p>
             </div>
         </div>
     </div>
+    <form action="" style="width: 200px; margin-left: 77%; margin-top: 37%;">
+        <input type="submit" class="button btn-default" value="DAT THUE NGAY">
+    </form>
 </div>
-
-<div class="container padding-top-40">
-    <div class="col-md-12 col-lg-12">
-        <table class="table">
-            <tr>
-                <th>Rental period</th>
-                <th>Name of the house</th>
-                <th>Customer name</th>
-                <th>Total price</th>
-                <th>Total house unit</th>
-                <th>Single state</th>
-            </tr>
-            <c:forEach var="list" items="${list}">
-                <tr>
-                    <td><c:out value="${list.rentalPeriod}"/></td>
-                    <td><c:out value="${list.houseName}"/></td>
-                    <td><c:out value="${list.fullName}"/></td>
-                    <td><c:out value="${list.result}"/></td>
-                    <td><c:out value="${list.totalHouse}"/></td>
-                    <td><c:out value="${list.status}"/></td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
-                                <input type="hidden" name="action" value="inactive">
-                                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                                <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}" style="text-decoration: none">Checkin</a></button>
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" name="action" value="active">
-                                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                                <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}" style="text-decoration: none">Checkout</a></button>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-    <div class="pagination">
-        <c:if test="${currentPage > 1}">
-            <a href="HouseForRentServlet?page=${currentPage - 1}">Previous</a>
-        </c:if>
-
-        <c:forEach var="pageNumber" begin="1" end="${totalPages}">
-            <c:choose>
-                <%-- Hiển thị trang hiện tại không có link --%>
-                <c:when test="${pageNumber == currentPage}">
-                    <span>${pageNumber}</span>
-                </c:when>
-                <%-- Hiển thị các trang khác có link --%>
-                <c:otherwise>
-                    <a href="HouseForRentServlet?page=${pageNumber}">${pageNumber}</a>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-
-        <c:if test="${currentPage < totalPages}">
-            <a href="HouseForRentServlet?page=${currentPage + 1}">Next</a>
-        </c:if>
-    </div>
-</div>
-<%--<div class="panel panel-default sidebar-menu">--%>
-<%--    <div class="panel-heading">--%>
-<%--        <h3 class="panel-title">Mục tìm kiếm</h3>--%>
-<%--    </div>--%>
-<%--    <div class="panel-body search-widget">--%>
-<%--        <form action="/HouseForRentServlet?action=searchTime" method="post">--%>
-<%--            <label for="startDateTime">Ngày và giờ bắt đầu:</label>--%>
-<%--            <input type="datetime-local" id="startDateTime" name="startDateTime">--%>
-
-<%--            <label for="endDateTime">Ngày và giờ kết thúc:</label>--%>
-<%--            <input type="datetime-local" id="endDateTime" name="endDateTime">--%>
-
-<%--            <input type="submit" value="searchResults">--%>
-<%--        </form>--%>
-<%--        <form action="/HouseForRentServlet?action=search" method="post" class=" form-inline">--%>
-<%--            <fieldset>--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-xs-12">--%>
-<%--                        <input class="form-control" type="text" name="houseName" placeholder="Nhập tên cần tìm kiếm" style="color: black; font-size: 18px;">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </fieldset>--%>
-<%--            <fieldset>--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-xs-12">--%>
-<%--                        <input class="button btn largesearch-btn" value="Search" type="submit">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </fieldset>--%>
-<%--        </form>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <!-- Footer area-->
 <div class="footer-area">
@@ -299,23 +194,5 @@
         </div>
     </div>
 </div>
-
-<script src="assets/js/modernizr-2.6.2.min.js"></script>
-
-<script src="assets/js/jquery-1.10.2.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/bootstrap-hover-dropdown.js"></script>
-
-<script src="assets/js/easypiechart.min.js"></script>
-<script src="assets/js/jquery.easypiechart.min.js"></script>
-
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/wow.js"></script>
-
-<script src="assets/js/icheck.min.js"></script>
-<script src="assets/js/price-range.js"></script>
-
-<script src="assets/js/main.js"></script>
 </body>
 </html>

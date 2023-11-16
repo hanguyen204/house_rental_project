@@ -53,30 +53,15 @@
         max-height: 50px;
     }
 
-    table {
-        border-collapse: collapse;
-        width: 50%;
-    }
-
     th, td {
         padding: 8px;
         text-align: center;
         border-bottom: 1px solid #ddd;
     }
 
-    button {
-        padding: 5px 10px;
-        border: none;
-        cursor: pointer;
-    }
-
     button a {
         color: white;
         text-decoration: none;
-    }
-
-    button:hover {
-        background-color: #45a049;
     }
 
     th {

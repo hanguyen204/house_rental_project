@@ -37,9 +37,9 @@
         width: 50px;
     }
     .item {
-        width: 1000px;
+        width: 900px;
         height: 290px;
-        margin-left: 425px;
+        margin-left: 475px;
     }
     .container-navbar {
         padding-top: 7px;
@@ -154,10 +154,10 @@
                     <div class="col-sm-7 col-md-4 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href=""><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
+                                <a href="/view-house?id=${house.houseId}"><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
                             </div>
                             <div class="item-entry overflow">
-                                <h5><a href="">${house.houseName}</a></h5>
+                                <h5><a href="/view-house?id=${house.houseId}">${house.houseName}</a></h5>
                                 <div class="dot-hr"></div>
                                 <span class="pull-left"><b>Area :</b> ${house.width}m<sup>2</sup></span>
                                 <c:choose>
@@ -272,9 +272,6 @@
     function redirectToSubmitProperties() {
         window.location.href = "/submit-properties.jsp";
     }
-</script>
-
-
 </script>
 </body>
 </html>

@@ -35,35 +35,14 @@
             width: 50px;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 50%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        button {
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-
         button a {
             color: white;
             text-decoration: none;
         }
 
-        button:hover {
-            background-color: #45a049;
-        }
-
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: yellow;
+            color: black;
         }
 
         .container-navbar {
@@ -129,9 +108,9 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
+<div class="container">
     <div style="padding-top: 50px;">
-        <table border="1" cellpadding="5" align="center" style="width: 1500px">
+        <table class="table" style="width: 1500px">
             <tr>
                 <th>Username</th>
                 <th>Full name</th>
@@ -140,7 +119,7 @@
                 <th>Action</th>
             </tr>
             <c:forEach var="list" items="${listUser}">
-                <tr>
+                <tr class="left">
                     <td><c:out value="${list.username}"/></td>
                     <td><c:out value="${list.fullName}"/></td>
                     <td><c:out value="${list.phone}"/></td>
@@ -186,6 +165,8 @@
             </c:if>
         </div>
     </div>
+</div>
+
 
 <!-- Footer area-->
 <div class="footer-area">
@@ -258,5 +239,14 @@
     <script src="assets/js/price-range.js"></script>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function redirectToLogin() {
+            window.location.href = "login.jsp";
+        }
+
+        function redirectToRegister() {
+            window.location.href = "register.jsp";
+        }
+    </script>
 </body>
 </html>
