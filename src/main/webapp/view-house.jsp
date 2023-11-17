@@ -128,51 +128,10 @@
                         </div>
                     </div>
                     <div class="single-property-wrapper" style="padding-top: 20px">
-                        <div class="single-property-header" style="padding-top: 15px">
-                            <div class="col-md-8" style="padding-left: 0px">
-                                <h1 class="property-title pull-left" style="font-weight: bold">${house.houseName}</h1>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="property-price pull-right">${house.price}/${house.timeRental}</span>
-                            </div>
-                        </div>
-
-                        <div class="section additional-details">
-                            <h4 class="s-property-title">THÔNG TIN CHI TIẾT</h4>
-
-                            <ul class="additional-details-list clearfix">
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">ĐỊA CHỈ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.address}</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">DIỆN TÍCH</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.width}</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG TẮM (NHÀ VỆ SINH)</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBath} phòng</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG NGỦ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBed} phòng</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">TRẠNG THÁI CHO THUÊ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.status}</span>
-                                </li>
-
-                            </ul>
-                        </div>
-
                         <div class="section" >
-                            <h4 class="s-property-title">MÔ TẢ CHUNG</h4>
+                            <h4 class="s-property-title">MÔ TẢ NHÀ</h4>
                             <div class="s-property-content">
-                                <p style="color: black">${house.describeHouse}</p>
+                                <p>${house.describeHouse}</p>
                             </div>
                         </div>
                     </div>
@@ -184,6 +143,55 @@
                     <div class="dealer-widget">
                         <div class="dealer-content">
                             <div class="inner-wrapper">
+                                <div class="single-property-header">
+                                    <h1 class="property-title" style="font-weight: 700">${house.houseName}</h1>
+                                    <span class="property-price">${house.price}/${house.timeRental}</span>
+                                </div>
+
+                                <div class="property-meta entry-meta clearfix ">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-tag">
+                                                    <img src="assets/img/icon/sale-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Trạng thái</span>
+                                                    <span class="property-info-value">${house.status}</span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info icon-area">
+                                                    <img src="assets/img/icon/room-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Diện tích</span>
+                                                    <span class="property-info-value">${house.width}m<sup>2</sup></span>
+                                                </span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-bed">
+                                                    <img src="assets/img/icon/bed-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng ngủ</span>
+                                                    <span class="property-info-value">${house.numberBed}</span>
+                                                </span>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 p-b-15">
+                                                <span class="property-info-icon icon-garage">
+                                                    <img src="assets/img/icon/shawer-orange.png">
+                                                </span>
+                                        <span class="property-info-entry">
+                                                    <span class="property-info-label">Phòng vệ sinh</span>
+                                                    <span class="property-info-value">${house.numberBath}</span>
+                                                </span>
+                                    </div>
+                                </div>
+                                <div class="dealer-section-space">
+                                    <span style="font-weight: 600">CHỦ NHÀ</span>
+                                </div>
                                 <div class="clear">
                                     <div class="col-xs-4 col-sm-4 dealer-face">
                                         <a href="">
@@ -192,8 +200,8 @@
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
-                                            <a href="" style="color: black">${user.fullName}</a><br>
-                                            <span><i class="pe-7s-call strong" style="padding-right: 5px; padding-top: 10px"> </i> ${user.phone}</span>
+                                            <a href="" style="color: black">${user.username}</a><br>
+                                            <span><i class="pe-7s-call strong"> </i> ${user.phone}</span>
                                             <%--<span>Real Estate Agent</span>--%>
                                         </h3>
                                         <div class="dealer-social-media">
@@ -208,9 +216,9 @@
                         <div class="panel-body search-widget">
                             <form action="book-house.jsp" class=" form-inline">
                                 <fieldset >
-                                    <div>
+                                    <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="button btn largesearch-btn" value="ĐẶT THUÊ NGAY" type="submit">
+                                            <input class="button btn largesearch-btn" value="Đặt thuê căn nhà này" type="submit">
                                         </div>
                                     </div>
                                 </fieldset>
