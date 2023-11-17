@@ -128,51 +128,44 @@
                         </div>
                     </div>
                     <div class="single-property-wrapper" style="padding-top: 20px">
-                        <div class="single-property-header" style="padding-top: 15px">
-                            <div class="col-md-8" style="padding-left: 0px">
-                                <h1 class="property-title pull-left" style="font-weight: bold">${house.houseName}</h1>
-                            </div>
-                            <div class="col-md-4">
-                                <span class="property-price pull-right">${house.price}/${house.timeRental}</span>
-                            </div>
+                        <div class="single-property-header">
+                            <h1 class="property-title pull-left">${house.houseName}</h1>
+                            <span class="property-price pull-right">${house.price}/${house.timeRental}</span>
                         </div>
-
                         <div class="section additional-details">
                             <h4 class="s-property-title">THÔNG TIN CHI TIẾT</h4>
 
                             <ul class="additional-details-list clearfix">
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">ĐỊA CHỈ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.address}</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${house.address}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">DIỆN TÍCH</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.width}</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${house.width}m<sup>2</sup></span>
                                 </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG TẮM (NHÀ VỆ SINH)</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBath} phòng</span>
-                                </li>
-
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG NGỦ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBed} phòng</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${house.numberBed}</span>
                                 </li>
 
                                 <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">TRẠNG THÁI CHO THUÊ</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.status}</span>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG TẮM</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${house.numberBath}</span>
+                                </li>
+
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">TRẠNG THÁI</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${house.status}</span>
                                 </li>
 
                             </ul>
                         </div>
-
                         <div class="section" >
-                            <h4 class="s-property-title">MÔ TẢ CHUNG</h4>
+                            <h4 class="s-property-title">MÔ TẢ NHÀ</h4>
                             <div class="s-property-content">
-                                <p style="color: black">${house.describeHouse}</p>
+                                <p>${house.describeHouse}</p>
                             </div>
                         </div>
                     </div>
@@ -192,9 +185,8 @@
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
-                                            <a href="" style="color: black">${user.fullName}</a><br>
-                                            <span><i class="pe-7s-call strong" style="padding-right: 5px; padding-top: 10px"> </i> ${user.phone}</span>
-                                            <%--<span>Real Estate Agent</span>--%>
+                                            <a href="" style="color: black">${user.username}</a><br>
+                                            <span><i class="pe-7s-call strong"> </i> ${user.phone}</span>
                                         </h3>
                                         <div class="dealer-social-media">
                                         </div>
@@ -208,9 +200,19 @@
                         <div class="panel-body search-widget">
                             <form action="book-house.jsp" class=" form-inline">
                                 <fieldset >
-                                    <div>
+                                    <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="button btn largesearch-btn" value="ĐẶT THUÊ NGAY" type="submit">
+                                            <c:choose>
+                                                <c:when test="${sessionScope.username ne user.username}">
+                                                    <input class="button btn largesearch-btn" value="Đặt thuê căn nhà này" type="submit">
+                                                </c:when>
+                                                <c:when test="${empty sessionScope.username}">
+                                                    <input class="button btn largesearch-btn" value="Đặt thuê căn nhà này" type="submit">
+                                                </c:when>
+                                                <c:otherwise>
+
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </fieldset>
