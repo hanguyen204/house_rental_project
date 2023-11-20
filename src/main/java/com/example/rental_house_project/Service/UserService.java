@@ -11,8 +11,8 @@ import java.util.List;
 
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "root";
-    private String password = "anhnam2005";
+    private String user = "namca";
+    private String password = "2004";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
@@ -54,6 +54,7 @@ public class UserService implements IUserService {
         }
         return null;
     }
+
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -208,7 +209,7 @@ public class UserService implements IUserService {
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = connection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users LIMIT ?, ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user LIMIT ?, ?")) {
 
             statement.setInt(1, start);
             statement.setInt(2, end - start);
@@ -239,7 +240,7 @@ public class UserService implements IUserService {
 
         try (Connection connection = connection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM users")) {
+             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM user")) {
 
             if (resultSet.next()) {
                 totalUsers = resultSet.getInt(1);

@@ -45,23 +45,28 @@
             background-color: yellow;
             color: black;
         }
+
         .item {
             width: 1000px;
             height: 290px;
             margin-left: 425px;
         }
+
         .container-navbar {
             padding-top: 7px;
             margin-left: 5px;
             margin-right: 5px;
         }
+
         .margin-top {
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .padding-bottom-5 {
             padding-bottom: 5px;
         }
+
         #padding-top-but {
             padding-top: 8px;
             padding-bottom: 0;
@@ -83,8 +88,11 @@
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
+                                         id="avatar"><span
+                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
@@ -105,7 +113,8 @@
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
+                                </button>
                             </c:if>
                         </ul>
                     </div>
@@ -123,35 +132,49 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-</nav>
-
-<div class="home-lager-shearch" style="background-color: #FFF;">
+</nav><div class="home-lager-shearch" style="background-color: #FFF;">
     <div class="container padding-bottom-40">
         <div class="col-md-12 large-search">
             <div class="search-form wow pulse">
-                <form action="" class="form-inline">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <label style="color: black;">Tìm kiếm</label>
-                            <input type="text" class="form-control" placeholder="Key word" style="color: black; font-size: 14px;">
+                <div class="col-md-12">
+                    <form action="/HouseForRentServlet?action=search" method="post">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="timkiem" style="color: black;">Tìm kiếm</label>
+                                <input type="text" name="searchKeyword" id="timkiem" class="form-control" placeholder="key word"
+                                       style="color: black; font-size: 14px;">
+                            </div>
+                            <div class="col-md-2">
+                                <label style="color: black;">Bắt đầu:</label>
+                                <input type="datetime-local" name="startDateTime" class="form-control"
+                                       style="color: black; font-size: 14px;">
+                            </div>
+                            <div class="col-md-2">
+                                <label style="color: black;">Kết thúc:</label>
+                                <input type="datetime-local" name="endDateTime" class="form-control"
+                                       style="color: black; font-size: 14px;">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="form-control" style="color: black">Trạng Thái</label>
+                                <select class="form-control" name="status" id="form-control" aria-label="Disabled select example" style="width: 100%; font-size: 14px ;height: 40px; color: black">
+                                    <option selected style="color: black">chọn</option>
+                                    <option>Chờ nhận phòng</option>
+                                    <option>Đang ở</option>
+                                    <option>Đã trả phòng</option>
+                                    <option>Đã hủy</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-default btn-lg-sheach"></button>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label style="color: black;">Bắt đầu:</label>
-                            <input type="date" name="startDateTime" class="form-control" style="color: black; font-size: 14px;">
-                        </div>
-                        <div class="col-md-4">
-                            <label style="color: black;">Kết thúc:</label>
-                            <input type="date" name="endDateTime" class="form-control" style="color: black; font-size: 14px;">
-                        </div>
-                    </div>
-                    <div class="center">
-                        <input type="submit" value="" class="btn btn-default btn-lg-sheach">
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container padding-top-40">
     <div class="col-md-12 col-lg-12">
@@ -161,33 +184,38 @@
                 <th>Tên của ngôi nhà</th>
                 <th>Tên khách hàng</th>
                 <th>Tổng giá</th>
-                <th>Tổng số căn nhà</th>
                 <th>Trạng thái đơn</th>
             </tr>
-            <c:forEach var="list" items="${list}">
-                <tr>
-                    <td><c:out value="${list.rentalPeriod}"/></td>
-                    <td><c:out value="${list.houseName}"/></td>
-                    <td><c:out value="${list.fullName}"/></td>
-                    <td><c:out value="${list.result}"/></td>
-                    <td><c:out value="${list.totalHouse}"/></td>
-                    <td><c:out value="${list.status}"/></td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
-                                <input type="hidden" name="action" value="inactive">
-                                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                                <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}" style="text-decoration: none">Checkin</a></button>
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" name="action" value="active">
-                                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                                <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}" style="text-decoration: none">Checkout</a></button>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                </tr>
-            </c:forEach>
+            \ <c:forEach var="list" items="${showList}">
+            <tr>
+                <td><c:out value="${list.rentalPeriod}"/></td>
+                <td><c:out value="${list.houseName}"/></td>
+                <td><c:out value="${list.fullName}"/></td>
+                <td><c:out value="${list.result}"/></td>
+                <td><c:out value="${list.status}"/></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
+                            <input type="hidden" name="action" value="inactive">
+                            <input type="hidden" name="rentalId" value="${list.rentalId}">
+                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}"
+                                       style="text-decoration: none">Checkin</a></button>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" name="action" value="active">
+                            <input type="hidden" name="rentalId" value="${list.rentalId}">
+                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}"
+                                       style="text-decoration: none">Checkout</a></button>
+
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>
+                <button><a href="HouseForRentServlet?action=updateHouseNameAndStatus&rentalId=${list.rentalId}"
+                           style="text-decoration: none">Update</a></button>
+                </td>
+            </tr>
+        </c:forEach>
         </table>
     </div>
     <div class="pagination">
@@ -223,7 +251,8 @@
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
                         <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
-                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY
+                            NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
                         <ul class="footer-adress" style="color: black; font-size: 16px;">
                             <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
                             <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
@@ -231,12 +260,13 @@
                         </ul>
                     </div>
                 </div>
+                HomeownerPostedHouse
                 <div class="col-md-4 col-sm-6">
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
                         <ul class="footer-menu">
                             <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
-                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>
@@ -261,7 +291,8 @@
         <div class="container">
             <div class="row">
                 <div class="pull-left">
-                    <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
+                    <span><a href="http://www.KimaroTec.com"
+                             style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
                 </div>
             </div>
         </div>
