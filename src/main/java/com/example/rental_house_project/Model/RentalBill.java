@@ -6,16 +6,27 @@ public class RentalBill {
     private int rentalId;
     private Date rentalDate;
     private Date payDate;
-
     private String houseName;
-
     private String fullName;
     private long rentalPeriod;
     private double price;
     private int totalHouse;
     private String status;
-
     private double result;
+    private String address;
+
+
+    public RentalBill() {
+    }
+
+    public RentalBill(int rentalId, Date rentalDate, String houseName, double price, String status, String address) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.houseName = houseName;
+        this.price = price;
+        this.status = status;
+        this.address = address;
+    }
 
     public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, int totalHouse, String status) {
         this.rentalId = rentalId;
@@ -30,6 +41,13 @@ public class RentalBill {
         this.status = status;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+
     public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
@@ -40,6 +58,7 @@ public class RentalBill {
         this.price = price;
         this.result = result;
         this.status = status;
+
     }
 
     public int getTotalHouse() {
