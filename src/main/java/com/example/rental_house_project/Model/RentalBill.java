@@ -47,6 +47,18 @@ public class RentalBill {
 
     public void setAddress(String address) {
         this.address = address;
+
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.rentalPeriod = rentalPeriod;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
+        this.result = result;
+        this.status = status;
+
     }
 
     public int getTotalHouse() {

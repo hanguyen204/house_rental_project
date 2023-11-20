@@ -18,6 +18,8 @@ public class RentalBillService implements IRentalBillService {
     private static final String SHOW_RENTAL_HISTORY_BY_ID = "select r.houseId,rentalId,dateRental ,housename, totalPayment , h.address , r.status from RentalBill r join user u on r.userId = u.id join House h on r.houseId = h.houseId where id = ? ;";
     private static final String UPDATE_STATUS_HISTORY_RENT = "update rentalbill set status = 'Đang trống' where rentalId = ?;";
     private static final String RENT_AGAIN_HOUSE = "update rentalbill set status = 'Đang cho thuê' where rentalId = ?;";
+    private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.dateRental,RentalBill.datePay,user.fullName, House.houseName,House.price ,RentalBill.status FROM RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId ";
+
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -37,11 +39,11 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
+            Date rentalDate = rs.getDate("dateRental");
+            Date payDate = rs.getDate("datePay");
             long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
             long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
-            String houseName = rs.getString("houseName");
+            String houseName = rs.getString("housename");
             String fullName = rs.getString("fullName");
             double price = rs.getDouble("price");
             double result = rentalPeriod * price;
@@ -84,10 +86,10 @@ public class RentalBillService implements IRentalBillService {
             String fullName = rs.getString("fullName");
             double price = rs.getDouble("price");
             double result = rentalPeriod * price;
-            int totalHouse = rs.getInt("totalHouse");
+//            int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, status));
         }
         return list;
     }
@@ -115,7 +117,7 @@ public class RentalBillService implements IRentalBillService {
     @Override
     public List<RentalBill> searchByName(String name) throws SQLException, ClassNotFoundException {
         List<RentalBill> list = new ArrayList<>();
-        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE House.houseName  like '%" + name + "%'";
+        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.userId = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE House.houseName  like '%" + name + "%'";
         PreparedStatement statement = connection().prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -138,7 +140,7 @@ public class RentalBillService implements IRentalBillService {
 
     public List<RentalBill> searchDatetimePicker(LocalDateTime startDateTime, LocalDateTime endDateTime) throws ClassNotFoundException, SQLException {
         List<RentalBill> list = new ArrayList<>();
-        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE rentalDate BETWEEN ? AND ?";
+        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.userId = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE rentalDate BETWEEN ? AND ?";
         PreparedStatement statement = connection().prepareStatement(query);
         statement.setTimestamp(1, Timestamp.valueOf(startDateTime));
         statement.setTimestamp(2, Timestamp.valueOf(endDateTime));
@@ -164,7 +166,7 @@ public class RentalBillService implements IRentalBillService {
     @Override
     public List<RentalBill> searchByStatusCheckOut(String homeStatus) throws ClassNotFoundException, SQLException {
         List<RentalBill> list = new ArrayList<>();
-        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE homeStatus ='Đã trả phòng'";
+        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.userId = user.id JOIN House ON RentalBill.houseId = House.houseId   WHERE homeStatus ='Đã trả phòng'";
         PreparedStatement statement = connection().prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -189,7 +191,7 @@ public class RentalBillService implements IRentalBillService {
     @Override
     public List<RentalBill> searchByStatusLiveIn(String homeStatus) throws ClassNotFoundException, SQLException {
         List<RentalBill> list = new ArrayList<>();
-        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId  WHERE homeStatus ='Chờ nhận phòng'";
+        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.userId = user.id JOIN House ON RentalBill.houseId = House.houseId  WHERE homeStatus ='Chờ nhận phòng'";
         PreparedStatement statement = connection().prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -213,7 +215,7 @@ public class RentalBillService implements IRentalBillService {
     @Override
     public List<RentalBill> searchByStatusCheckin(String homeStatus) throws ClassNotFoundException, SQLException {
         List<RentalBill> list = new ArrayList<>();
-        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId  WHERE homeStatus ='Đang ở'";
+        String query = "SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.houseName, House.price, RentalBill.totalHouse, RentalBill.status FROM RentalBill JOIN user ON RentalBill.userId = user.id JOIN House ON RentalBill.houseId = House.houseId  WHERE homeStatus ='Đang ở'";
         PreparedStatement statement = connection().prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
