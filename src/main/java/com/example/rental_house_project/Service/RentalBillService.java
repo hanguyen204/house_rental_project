@@ -3,16 +3,16 @@ package com.example.rental_house_project.Service;
 import com.example.rental_house_project.Model.RentalBill;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class RentalBillService implements IRentalBillService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "anhnam2005";
+    private String password = "1";
 
     private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.dateRental,RentalBill.datePay,user.fullName, House.houseName,House.price ,RentalBill.status FROM RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId ";
 
@@ -34,18 +34,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("dateRental");
-            Date payDate = rs.getDate("datePay");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
-            String houseName = rs.getString("housename");
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
+            String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
     }
@@ -73,18 +75,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
-//            int totalHouse = rs.getInt("totalHouse");
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
+            int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
     }
@@ -117,18 +121,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
     }
@@ -142,18 +148,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
     }
@@ -166,18 +174,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
 
@@ -191,18 +201,20 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
         return list;
     }
@@ -215,19 +227,35 @@ public class RentalBillService implements IRentalBillService {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int rentalId = rs.getInt("rentalId");
-            Date rentalDate = rs.getDate("rentalDate");
-            Date payDate = rs.getDate("payDate");
-            long rentalPeriodMillis = payDate.getTime() - rentalDate.getTime();
-            long rentalPeriod = TimeUnit.MILLISECONDS.toDays(rentalPeriodMillis);
+            String rentalDate = rs.getString("rentalDate");
+            String payDate = rs.getString("payDate");
+            LocalDate rentalDates = LocalDate.parse(rentalDate);
+            LocalDate payDates = LocalDate.parse(payDate);
+            long daysBetween = ChronoUnit.DAYS.between(rentalDates, payDates);
             String houseName = rs.getString("houseName");
             String fullName = rs.getString("fullName");
-            double price = rs.getDouble("price");
-            double result = rentalPeriod * price;
+            String price = rs.getString("price");
+            double result = daysBetween * Double.parseDouble(price);
             int totalHouse = rs.getInt("totalHouse");
             String status = rs.getString("status");
 
-            list.add(new RentalBill(rentalId, rentalDate, payDate, rentalPeriod, houseName, fullName, price, result, totalHouse, status));
+
+            list.add(new RentalBill(rentalDate, payDate));
         }
+        return list;
+    }
+
+    @Override
+    public List<RentalBill>bookAHouse(int houseId, int id, String rentalDate, String payDate) throws ClassNotFoundException, SQLException {
+        List<RentalBill> list = new ArrayList<>();
+        String insertQuery = "INSERT INTO RentalBill (houseId,userId, rentalDate, payDate) VALUES (?,?,?,?)";
+        PreparedStatement preparedStatement = connection().prepareStatement(insertQuery);
+        preparedStatement.setInt(1,houseId);
+        preparedStatement.setInt(2,id);
+        preparedStatement.setString(3,rentalDate);
+        preparedStatement.setString(4,payDate);
+        preparedStatement.executeUpdate();
+
         return list;
     }
 }

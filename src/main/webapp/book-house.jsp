@@ -108,36 +108,51 @@
 <!-- End of nav bar -->
 
 <div class="container padding-top-40" style="padding-bottom: 25px">
-    <div class="col-md-12 border-btn">
-        <div>
-            <div class="col-md-6 border-btn">
+    <form action="/BookHouse?action=BookAHouse" method="POST">
+        <input type="hidden" name="houseId" value="${requestScope.houseId}">
+        <input type="hidden" name="id" value="${requestScope.id}">
+        <div class="col-md-12 border-btn">
+
                 <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NHÀ VÀ CHỦ NHÀ</p>
                 <hr style="margin-top: 5px; color: black;">
-                <p style="color: black; font-weight: 500;">Tên nhà: </p>
-                <p style="color: black; font-weight: 500;">Địa chỉ nhà: </p>
-                <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: </p>
-                <p style="color: black; font-weight: 500;">Số điện thoại: </p>
+                <p style="color: black; font-weight: 500;">Tên nhà: ${requestScope.houseName}</p>
+                <p style="color: black; font-weight: 500;">Địa chỉ nhà: ${requestScope.address}</p>
+                <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: ${requestScope.fullName}</p>
+                <p style="color: black; font-weight: 500;">Số điện thoại: ${requestScope.phone}</p>
+                <input type="hidden" id="price" value="${requestScope.price}">
+                <form id="myForm">
+                    <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
+                    <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
+                    <button type="button" onclick="countMoney()">Kiểm tra số tiền cần trả</button>
+                    <p style="text-transform: uppercase; font-weight: bold; color: black; font-size: 26px;">TỔNG SỐ TIỀN CẦN THANH TOÁN: </p><p id="result"></p>
+
+                </form>
+
+                <script>
+                    function countMoney() {
+                        const rentalDate = new Date(document.getElementById("rentalDate").value);
+                        const payDate = new Date(document.getElementById("payDate").value);
+                        const timeDiff = payDate.getTime() - rentalDate.getTime();
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                        let price = parseFloat(document.getElementById("price").value);
+                        const result = daysDiff * price;
+
+                        document.getElementById("result").innerHTML = result.toString();
+                    }
+                    document.getElementById("myForm").addEventListener("submit", function(event) {
+                        event.preventDefault();
+                    });
+                </script>
+
+            <div class="col-md-12" style="padding-top: 10px;">
+                <div class="col-md-6 left">
+                </div>
+                <div class="col-md-6 right">
+                    <p class="right" style="color: black; font-weight: bold; font-size: 26px;"></p>
+                </div>
             </div>
-            <div class="col-md-6 border-btn" style="padding-bottom: 12px;">
-                <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NGƯỜI THUÊ</p>
-                <hr style="margin-top: 5px; color: black;">
-                <p style="color: black; font-weight: 500;">Họ và tên người thuê: </p>
-                <p style="color: black; font-weight: 500;">Số điện thoại: </p>
-                <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày: <input type="date" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
-                <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
-            </div>
+            <input type="submit" class="button btn-default" value="ĐẶT THUÊ NGAY">
         </div>
-        <div class="col-md-12" style="padding-top: 10px;">
-            <div class="col-md-6 left">
-                <p style="text-transform: uppercase; font-weight: bold; color: black; font-size: 26px;">TỔNG SỐ TIỀN CẦN THANH TOÁN:</p>
-            </div>
-            <div class="col-md-6 right">
-                <p class="right" style="color: black; font-weight: bold; font-size: 26px">100.000.000 VND</p>
-            </div>
-        </div>
-    </div>
-    <form action="" style="width: 200px; margin-left: 77%; margin-top: 37%;">
-        <input type="submit" class="button btn-default" value="DAT THUE NGAY">
     </form>
 </div>
 
