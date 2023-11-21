@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IRentalBillService {
+    RentalBill selectId(int rentalId) throws ClassNotFoundException, SQLException;
+
+    void updateHouseNameAndStatus(RentalBill rentalBill) throws ClassNotFoundException, SQLException;
+
     List<RentalBill> ShowAllRenTalBill() throws ClassNotFoundException, SQLException;
 
     void updateTheStayStatusForTheHost(int rentalId) throws ClassNotFoundException, SQLException;

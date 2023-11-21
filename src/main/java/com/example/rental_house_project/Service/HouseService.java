@@ -1,7 +1,6 @@
 package com.example.rental_house_project.Service;
 
 import com.example.rental_house_project.Model.House;
-import com.example.rental_house_project.Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,8 +8,8 @@ import java.util.List;
 
 public class HouseService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "root";
-    private String password = "anhnam2005";
+    private String user = "namca";
+    private String password = "2004";
 
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
     private static final String SELECT_FIVE_HOUSE = "SELECT * FROM House ORDER BY revenue DESC LIMIT 5;";
@@ -142,9 +141,9 @@ public class HouseService {
         return list;
     }
 
-    public List<House> searchByStatusRooms(String statusRoom) throws ClassNotFoundException, SQLException {
+    public List<House> searchByStatusRooms(String status) throws ClassNotFoundException, SQLException {
         List<House> list = new ArrayList<>();
-        String query = "SELECT  houseName,address,numberBath,numberBed,describeHouse,imgHouse from House WHERE status ='Còn Phòng'";
+        String query = "SELECT  houseName,address,numberBath,numberBed,describeHouse,imgHouse from House WHERE status = ?";
         PreparedStatement statement = connection().prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {

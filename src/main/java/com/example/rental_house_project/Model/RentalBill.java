@@ -61,6 +61,22 @@ public class RentalBill {
 
     }
 
+    public RentalBill(int rentalId, String houseName, String status) {
+        this.rentalId = rentalId;
+        this.houseName = houseName;
+        this.status = status;
+    }
+
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, double price, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
+        this.status = status;
+    }
+
     public int getTotalHouse() {
         return totalHouse;
     }
