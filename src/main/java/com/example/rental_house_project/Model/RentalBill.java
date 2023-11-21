@@ -1,17 +1,14 @@
 package com.example.rental_house_project.Model;
 
-import java.util.Date;
-
 public class RentalBill {
     private int rentalId;
-    private Date rentalDate;
-    private Date payDate;
     private String houseName;
     private String fullName;
     private long rentalPeriod;
-    private double price;
+    private String price;
     private int totalHouse;
     private String status;
+
     private double result;
     private String address;
 
@@ -28,7 +25,7 @@ public class RentalBill {
         this.address = address;
     }
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, int totalHouse, String status) {
+    public RentalBill(String rentalDate, String payDate) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -41,14 +38,6 @@ public class RentalBill {
         this.status = status;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -77,6 +66,7 @@ public class RentalBill {
         this.status = status;
     }
 
+
     public int getTotalHouse() {
         return totalHouse;
     }
@@ -93,11 +83,11 @@ public class RentalBill {
         this.result = result;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -133,19 +123,19 @@ public class RentalBill {
         this.rentalId = rentalId;
     }
 
-    public Date getRentalDate() {
+    public String getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(Date rentalDate) {
+    public void setRentalDate(String rentalDate) {
         this.rentalDate = rentalDate;
     }
 
-    public Date getPayDate() {
+    public String getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(Date payDate) {
+    public void setPayDate(String payDate) {
         this.payDate = payDate;
     }
 
@@ -157,14 +147,14 @@ public class RentalBill {
         this.rentalPeriod = rentalPeriod;
     }
 
-    public RentalBill(int rentalId, long rentalPeriod, String houseName, String fullName, String status, double price) {
+    public RentalBill(int rentalId, long rentalPeriod, String houseName, String fullName, String status, String price) {
         this.rentalId = rentalId;
         this.rentalPeriod = rentalPeriod;
         this.price = price;
     }
 
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, long rentalPeriod, double price) {
+    public RentalBill(int rentalId, String rentalDate, String payDate, String houseName, String fullName, long rentalPeriod, String price) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -175,7 +165,7 @@ public class RentalBill {
 
     }
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, long rentalPeriod, double price, String status) {
+    public RentalBill(int rentalId, String rentalDate, String payDate, String houseName, String fullName, long rentalPeriod, String price, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;

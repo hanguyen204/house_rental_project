@@ -1,6 +1,8 @@
 package com.example.rental_house_project.Service;
 
+import com.example.rental_house_project.Model.House;
 import com.example.rental_house_project.Model.RentalBill;
+import com.example.rental_house_project.Model.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -30,4 +32,6 @@ public interface IRentalBillService {
     List<RentalBill> searchByStatusCheckin(String homeStatus) throws ClassNotFoundException, SQLException;
     List<RentalBill> showRentHistory(int id) throws ClassNotFoundException, SQLException;
 
+
+    List<RentalBill>bookAHouse(int houseId, int id, String rentalDate, String payDate) throws ClassNotFoundException, SQLException;
 }

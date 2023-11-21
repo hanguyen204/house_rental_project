@@ -10,7 +10,7 @@ public class PostNewsService {
   
     Chuỗi riêng user = "namca" ;   
     private String user = "root";
-    private String password = "2004";
+
 
     private static final String INSERT_POST_NEWS_SQL = "INSERT INTO PostNews (houseId, userId, createdAt) VALUES (?, ?, ?)";
 
