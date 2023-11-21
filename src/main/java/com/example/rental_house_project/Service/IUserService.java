@@ -17,11 +17,11 @@ public interface IUserService {
     void updateLockStatusForUser(int id) throws SQLException, ClassNotFoundException;
 
     List<User> showAccUser() throws SQLException, ClassNotFoundException;
-
     boolean updateProfileUser(User user) throws ClassNotFoundException, SQLException;
 
     boolean updateProfileProduct(User user) throws ClassNotFoundException, SQLException;
     List<House> showAllHouse(int userId) throws SQLException, ClassNotFoundException;
     List<User> selectLandLord(int id) throws ClassNotFoundException, SQLException;
+
 
 }

@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-<%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
+    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -36,26 +36,59 @@
     #avatar {
         width: 50px;
     }
+
     .item {
         width: 900px;
         height: 290px;
         margin-left: 475px;
     }
+
     .container-navbar {
         padding-top: 7px;
         margin-left: 5px;
         margin-right: 5px;
     }
+
     .margin-top {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     .padding-bottom-5 {
         padding-bottom: 5px;
     }
+
     #padding-top-but {
         padding-top: 8px;
         padding-bottom: 0;
+    }
+
+    .cart-button {
+        position: relative;
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .cart-button:hover {
+        background-color: #e64a19;
+    }
+
+    .cart-button .badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #fff;
+        color: #ff5722;
+        border-radius: 50%;
+        padding: 4px;
+        font-size: 12px;
+        font-weight: bold;
     }
 </style>
 <body>
@@ -72,9 +105,19 @@
                 <c:when test="${not empty sessionScope.username}">
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
+                                <%--                         nút giỏ hàng    --%>
+                            <a href="/rentalHistory" class="cart-button">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="button-text">Xem giỏ hàng</span>
+                                <span class="badge">3</span>
+                            </a>
+                                <%--    --%>
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
+                                         id="avatar"><span
+                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
@@ -95,7 +138,8 @@
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                    <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
+                                </button>
                             </c:if>
                         </ul>
                     </div>
@@ -129,7 +173,8 @@
             <div class="search-form">
                 <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm" style="color: black; font-size: 18px;" name="houseName">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm"
+                               style="color: black; font-size: 18px;" name="houseName">
                     </div>
                     <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -145,12 +190,13 @@
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center padding-top-25">
                 <!-- /.feature title -->
                 <h2 style="font-weight: bold; color: black;">NHỮNG NHÀ CHO THUÊ HÀNG ĐẦU</h2>
-                <p>Đây là bảng xếp hạng được đánh giá theo tiêu chuẩn đã được đưa ra. Bạn cũng có thể tìm kiếm những ngôi nhà khác ưng ý hơn.</p>
+                <p>Đây là bảng xếp hạng được đánh giá theo tiêu chuẩn đã được đưa ra. Bạn cũng có thể tìm kiếm những
+                    ngôi nhà khác ưng ý hơn.</p>
             </div>
         </div>
         <div class="row">
             <div class="proerty-th">
-                <c:forEach var="house" items="${houses}" >
+                <c:forEach var="house" items="${houses}">
                     <div class="col-sm-7 col-md-4 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
@@ -179,7 +225,9 @@
                         </div>
                         <div class="item-entry overflow">
                             <h5 class="tree-sub-ttl">Show all properties</h5>
-                            <button class="btn border-btn more-black" value="All properties" onclick="redirectToProperties()">All properties</button>
+                            <button class="btn border-btn more-black" value="All properties"
+                                    onclick="redirectToProperties()">All properties
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -197,7 +245,8 @@
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
                         <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
-                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+                        <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY
+                            NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
                         <ul class="footer-adress" style="color: black; font-size: 16px;">
                             <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
                             <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
@@ -210,7 +259,7 @@
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
                         <ul class="footer-menu">
                             <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
-                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>
@@ -235,7 +284,8 @@
         <div class="container">
             <div class="row">
                 <div class="pull-left">
-                    <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
+                    <span><a href="http://www.KimaroTec.com"
+                             style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
                 </div>
             </div>
         </div>
@@ -263,12 +313,15 @@
     function redirectToLogin() {
         window.location.href = "login.jsp";
     }
+
     function redirectToRegister() {
         window.location.href = "register.jsp";
     }
+
     function redirectToProperties() {
         window.location.href = "/listHouse";
     }
+
     function redirectToSubmitProperties() {
         window.location.href = "/submit-properties.jsp";
     }

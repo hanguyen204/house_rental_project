@@ -24,22 +24,23 @@ import java.util.List;
 
 public class HouseForRentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private RentalBillService rentalBill = new RentalBillService();
+     RentalBillService rentalBill = new RentalBillService();
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
         }
         try {
             switch (action) {
-                case "search":
-                    searchHousesByRentalBill(req, resp);
+                case "updateHouseNameAndStatus":
+                    updateHouseNameAndStatus(req,resp);
                     break;
-                case "searchTime":
-                    searchDatetimePicker(req,resp);
+                case "search":
+                    search(req, resp);
                     break;
                 case "Checkin":
                     searchByStatusCheckin(req, resp);
@@ -58,6 +59,18 @@ public class HouseForRentServlet extends HttpServlet {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+  }
+
+    private void updateHouseNameAndStatus(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        int rentalId = Integer.parseInt(req.getParameter("rentalId"));
+        String houseName = req.getParameter("houseName");
+        String status = req.getParameter("status");
+       if ("Chờ nhận phòng".equals(status)){
+           req.setAttribute("mess","Không thể cập nhận trạng thái : Chờ nhận phòng");
+       }
+        RentalBill bill = new RentalBill(rentalId,houseName,status);
+        rentalBill.updateHouseNameAndStatus(bill);
+        req.getRequestDispatcher("edit.jsp").forward(req,resp);
     }
 
 
@@ -81,25 +94,45 @@ public class HouseForRentServlet extends HttpServlet {
         req.setAttribute("list", list);
         req.getRequestDispatcher("searchRentalBill.jsp").forward(req, resp);
     }
-
-    private void searchDatetimePicker(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+    private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException, ParseException {
+        String searchKeyword = req.getParameter("searchKeyword");
         String startDateTimeStr = req.getParameter("startDateTime");
         String endDateTimeStr = req.getParameter("endDateTime");
-        LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeStr );
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateTimeStr);
-        List<RentalBill> searchResults = rentalBill.searchDatetimePicker(startDateTime, endDateTime);
-        req.setAttribute("searchResults", searchResults);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("searchResults.jsp");
-        dispatcher.forward(req, resp);
-    }
+        String status = req.getParameter("status");
 
 
-    private void searchHousesByRentalBill(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        String houseName = req.getParameter("houseName");
-        List<RentalBill> list = rentalBill.searchByName(houseName);
-        req.setAttribute("listRental", list);
+        if (searchKeyword != null && !searchKeyword.isEmpty()) {
+            // Thực hiện tìm kiếm theo keyword
+            List<RentalBill> list = rentalBill.searchByName(searchKeyword);
+            req.setAttribute("listRental", list);
+        } else if (startDateTimeStr != null && !startDateTimeStr.isEmpty() && endDateTimeStr != null && !endDateTimeStr.isEmpty()) {
+            // Thực hiện tìm kiếm theo khoảng thời gian
+            LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeStr);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDateTimeStr);
+
+            if (status != null && !status.isEmpty()) {
+                // Thực hiện tìm kiếm theo khoảng thời gian và trạng thái
+                List<RentalBill> searchResults = rentalBill.searchDatetimePickerAndStatus(startDateTime, endDateTime, status);
+                req.setAttribute("listRental", searchResults);
+            } else {
+                // Thực hiện tìm kiếm theo khoảng thời gian
+                List<RentalBill> searchResults = rentalBill.searchDatetimePicker(startDateTime, endDateTime);
+                req.setAttribute("listRental", searchResults);
+            }
+        } else if (status != null && !status.isEmpty()) {
+            // Thực hiện tìm kiếm theo trạng thái
+            List<RentalBill> searchResults = rentalBill.searchByStatus(status);
+            req.setAttribute("listRental", searchResults);
+        } else {
+            // Thực hiện tìm kiếm tất cả bao gồm: keyword, thời gian, trạng thái
+            List<RentalBill> searchResults = rentalBill.searchAll(); // Implement this method accordingly
+            req.setAttribute("listRental", searchResults);
+        }
+
         req.getRequestDispatcher("searchRentalBill.jsp").forward(req, resp);
     }
+
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -109,6 +142,9 @@ public class HouseForRentServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "updateHouseNameAndStatus":
+                    showUpdateFrom(req,resp);
+                    break;
                 case "checkin":
                     checkin(req, resp);
                     break;
@@ -124,6 +160,14 @@ public class HouseForRentServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void showUpdateFrom(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        int rentalId = Integer.parseInt(req.getParameter("rentalId"));
+        RentalBill bill = rentalBill.selectId(rentalId);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("edit.jsp");
+        req.setAttribute("bill",bill);
+        dispatcher.forward(req,resp);
     }
 
 
@@ -156,19 +200,14 @@ public class HouseForRentServlet extends HttpServlet {
 
         int start = (page - 1) * limit;
         int end = start + limit;
-        try {
-            List<RentalBill> list = rentalBill.ShowAllRenTalBill();
-            int totalUsers = rentalBill.getTotalRentalBill();
+        List<RentalBill>list = rentalBill.ShowAllRenTalBill();
+        int totalUsers = rentalBill.getTotalRentalBill();
 
-            int totalPages = (int) Math.ceil((double) totalUsers / limit);
-            req.setAttribute("list", list);
-            req.setAttribute("currentPage", page);
-            req.setAttribute("totalPages", totalPages);
+        int totalPages = (int) Math.ceil((double) totalUsers / limit);
+        req.setAttribute("showList", list);
+        req.setAttribute("currentPage", page);
+        req.setAttribute("totalPages", totalPages);
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher("listHouseForRent.jsp");
-            dispatcher.forward(req, resp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        req.getRequestDispatcher("listHouseForRent.jsp").forward(req, resp);
     }
 }

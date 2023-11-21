@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IRentalBillService {
+    RentalBill selectId(int rentalId) throws ClassNotFoundException, SQLException;
+
+    void updateHouseNameAndStatus(RentalBill rentalBill) throws ClassNotFoundException, SQLException;
+
     List<RentalBill> ShowAllRenTalBill() throws ClassNotFoundException, SQLException;
 
     void updateTheStayStatusForTheHost(int rentalId) throws ClassNotFoundException, SQLException;
@@ -26,6 +30,7 @@ public interface IRentalBillService {
     List<RentalBill> searchByStatusLiveIn(String homeStatus) throws ClassNotFoundException, SQLException;
 
     List<RentalBill> searchByStatusCheckin(String homeStatus) throws ClassNotFoundException, SQLException;
+    List<RentalBill> showRentHistory(int id) throws ClassNotFoundException, SQLException;
 
 
     List<RentalBill>bookAHouse(int houseId, int id, String rentalDate, String payDate) throws ClassNotFoundException, SQLException;

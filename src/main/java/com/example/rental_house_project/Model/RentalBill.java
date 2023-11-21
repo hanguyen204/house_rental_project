@@ -2,19 +2,28 @@ package com.example.rental_house_project.Model;
 
 public class RentalBill {
     private int rentalId;
-    private String rentalDate;
-    private String payDate;
-
     private String houseName;
-
     private String fullName;
     private long rentalPeriod;
     private String price;
     private int totalHouse;
     private String status;
 
-
     private double result;
+    private String address;
+
+
+    public RentalBill() {
+    }
+
+    public RentalBill(int rentalId, Date rentalDate, String houseName, double price, String status, String address) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.houseName = houseName;
+        this.price = price;
+        this.status = status;
+        this.address = address;
+    }
 
     public RentalBill(String rentalDate, String payDate) {
         this.rentalId = rentalId;
@@ -29,24 +38,6 @@ public class RentalBill {
         this.status = status;
     }
 
-
-    public RentalBill(String rentalDate, String payDate, String houseName, double result, String fullName) {
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.result = result;
-
-    }
-
-    public RentalBill(String houseName, String fullName, String price) {
-
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.price = price;
-    }
-
-    public RentalBill(int rentalId, String rentalDate, String payDate, long rentalPeriod, String houseName, String fullName, String price, double result, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -55,6 +46,23 @@ public class RentalBill {
         this.fullName = fullName;
         this.price = price;
         this.result = result;
+        this.status = status;
+
+    }
+
+    public RentalBill(int rentalId, String houseName, String status) {
+        this.rentalId = rentalId;
+        this.houseName = houseName;
+        this.status = status;
+    }
+
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, double price, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
         this.status = status;
     }
 
