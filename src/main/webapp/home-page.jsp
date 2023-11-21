@@ -123,7 +123,7 @@
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="/rentalHistory">Quản lý nhà</a></li>
                                         <li><a href="">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
@@ -131,7 +131,7 @@
                                         <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="#">Quản lý thuê nhà</a></li>
+                                        <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
