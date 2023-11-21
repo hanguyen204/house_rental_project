@@ -18,6 +18,15 @@ public class RentalBillService implements IRentalBillService {
 
     private static final String SELECT_ID ="SELECT RentalBill.rentalId, RentalBill.rentalDate, RentalBill.payDate, user.fullName, House.housename, House.price, RentalBill.status FROM RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId WHERE RentalBill.rentalId = ?";
     private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.rentalDate,RentalBill.payDate,user.fullName, House.houseName,House.price ,RentalBill.status FROM RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId";
+    private String user = "root";
+    private String password = "2004";
+
+    private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.rentalDate,RentalBill.payDate,user.fullName, House.houseName,House.price ,RentalBill.totalHouse,RentalBill.status FROM RentalBill JOIN user ON RentalBill.id = user.id JOIN House ON RentalBill.houseId = House.houseId ";
+    private static final String SHOW_RENTAL_HISTORY_BY_ID = "select r.houseId,rentalId,dateRental ,housename, totalPayment , h.address , r.status from RentalBill r join user u on r.userId = u.id join House h on r.houseId = h.houseId where id = ? ;";
+    private static final String UPDATE_STATUS_HISTORY_RENT = "update rentalbill set status = 'Đang trống' where rentalId = ?;";
+    private static final String RENT_AGAIN_HOUSE = "update rentalbill set status = 'Đang cho thuê' where rentalId = ?;";
+    private static final String SHOW_ALL_RENTALBILL = "SELECT RentalBill.rentalId, RentalBill.dateRental,RentalBill.datePay,user.fullName, House.houseName,House.price ,RentalBill.status FROM RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId ";
+
 
     public Connection connection() throws ClassNotFoundException {
         Connection con = null;
@@ -275,5 +284,38 @@ public class RentalBillService implements IRentalBillService {
 
     public List<RentalBill> searchAll() {
         return  null;
+
+    public List<RentalBill> showRentHistory (int id) throws ClassNotFoundException, SQLException {
+        List<RentalBill> listRentHistory = new ArrayList<>();
+        Connection connection = connection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SHOW_RENTAL_HISTORY_BY_ID);
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            int rentalId = resultSet.getInt("rentalId");
+            Date dateRental = resultSet.getDate("dateRental");
+            String houseName = resultSet.getString("houseName");
+            int totalPayment = resultSet.getInt("totalPayment");
+            String address = resultSet.getString("address");
+            String status = resultSet.getString("status");
+            listRentHistory.add(new RentalBill(rentalId,dateRental,houseName,totalPayment,status,address));
+        }
+        return listRentHistory;
+    }
+
+    public boolean updateStatusForHouse(int id) throws SQLException, ClassNotFoundException {
+        PreparedStatement preparedStatement = connection().prepareStatement(UPDATE_STATUS_HISTORY_RENT);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+        connection().close();
+        return false;
+    }
+
+    public boolean rentAgainHouse(int id) throws ClassNotFoundException, SQLException {
+        PreparedStatement preparedStatement = connection().prepareStatement(RENT_AGAIN_HOUSE);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+        connection().close();
+        return false;
     }
 }

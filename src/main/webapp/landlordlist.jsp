@@ -130,25 +130,25 @@
     <table border="1" cellpadding="5" align="center" style="width: 1500px">
         <tr>
             <th hidden="hidden">Id</th>
-<%--            <th>Ảnh đại diện</th>--%>
+            <th>Ảnh đại diện</th>
             <th>Tên đăng nhập</th>
-<%--            <th>Họ và tên</th>--%>
-<%--            <th>Doanh thu (/năm)</th>--%>
-<%--            <th>Số nhà cho thuê</th>--%>
-<%--            <th>Số điện thoại</th>--%>
-<%--            <th>Địa chỉ</th>--%>
+            <th>Họ và tên</th>
+            <th>Doanh thu (/năm)</th>
+            <th>Số nhà cho thuê</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
             <th>Trạng thái tài khoản</th>
         </tr>
         <c:forEach var="list" items="${listLandlord}">
             <tr>
                 <td hidden="hidden"><c:out value="${list.id}"/></td>
-<%--                <td><img src="${list.urlImage}" alt="Avatar of User" class="avatar-img"></td>--%>
+                <td><img src="${list.urlImage}" alt="Avatar of User" class="avatar-img"></td>
                 <td><c:out value="${list.username}"/></td>
-<%--                <td><c:out value="${list.fullName}"/></td>--%>
-<%--                <td><c:out value="${list.revenue}"/></td>--%>
-<%--                <td><c:out value="${list.numberHouseForRent}"/></td>--%>
-<%--                <td><c:out value="${list.phone}"/></td>--%>
-<%--                <td><c:out value="${list.address}"/></td>--%>
+                <td><c:out value="${list.fullName}"/></td>
+                <td><c:out value="${list.revenue}"/></td>
+                <td><c:out value="${list.numberHouseForRent}"/></td>
+                <td><c:out value="${list.phone}"/></td>
+                <td><c:out value="${list.address}"/></td>
                 <td><c:out value="${list.status}"/></td>
                 <td>
                     <c:choose>

@@ -28,5 +28,6 @@ public interface IRentalBillService {
     List<RentalBill> searchByStatusLiveIn(String homeStatus) throws ClassNotFoundException, SQLException;
 
     List<RentalBill> searchByStatusCheckin(String homeStatus) throws ClassNotFoundException, SQLException;
+    List<RentalBill> showRentHistory(int id) throws ClassNotFoundException, SQLException;
 
 }

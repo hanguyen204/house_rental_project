@@ -210,7 +210,17 @@
                                 <fieldset >
                                     <div>
                                         <div class="col-xs-12">
-                                            <input class="button btn largesearch-btn" value="ĐẶT THUÊ NGAY" type="submit">
+                                            <c:choose>
+                                                <c:when test="${sessionScope.username ne user.username}">
+                                                    <input class="button btn largesearch-btn" value="ĐẶT THUÊ NGAY" type="submit">
+                                                </c:when>
+                                                <c:when test="${empty sessionScope.username}">
+                                                    <input class="button btn largesearch-btn" value="ĐẶT THUÊ NGAY" type="submit">
+                                                </c:when>
+                                                <c:otherwise>
+
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </fieldset>
