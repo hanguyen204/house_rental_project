@@ -122,7 +122,7 @@
                             <div class="clearfix">
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li>
-                                        <img src="${house.imgHouse}"/>
+                                        <img src="/assets/img/demo/house/${house.imgHouse}"/>
                                 </ul>
                             </div>
                         </div>

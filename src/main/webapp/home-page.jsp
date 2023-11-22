@@ -105,13 +105,6 @@
                 <c:when test="${not empty sessionScope.username}">
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                                <%--                         nút giỏ hàng    --%>
-                            <a href="/rentalHistory" class="cart-button">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="button-text">Xem giỏ hàng</span>
-                                <span class="badge">3</span>
-                            </a>
-                                <%--    --%>
                             <li class="dropdown ymm-sw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
@@ -124,7 +117,9 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/rentalHistory">Quản lý nhà</a></li>
-                                        <li><a href="">Quản lý đặt lịch</a></li>
+
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
@@ -200,7 +195,7 @@
                     <div class="col-sm-7 col-md-4 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href="/view-house?id=${house.houseId}"><img src="${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
+                                <a href="/view-house?id=${house.houseId}"><img src="/assets/img/demo/house/${house.imgHouse}" style="max-width: 400px; max-height: 20px"></a>
                             </div>
                             <div class="item-entry overflow">
                                 <h5><a href="/view-house?id=${house.houseId}">${house.houseName}</a></h5>

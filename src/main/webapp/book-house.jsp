@@ -52,7 +52,16 @@
         padding-top: 8px;
         padding-bottom: 0;
     }
+
 </style>
+<script>
+    function confirmUpdate() {
+        return confirm("Bạn xác nhận đăng kí ?");
+    }
+    function showSuccessMessage() {
+        alert("Đăng kí thành công!");
+    }
+</script>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -108,41 +117,43 @@
 <!-- End of nav bar -->
 
 <div class="container padding-top-40" style="padding-bottom: 25px">
-    <form action="/BookHouse?action=BookAHouse" method="POST">
+
+    <form action="/BookHouse?action=BookAHouse" method="POST" onsubmit="return confirmUpdate()">
+
         <input type="hidden" name="houseId" value="${requestScope.houseId}">
         <input type="hidden" name="id" value="${requestScope.id}">
         <div class="col-md-12 border-btn">
 
-                <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NHÀ VÀ CHỦ NHÀ</p>
-                <hr style="margin-top: 5px; color: black;">
-                <p style="color: black; font-weight: 500;">Tên nhà: ${requestScope.houseName}</p>
-                <p style="color: black; font-weight: 500;">Địa chỉ nhà: ${requestScope.address}</p>
-                <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: ${requestScope.fullName}</p>
-                <p style="color: black; font-weight: 500;">Số điện thoại: ${requestScope.phone}</p>
-                <input type="hidden" id="price" value="${requestScope.price}">
-                <form id="myForm">
-                    <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
-                    <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
-                    <button type="button" onclick="countMoney()">Kiểm tra số tiền cần trả</button>
-                    <p style="text-transform: uppercase; font-weight: bold; color: black; font-size: 26px;">TỔNG SỐ TIỀN CẦN THANH TOÁN: </p><p id="result"></p>
+            <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NHÀ VÀ CHỦ NHÀ</p>
+            <hr style="margin-top: 5px; color: black;">
+            <p style="color: black; font-weight: 500;">Tên nhà: ${requestScope.houseName}</p>
+            <p style="color: black; font-weight: 500;">Địa chỉ nhà: ${requestScope.address}</p>
+            <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: ${requestScope.fullName}</p>
+            <p style="color: black; font-weight: 500;">Số điện thoại: ${requestScope.phone}</p>
+            <input type="hidden" id="price" value="${requestScope.price}">
+            <form id="myForm">
+                <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
+                <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
+                <button type="button" onclick="countMoney()">Kiểm tra số tiền cần trả</button>
+                <p style="color: black; font-weight: 500;">Số tiền cần thanh toán: </p><p id="result"></p>
 
-                </form>
+            </form>
 
-                <script>
-                    function countMoney() {
-                        const rentalDate = new Date(document.getElementById("rentalDate").value);
-                        const payDate = new Date(document.getElementById("payDate").value);
-                        const timeDiff = payDate.getTime() - rentalDate.getTime();
-                        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                        let price = parseFloat(document.getElementById("price").value);
-                        const result = daysDiff * price;
+            <script>
+                function countMoney() {
+                    const rentalDate = new Date(document.getElementById("rentalDate").value);
+                    const payDate = new Date(document.getElementById("payDate").value);
+                    const timeDiff = payDate.getTime() - rentalDate.getTime();
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                    let price = parseFloat(document.getElementById("price").value);
+                    const result = daysDiff * price;
 
-                        document.getElementById("result").innerHTML = result.toString();
-                    }
-                    document.getElementById("myForm").addEventListener("submit", function(event) {
-                        event.preventDefault();
-                    });
-                </script>
+                    document.getElementById("result").innerHTML = result.toString();
+                }
+                document.getElementById("myForm").addEventListener("submit", function(event) {
+                    event.preventDefault();
+                });
+n
 
             <div class="col-md-12" style="padding-top: 10px;">
                 <div class="col-md-6 left">
@@ -154,6 +165,11 @@
             <input type="submit" class="button btn-default" value="ĐẶT THUÊ NGAY">
         </div>
     </form>
+    <% if (request.getAttribute("successMessage") != null) { %>
+    <div class="alert alert-success">
+        <strong>Thông báo:</strong> <%= request.getAttribute("successMessage") %>
+    </div>
+    <% } %>
 </div>
 
 <!-- Footer area-->

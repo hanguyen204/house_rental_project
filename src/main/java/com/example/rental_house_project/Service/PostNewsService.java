@@ -6,10 +6,10 @@ import java.sql.*;
 
 public class PostNewsService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "namca";
-  
-    Chuỗi riêng user = "namca" ;   
     private String user = "root";
+
+    private String password = "1";
+
 
 
     private static final String INSERT_POST_NEWS_SQL = "INSERT INTO PostNews (houseId, userId, createdAt) VALUES (?, ?, ?)";

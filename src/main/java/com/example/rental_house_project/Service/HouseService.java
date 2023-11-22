@@ -9,6 +9,11 @@ import java.util.List;
 public class HouseService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
 
+    private String user = "root";
+    private String password = "1";
+
+
+
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
     private static final String SELECT_FIVE_HOUSE = "SELECT * FROM House ORDER BY revenue DESC LIMIT 5;";
     private static final String SELECT_All_HOUSE_OF_LANDLORD = "SELECT * FROM House INNER JOIN user ON House.userId = user.id WHERE user.id = ?;";

@@ -42,7 +42,7 @@ public class HouseForRentServlet extends HttpServlet {
                 case "search":
                     search(req, resp);
                     break;
-                case "Checkin":
+                case "CheckIN":
                     searchByStatusCheckin(req, resp);
                     break;
                 case "liveIn":
@@ -65,9 +65,7 @@ public class HouseForRentServlet extends HttpServlet {
         int rentalId = Integer.parseInt(req.getParameter("rentalId"));
         String houseName = req.getParameter("houseName");
         String status = req.getParameter("status");
-       if ("Chờ nhận phòng".equals(status)){
-           req.setAttribute("mess","Không thể cập nhận trạng thái : Chờ nhận phòng");
-       }
+
         RentalBill bill = new RentalBill(rentalId,houseName,status);
         rentalBill.updateHouseNameAndStatus(bill);
         req.getRequestDispatcher("edit.jsp").forward(req,resp);
@@ -99,7 +97,6 @@ public class HouseForRentServlet extends HttpServlet {
         String startDateTimeStr = req.getParameter("startDateTime");
         String endDateTimeStr = req.getParameter("endDateTime");
         String status = req.getParameter("status");
-
 
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
             // Thực hiện tìm kiếm theo keyword
@@ -175,7 +172,7 @@ public class HouseForRentServlet extends HttpServlet {
         int rentalId = Integer.parseInt(req.getParameter("rentalId"));
         rentalBill.updateTheStayStatusForTheHost(rentalId);
         List<RentalBill> list = rentalBill.showAccUser();
-        req.setAttribute("list", list);
+        req.setAttribute("showList", list);
         RequestDispatcher dispatcher = req.getRequestDispatcher("listHouseForRent.jsp");
         dispatcher.forward(req, resp);
     }
@@ -184,7 +181,7 @@ public class HouseForRentServlet extends HttpServlet {
         int rentalId = Integer.parseInt(req.getParameter("rentalId"));
         rentalBill.updateTheCheckedOutStatusForTheHost(rentalId);
         List<RentalBill> list = rentalBill.showAccUser();
-        req.setAttribute("list", list);
+        req.setAttribute("showList", list);
         RequestDispatcher dispatcher = req.getRequestDispatcher("listHouseForRent.jsp");
         dispatcher.forward(req, resp);
     }

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -120,7 +121,8 @@ public class BookHouse extends HttpServlet {
 
     private void bookAHouse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {
         int houseId = Integer.parseInt(req.getParameter("houseId"));
-        int id = Integer.parseInt(req.getParameter("id"));
+        HttpSession session = req.getSession();
+        int id = (int) session.getAttribute("id");
         String rentalDate = req.getParameter("rentalDate");
         String payDate = req.getParameter("payDate");
 
