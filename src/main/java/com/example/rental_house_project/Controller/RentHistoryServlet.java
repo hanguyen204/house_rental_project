@@ -76,4 +76,4 @@ public class RentHistoryServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("rentHistory.jsp");
         dispatcher.forward(req, resp);
     }
-}
+

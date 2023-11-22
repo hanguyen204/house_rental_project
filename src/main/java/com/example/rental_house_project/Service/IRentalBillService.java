@@ -1,6 +1,8 @@
 package com.example.rental_house_project.Service;
 
+import com.example.rental_house_project.Model.House;
 import com.example.rental_house_project.Model.RentalBill;
+import com.example.rental_house_project.Model.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;

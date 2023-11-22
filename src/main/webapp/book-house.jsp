@@ -117,7 +117,9 @@
 <!-- End of nav bar -->
 
 <div class="container padding-top-40" style="padding-bottom: 25px">
+
     <form action="/BookHouse?action=BookAHouse" method="POST" onsubmit="return confirmUpdate()">
+
         <input type="hidden" name="houseId" value="${requestScope.houseId}">
         <input type="hidden" name="id" value="${requestScope.id}">
         <div class="col-md-12 border-btn">
@@ -151,7 +153,7 @@
                 document.getElementById("myForm").addEventListener("submit", function(event) {
                     event.preventDefault();
                 });
-            </script>
+n
 
             <div class="col-md-12" style="padding-top: 10px;">
                 <div class="col-md-6 left">

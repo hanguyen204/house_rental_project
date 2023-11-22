@@ -8,8 +8,11 @@ import java.util.List;
 
 public class HouseService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
+
     private String user = "root";
     private String password = "1";
+
+
 
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
     private static final String SELECT_FIVE_HOUSE = "SELECT * FROM House ORDER BY revenue DESC LIMIT 5;";
@@ -275,7 +278,7 @@ public class HouseService {
             house.setDescribeHouse(resultSet.getString("describeHouse"));
             house.setStatus(resultSet.getString("status"));
         }
-        house.setPrice(String.format(house.getFormattedPrice()));
+
         return house;
     }
 }

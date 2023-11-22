@@ -53,7 +53,6 @@ public class BookHouse extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
     public void showBook(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         int houseId = Integer.parseInt(request.getParameter("houseId"));
         int id = Integer.parseInt(request.getParameter("id"));
@@ -74,7 +73,6 @@ public class BookHouse extends HttpServlet {
         request.getRequestDispatcher("book-house.jsp").forward(request,response);
 
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

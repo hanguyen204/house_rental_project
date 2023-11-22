@@ -14,6 +14,7 @@ public class UserService implements IUserService {
     private String user = "root";
     private String password = "1";
 
+
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
     private static final String UPDATE_PASSWORD = "UPDATE user SET password = ? WHERE username = ?;";

@@ -117,7 +117,9 @@
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/rentalHistory">Quản lý nhà</a></li>
+
                                         <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
