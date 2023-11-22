@@ -30,4 +30,9 @@ public interface IRentalBillService {
     List<RentalBill> searchByStatusCheckin(String homeStatus) throws ClassNotFoundException, SQLException;
     List<RentalBill> showRentHistory(int id) throws ClassNotFoundException, SQLException;
 
+    boolean updateStatusForHouse(int id) throws SQLException, ClassNotFoundException;
+
+    boolean rentAgainHouse(int id) throws ClassNotFoundException, SQLException;
+
+    List<RentalBill>bookAHouse(int houseId, int id, String rentalDate, String payDate) throws ClassNotFoundException, SQLException;
 }

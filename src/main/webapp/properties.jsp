@@ -137,7 +137,7 @@
                             <div class="col-sm-6 col-md-4 p0" style="width: 285px;height: 380px;">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="/view-house?id=${house.houseId}"><img src="${house.imgHouse}"></a>
+                                        <a href="/view-house?id=${house.houseId}"><img src="/assets/img/demo/house/${house.imgHouse}"></a>
                                     </div>
                                     <div class="item-entry overflow">
                                         <h5><a href="/view-house?id=${house.houseId}" style="letter-spacing: -1px;" id="content"> ${house.houseName}</a></h5>

@@ -152,7 +152,7 @@
                             </tr>
                             <c:forEach var="list" items="${listRental}">
                                 <tr>
-                                    <td style="text-align: center;"><c:out value="${list.rentalPeriod}"/></td>
+                                    <td style="text-align: center;"><c:out value="${list.rentalDate}"/></td>
                                     <td style="text-align: center;"><c:out value="${list.houseName}"/></td>
                                     <td style="text-align: center;"><c:out value="${list.fullName}"/></td>
                                     <td style="text-align: center;"><c:out value="${list.result}"/></td>

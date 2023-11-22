@@ -11,8 +11,8 @@ import java.util.List;
 
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
-    private String user = "namca";
-    private String password = "2004";
+    private String user = "root";
+    private String password = "1";
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";

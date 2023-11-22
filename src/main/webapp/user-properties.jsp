@@ -136,7 +136,7 @@
                             <div class="col-md-4 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="#" ><img src="${house.imgHouse}"></a>
+                                        <a href="#" ><img src="/assets/img/demo/house/${house.imgHouse}"></a>
 
                                     </div>
                                     <div class="item-entry overflow">

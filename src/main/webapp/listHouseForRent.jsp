@@ -98,7 +98,7 @@
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="/HouseForRentServlet">Quản lý nhà</a>
                                         <li><a href="">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
@@ -154,16 +154,6 @@
                                 <input type="datetime-local" name="endDateTime" class="form-control"
                                        style="color: black; font-size: 14px;">
                             </div>
-                            <div class="col-md-3">
-                                <label for="form-control" style="color: black">Trạng Thái</label>
-                                <select class="form-control" name="status" id="form-control" aria-label="Disabled select example" style="width: 100%; font-size: 14px ;height: 40px; color: black">
-                                    <option selected style="color: black">chọn</option>
-                                    <option>Chờ nhận phòng</option>
-                                    <option>Đang ở</option>
-                                    <option>Đã trả phòng</option>
-                                    <option>Đã hủy</option>
-                                </select>
-                            </div>
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-default btn-lg-sheach"></button>
                             </div>
@@ -186,9 +176,9 @@
                 <th>Tổng giá</th>
                 <th>Trạng thái đơn</th>
             </tr>
-            \ <c:forEach var="list" items="${showList}">
+             <c:forEach var="list" items="${showList}">
             <tr>
-                <td><c:out value="${list.rentalPeriod}"/></td>
+                <td><c:out value="${list.rentalDate}"/></td>
                 <td><c:out value="${list.houseName}"/></td>
                 <td><c:out value="${list.fullName}"/></td>
                 <td><c:out value="${list.result}"/></td>
@@ -198,14 +188,12 @@
                         <c:when test="${list.getStatus() == 'Chờ nhận phòng'}">
                             <input type="hidden" name="action" value="inactive">
                             <input type="hidden" name="rentalId" value="${list.rentalId}">
-                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}"
-                                       style="text-decoration: none">Checkin</a></button>
+                            <button><a href="HouseForRentServlet?action=checkout&rentalId=${list.rentalId}" style="text-decoration: none">Checkin</a></button>
                         </c:when>
                         <c:otherwise>
                             <input type="hidden" name="action" value="active">
                             <input type="hidden" name="rentalId" value="${list.rentalId}">
-                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}"
-                                       style="text-decoration: none">Checkout</a></button>
+                            <button><a href="HouseForRentServlet?action=checkin&rentalId=${list.rentalId}" style="text-decoration: none">Checkout</a></button>
 
                         </c:otherwise>
                     </c:choose>

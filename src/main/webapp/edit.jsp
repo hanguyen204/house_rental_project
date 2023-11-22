@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Title</title>
@@ -9,9 +10,12 @@
     </script>
 </head>
 <body>
+<div class="navbar-header">
+    <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
+</div>
 <div>
     <h2>
-        <a href="/HouseForRentServlet?action=HouseForRentServlet">aaaaaaaaaaaaaaaaaaaaa</a>
+        <a href="/HouseForRentServlet?action=HouseForRentServlet">Quay lại danh sách</a>
     </h2>
 </div>
 <form method="post" onsubmit="return confirmUpdate()">

@@ -9,7 +9,7 @@ public class RentalBill {
     private String houseName;
     private String fullName;
     private long rentalPeriod;
-    private double price;
+    private String price;
     private int totalHouse;
     private String status;
     private double result;
@@ -19,7 +19,7 @@ public class RentalBill {
     public RentalBill() {
     }
 
-    public RentalBill(int rentalId, Date rentalDate, String houseName, double price, String status, String address) {
+    public RentalBill(int rentalId, Date rentalDate, String houseName, String price, String status, String address) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.houseName = houseName;
@@ -28,7 +28,7 @@ public class RentalBill {
         this.address = address;
     }
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, int totalHouse, String status) {
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, String price, double result, int totalHouse, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -39,26 +39,6 @@ public class RentalBill {
         this.result = result;
         this.totalHouse = totalHouse;
         this.status = status;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, double price, double result, String status) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.rentalPeriod = rentalPeriod;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.price = price;
-        this.result = result;
-        this.status = status;
-
     }
 
     public RentalBill(int rentalId, String houseName, String status) {
@@ -67,7 +47,7 @@ public class RentalBill {
         this.status = status;
     }
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, double price, String status) {
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, String price, String status) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
         this.payDate = payDate;
@@ -77,56 +57,25 @@ public class RentalBill {
         this.status = status;
     }
 
-    public int getTotalHouse() {
-        return totalHouse;
-    }
-
-    public void setTotalHouse(int totalHouse) {
-        this.totalHouse = totalHouse;
-    }
-
-    public double getResult() {
-        return result;
-    }
-
-    public void setResult(double result) {
-        this.result = result;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, long rentalPeriod, String houseName, String fullName, String price, double result, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.houseName = houseName;
+        this.fullName = fullName;
         this.price = price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+        this.result = result;
         this.status = status;
     }
 
+
+    public String getAddress() {
+        return address;
+    }
+
+
     public int getRentalId() {
         return rentalId;
-    }
-
-    public String getHouseName() {
-        return houseName;
-    }
-
-    public void setHouseName(String houseName) {
-        this.houseName = houseName;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public void setRentalId(int rentalId) {
@@ -149,6 +98,22 @@ public class RentalBill {
         this.payDate = payDate;
     }
 
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public long getRentalPeriod() {
         return rentalPeriod;
     }
@@ -157,32 +122,35 @@ public class RentalBill {
         this.rentalPeriod = rentalPeriod;
     }
 
-    public RentalBill(int rentalId, long rentalPeriod, String houseName, String fullName, String status, double price) {
-        this.rentalId = rentalId;
-        this.rentalPeriod = rentalPeriod;
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
         this.price = price;
     }
 
-
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, long rentalPeriod, double price) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.rentalPeriod = rentalPeriod;
-        this.price = price;
-
+    public int getTotalHouse() {
+        return totalHouse;
     }
 
-    public RentalBill(int rentalId, Date rentalDate, Date payDate, String houseName, String fullName, long rentalPeriod, double price, String status) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.rentalPeriod = rentalPeriod;
-        this.price = price;
+    public void setTotalHouse(int totalHouse) {
+        this.totalHouse = totalHouse;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getResult() {
+        return result;
+    }
+
+    public void setResult(double result) {
+        this.result = result;
     }
 }

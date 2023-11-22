@@ -122,7 +122,7 @@
                             <div class="clearfix">
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li>
-                                        <img src="${house.imgHouse}"/>
+                                        <img src="/assets/img/demo/house/${house.imgHouse}"/>
                                 </ul>
                             </div>
                         </div>
@@ -206,7 +206,9 @@
 
                     <div class="panel panel-default sidebar-menu" >
                         <div class="panel-body search-widget">
-                            <form action="book-house.jsp" class=" form-inline">
+                            <form action="/BookHouse?action=showBook" method="post" class=" form-inline">
+                                <input type="hidden" name="houseId" value="${requestScope.house.houseId}">
+                                <input type="hidden" name="id" value="${requestScope.user.id}">
                                 <fieldset >
                                     <div>
                                         <div class="col-xs-12">
