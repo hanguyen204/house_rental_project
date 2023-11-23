@@ -1,16 +1,21 @@
 package com.example.rental_house_project.Model;
 
+import java.util.Date;
+
 public class RentalBill {
     private int rentalId;
     private String houseName;
     private String fullName;
     private long rentalPeriod;
     private String price;
+    private Date rentalDate;
     private int totalHouse;
     private String status;
-
+    private Date payDate;
     private double result;
     private String address;
+    private long daysBetween;
+
 
 
     public RentalBill() {
@@ -25,18 +30,9 @@ public class RentalBill {
         this.address = address;
     }
 
-    public RentalBill(String rentalDate, String payDate) {
-
-        this.rentalId = rentalId;
+    public RentalBill(Date rentalDate, Date payDate) {
         this.rentalDate = rentalDate;
         this.payDate = payDate;
-        this.rentalPeriod = rentalPeriod;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.price = price;
-        this.result = result;
-        this.totalHouse = totalHouse;
-        this.status = status;
     }
 
 
@@ -67,14 +63,44 @@ public class RentalBill {
         this.status = status;
     }
 
-
-    public int getTotalHouse() {
-        return totalHouse;
+    public RentalBill(int rentalId, Date rentalDate, Date payDate, long daysBetween, String houseName, String fullName, String price, double result, int totalHouse, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.daysBetween =daysBetween;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
+        this.result = result;
+        this.totalHouse = totalHouse;
+        this.status = status;
     }
 
 
-    public String getAddress() {
-        return address;
+
+    public RentalBill(int rentalId, java.sql.Date rentalDate, java.sql.Date payDate, long daysBetween, String houseName, String fullName, String price, double result, String status) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.daysBetween =daysBetween;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
+        this.result = result;
+        this.status = status;
+    }
+
+    public RentalBill(int rentalId, java.sql.Date rentalDate, java.sql.Date payDate, long daysBetween, String houseName, String fullName, String price, double result, String status, int totalHouse) {
+   this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.payDate = payDate;
+        this.daysBetween =daysBetween;
+        this.houseName = houseName;
+        this.fullName = fullName;
+        this.price = price;
+        this.result = result;
+        this.status = status;
+        this.totalHouse =totalHouse;
     }
 
 
@@ -84,30 +110,6 @@ public class RentalBill {
 
     public void setRentalId(int rentalId) {
         this.rentalId = rentalId;
-    }
-
-    public Date getRentalDate() {
-        return rentalDate;
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-
-    }
-
-    public void setRentalDate(Date rentalDate) {
-        this.rentalDate = rentalDate;
-    }
-
-    public Date getPayDate() {
-        return payDate;
-    }
-
-    public void setPayDate(Date payDate) {
-        this.payDate = payDate;
     }
 
     public String getHouseName() {
@@ -130,7 +132,6 @@ public class RentalBill {
         return rentalPeriod;
     }
 
-
     public void setRentalPeriod(long rentalPeriod) {
         this.rentalPeriod = rentalPeriod;
     }
@@ -143,24 +144,16 @@ public class RentalBill {
         this.price = price;
     }
 
-    public int getTotalHouse() {
-        return totalHouse;
-
-    public String getRentalDate() {
+    public Date getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(String rentalDate) {
+    public void setRentalDate(Date rentalDate) {
         this.rentalDate = rentalDate;
     }
 
-    public String getPayDate() {
-        return payDate;
-    }
-
-    public void setPayDate(String payDate) {
-        this.payDate = payDate;
-
+    public int getTotalHouse() {
+        return totalHouse;
     }
 
     public void setTotalHouse(int totalHouse) {
@@ -171,9 +164,16 @@ public class RentalBill {
         return status;
     }
 
-
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getPayDate() {
+        return payDate;
+    }
+
+    public void setPayDate(Date payDate) {
+        this.payDate = payDate;
     }
 
     public double getResult() {
@@ -182,33 +182,21 @@ public class RentalBill {
 
     public void setResult(double result) {
         this.result = result;
-
-    public RentalBill(int rentalId, long rentalPeriod, String houseName, String fullName, String status, String price) {
-        this.rentalId = rentalId;
-        this.rentalPeriod = rentalPeriod;
-        this.price = price;
     }
 
-
-    public RentalBill(int rentalId, String rentalDate, String payDate, String houseName, String fullName, long rentalPeriod, String price) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.rentalPeriod = rentalPeriod;
-        this.price = price;
-
+    public String getAddress() {
+        return address;
     }
 
-    public RentalBill(int rentalId, String rentalDate, String payDate, String houseName, String fullName, long rentalPeriod, String price, String status) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.payDate = payDate;
-        this.houseName = houseName;
-        this.fullName = fullName;
-        this.rentalPeriod = rentalPeriod;
-        this.price = price;
-        this.status = status;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public long getDaysBetween() {
+        return daysBetween;
+    }
+
+    public void setDaysBetween(long daysBetween) {
+        this.daysBetween = daysBetween;
     }
 }

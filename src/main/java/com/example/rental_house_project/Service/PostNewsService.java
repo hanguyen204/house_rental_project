@@ -8,7 +8,7 @@ public class PostNewsService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
 
-    private String password = "1";
+    private String password = "2004";
 
 
 

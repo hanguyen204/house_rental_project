@@ -253,8 +253,8 @@
                     <div class="single-footer">
                         <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
                         <ul class="footer-menu">
-                            <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
-                            <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
+                            <li><a href="/home-page" style="color: black; font-size: 14px;">Trang chủ</a></li>
+                            <li><a href="/listHouse" style="color: black; font-size: 14px;">Nhà đất cho thuê</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
                             <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
                         </ul>

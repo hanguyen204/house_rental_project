@@ -12,7 +12,7 @@ import java.util.List;
 public class UserService implements IUserService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "1";
+    private String password = "2004";
 
 
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
@@ -98,7 +98,7 @@ public class UserService implements IUserService {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setInt(5, 0);
             preparedStatement.setString(6, "Landlord");
-            preparedStatement.setString(7, "Đang chờ");
+            preparedStatement.setString(7, "Đang hoạt động");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

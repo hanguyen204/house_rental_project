@@ -23,7 +23,7 @@ import java.util.Base64;
 @WebServlet("/submit-property")
 @MultipartConfig(maxFileSize = 1024 * 1024)
 public class SubmitPropertyServlet extends HttpServlet {
-    private static final String IMAGE_DIRECTORY = "/home/vang/IdeaProjects/house_rental_project/src/main/webapp/img";
+    private static final String IMAGE_DIRECTORY = "C:/Users/LENOVO/house_rental_project/src/main/webapp/assets/img/demo/house";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -83,7 +83,8 @@ public class SubmitPropertyServlet extends HttpServlet {
                             PostNewsService postNewsService = new PostNewsService();
                             postNewsService.insertPostNews(postNews);
 
-                            response.sendRedirect("/success.jsp");
+                            request.setAttribute("success","Bạn đã đang tin thành công !");
+                            request.getRequestDispatcher("success.jsp");
                         } catch (SQLException e) {
                             e.printStackTrace();
                             response.sendRedirect("/error.jsp");

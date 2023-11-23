@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -123,10 +123,10 @@ public class BookHouse extends HttpServlet {
         int houseId = Integer.parseInt(req.getParameter("houseId"));
         HttpSession session = req.getSession();
         int id = (int) session.getAttribute("id");
-        String rentalDate = req.getParameter("rentalDate");
-        String payDate = req.getParameter("payDate");
+        Date rentalDate = Date.valueOf(req.getParameter("rentalDate"));
+        Date payDate = Date.valueOf(req.getParameter("payDate"));
 
-        rentalBill.bookAHouse(houseId,id,rentalDate, payDate);
+         rentalBill.bookAHouse(houseId, id, rentalDate, payDate);
         req.getRequestDispatcher("book-house.jsp").forward(req, resp);
     }
 }

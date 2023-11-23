@@ -85,10 +85,10 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Mật khẩu</label>
-                            <input type="${passwordFieldType}" class="form-control" id="pwd" name="password-login" placeholder="Enter your password" style="font-size: 16px">
+                            <input type="password" class="form-control" id="pwd" name="password-login" placeholder="Enter your password" style="font-size: 16px">
                         </div>
                         <div>
-                            <input type="checkbox" id="chk" onclick="togglePassword()"> Hiển thị mật khẩu
+                            <button type="button" id="chk" onclick="togglePassword()" > Hiển thị mật khẩu </button>
                         </div>
                         <div class="text-center" style="padding-top: 15px">
                             <button type="submit" class="btn btn-default">Đăng nhập</button>
@@ -186,8 +186,12 @@
 </script>
 <script>
     function togglePassword() {
-        var pwdField = document.getElementById("pwd");
-        pwdField.type = pwdField.type === "password" ? "text" : "password";
+        var passwordInput = document.getElementById("pwd");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
     }
 </script>
 <c:set var="passwordFieldType" value="password" />

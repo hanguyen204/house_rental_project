@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -125,8 +126,8 @@
                                 <div class="col-sm-3 col-sm-offset-1">
                                     <div class="picture-container">
                                         <div class="picture">
-                                            <input type="file" id="wizard-picture" name="image" accept="image/jpeg, image/png" onchange="previewImage(event)">
-                                            <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview"/>
+                                            <input type="file" id="wizard-picture" name="image" accept="image/jpeg, image/png, image/jpg" onchange="previewImage(event)">
+                                            <img src="assets/img/img.png" alt="anh" href="" class="picture-src" id="wizardPicturePreview" />
                                         </div>
                                     </div>
                                 </div>

@@ -19,6 +19,7 @@ import java.util.List;
 @WebServlet(name = "RentalHistoryServlet" , value = "/rentalHistory")
 public class RentHistoryServlet extends HttpServlet {
     RentalBillService rentalBillService = new RentalBillService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -28,10 +29,10 @@ public class RentHistoryServlet extends HttpServlet {
         try {
             switch (action) {
                 case "cancel":
-                    cancelRental(req,resp);
+                    cancelRental(req, resp);
                     break;
                 case "rentAgain":
-                    rentAgain(req,resp);
+                    rentAgain(req, resp);
                 default:
                     historyRent(req, resp);
                     break;
@@ -72,8 +73,9 @@ public class RentHistoryServlet extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-        req.setAttribute("rentHistory",rentHistory );
+        req.setAttribute("rentHistory", rentHistory);
         RequestDispatcher dispatcher = req.getRequestDispatcher("rentHistory.jsp");
         dispatcher.forward(req, resp);
     }
+}
 
