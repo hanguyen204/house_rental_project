@@ -101,7 +101,7 @@ public class HouseForRentServlet extends HttpServlet {
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
             // Thực hiện tìm kiếm theo keyword
             List<RentalBill> list = rentalBill.searchByName(searchKeyword);
-            req.setAttribute("listRental", list);
+            req.setAttribute("showList", list);
         } else if (startDateTimeStr != null && !startDateTimeStr.isEmpty() && endDateTimeStr != null && !endDateTimeStr.isEmpty()) {
             // Thực hiện tìm kiếm theo khoảng thời gian
             LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeStr);
@@ -110,23 +110,23 @@ public class HouseForRentServlet extends HttpServlet {
             if (status != null && !status.isEmpty()) {
                 // Thực hiện tìm kiếm theo khoảng thời gian và trạng thái
                 List<RentalBill> searchResults = rentalBill.searchDatetimePickerAndStatus(startDateTime, endDateTime, status);
-                req.setAttribute("listRental", searchResults);
+                req.setAttribute("showList", searchResults);
             } else {
                 // Thực hiện tìm kiếm theo khoảng thời gian
                 List<RentalBill> searchResults = rentalBill.searchDatetimePicker(startDateTime, endDateTime);
-                req.setAttribute("listRental", searchResults);
+                req.setAttribute("showList", searchResults);
             }
         } else if (status != null && !status.isEmpty()) {
             // Thực hiện tìm kiếm theo trạng thái
             List<RentalBill> searchResults = rentalBill.searchByStatus(status);
-            req.setAttribute("listRental", searchResults);
+            req.setAttribute("showList", searchResults);
         } else {
             // Thực hiện tìm kiếm tất cả bao gồm: keyword, thời gian, trạng thái
             List<RentalBill> searchResults = rentalBill.searchAll(); // Implement this method accordingly
-            req.setAttribute("listRental", searchResults);
+            req.setAttribute("showList", searchResults);
         }
 
-        req.getRequestDispatcher("searchRentalBill.jsp").forward(req, resp);
+        req.getRequestDispatcher("listHouseForRent.jsp").forward(req, resp);
     }
 
 
@@ -197,7 +197,7 @@ public class HouseForRentServlet extends HttpServlet {
 
         int start = (page - 1) * limit;
         int end = start + limit;
-        List<RentalBill>list = rentalBill.ShowAllRenTalBill();
+        List<RentalBill>list = rentalBill.ShowAllRentalBill();
         int totalUsers = rentalBill.getTotalRentalBill();
 
         int totalPages = (int) Math.ceil((double) totalUsers / limit);

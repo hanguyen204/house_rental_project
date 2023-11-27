@@ -14,7 +14,7 @@ public interface IRentalBillService {
 
     void updateHouseNameAndStatus(RentalBill rentalBill) throws ClassNotFoundException, SQLException;
 
-    List<RentalBill> ShowAllRenTalBill() throws ClassNotFoundException, SQLException;
+  List<RentalBill> ShowAllRentalBill() throws ClassNotFoundException, SQLException;
 
     void updateTheStayStatusForTheHost(int rentalId) throws ClassNotFoundException, SQLException;
 

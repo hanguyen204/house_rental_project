@@ -147,7 +147,7 @@
         <c:otherwise>
           <input type="hidden" name="action" value="rentAgain">
           <input type="hidden" name="rentalId" value="${list.rentalId}">
-          <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Thuê lại</a></button>
+          <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Đã hủy thành công</a></button>
         </c:otherwise>
       </c:choose>
     </div>

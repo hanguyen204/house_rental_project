@@ -77,25 +77,35 @@
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
+                                         id="avatar"><span
+                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="/rentalHistory">Quản lý nhà</a></li>
+
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
+                                </button>
                             </c:if>
                         </ul>
                     </div>
@@ -118,7 +128,7 @@
 
 <div class="container padding-top-40" style="padding-bottom: 25px">
 
-    <form action="/BookHouse?action=BookAHouse" method="POST" onsubmit="return confirmUpdate()">
+    <form action="/BookHouse?action=BookAHouse" method="POST" onsubmit="return confirmUpdate();">
 
         <input type="hidden" name="houseId" value="${requestScope.houseId}">
         <input type="hidden" name="id" value="${requestScope.id}">
@@ -134,8 +144,8 @@
             <form id="myForm">
                 <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
                 <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
-                <button type="button" onclick="countMoney()">Kiểm tra số tiền cần trả</button>
-                <p style="color: black; font-weight: 500;">Số tiền cần thanh toán: </p><p id="result"></p>
+                <button type="button" onclick="countMoney()">Ấn vào để kiểm tra số tiền cần thanh toán : </button>
+                <span style="color: black; font-weight: 500;"><p id="result"></p></span>
 
             </form>
 
@@ -153,8 +163,7 @@
                 document.getElementById("myForm").addEventListener("submit", function(event) {
                     event.preventDefault();
                 });
-n
-
+            </script>
             <div class="col-md-12" style="padding-top: 10px;">
                 <div class="col-md-6 left">
                 </div>

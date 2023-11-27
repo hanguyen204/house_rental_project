@@ -23,7 +23,7 @@ import java.util.Base64;
 @WebServlet("/submit-property")
 @MultipartConfig(maxFileSize = 1024 * 1024)
 public class SubmitPropertyServlet extends HttpServlet {
-    private static final String IMAGE_DIRECTORY = "C:/Users/LENOVO/house_rental_project/src/main/webapp/assets/img/demo/house";
+    private static final String IMAGE_DIRECTORY = "/home/manh/house_rental_project/src/main/webapp/assets/img/demo/house";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
