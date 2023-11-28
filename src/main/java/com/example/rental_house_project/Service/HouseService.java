@@ -10,14 +10,13 @@ public class HouseService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
 
     private String user = "root";
-    private String password = "anhnam2005";
-
+    private String password = "1";
 
 
     private static final String SELECT_ALL_HOUSE = "SELECT * FROM House;";
     private static final String SELECT_FIVE_HOUSE = "SELECT * FROM House ORDER BY revenue DESC LIMIT 5;";
-    private static final String SELECT_All_HOUSE_OF_LANDLORD = "SELECT * FROM House INNER JOIN user ON House.userId = user.id WHERE user.id = ?;";
-//    private static final String SELECT_HOUSE = "SELECT user.id, user.username, user.urlImage, user.phone, House.houseId, House.imgHouse, House.housename, House.price, House.timeRental, House.numberBath, House.numberBed, House.width, House.describeHouse, House.status FROM House INNER JOIN user ON House.userId = user.id  WHERE House.houseId = ?;";
+    private static final String SELECT_All_HOUSE_OF_LANDLORD = "SELECT * FROM House INNER JOIN user ON House.userId = user.id WHERE user.id = ?";
+    private static final String DELETE_HOUSE_OF_LANDLORD = "DELETE FROM House WHERE houseId = ?";
     private static final String INSERT_HOUSE_SQL = "INSERT INTO House (userId, imgHouse, housename, price, timeRental, address, numberBath, numberBed, width, describeHouse, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT_HOUSES_BY_USER_ID_SQL = "SELECT * FROM House WHERE userId = ?";
     private static final String SELECT_HOUSES_BY_HOUSE_ID_SQL = "SELECT * FROM House WHERE houseId = ?";
@@ -157,7 +156,7 @@ public class HouseService {
             String describeHouse = rs.getString("describeHouse");
             String imgHouse = rs.getString("imgHouse");
 
-            list.add(new House(imgHouse,houseName, address, numberBath, numberBed, describeHouse));
+            list.add(new House(imgHouse, houseName, address, numberBath, numberBed, describeHouse));
         }
         return list;
     }
@@ -177,7 +176,7 @@ public class HouseService {
             String describeHouse = rs.getString("describeHouse");
             String imgHouse = rs.getString("imgHouse");
 
-            list.add(new House(imgHouse,houseName, address, numberBath, numberBed, describeHouse));
+            list.add(new House(imgHouse, houseName, address, numberBath, numberBed, describeHouse));
         }
         return list;
     }
@@ -195,7 +194,7 @@ public class HouseService {
             String describeHouse = rs.getString("describeHouse");
             String imgHouse = rs.getString("imgHouse");
 
-            list.add(new House(imgHouse,houseName, address, numberBath, numberBed, describeHouse));
+            list.add(new House(imgHouse, houseName, address, numberBath, numberBed, describeHouse));
         }
         return list;
     }
@@ -203,7 +202,7 @@ public class HouseService {
     public void insertHouse(House house) throws SQLException, ClassNotFoundException {
         PreparedStatement statement = connection().prepareStatement(INSERT_HOUSE_SQL);
         statement.setInt(1, house.getUserId());
-        statement.setString(2,  house.getImgHouse());
+        statement.setString(2, house.getImgHouse());
         statement.setString(3, house.getHouseName());
         statement.setString(4, house.getPrice());
         statement.setString(5, house.getTimeRental());
@@ -254,7 +253,7 @@ public class HouseService {
         if (resultSet.next()) {
             houseId = resultSet.getInt("houseId");
         }
-        return  houseId;
+        return houseId;
     }
 
     public House getHouseByHouseId(int id) throws ClassNotFoundException, SQLException {
@@ -281,4 +280,30 @@ public class HouseService {
 
         return house;
     }
+    public House updateHouse(int houseId, int userId, String imgHouse, String houseName, String price, String timeRental, String address, int revenue, int numberBath, int numberBed, int width) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE House SET userId=?, imgHouse=?, houseName=?, price=?, timeRental=?, address=?, revenue=?, numberBath=?, numberBed=?, width=? WHERE houseId=?";
+        PreparedStatement statement = connection().prepareStatement(sql);
+        statement.setInt(1, userId);
+        statement.setString(2, imgHouse);
+        statement.setString(3, houseName);
+        statement.setString(4, price);
+        statement.setString(5, timeRental);
+        statement.setString(6, address);
+        statement.setInt(7, revenue);
+        statement.setInt(8, numberBath);
+        statement.setInt(9, numberBed);
+        statement.setInt(10, width);
+        statement.setInt(11, houseId);
+        statement.executeUpdate();
+        return null;
+    }
+
+
+    public void deleteHouse(int houseId) throws ClassNotFoundException, SQLException {
+        PreparedStatement statement = connection().prepareStatement(DELETE_HOUSE_OF_LANDLORD);
+        statement.setInt(1, houseId);
+        statement.executeUpdate();
+        statement.close();
+    }
 }
+

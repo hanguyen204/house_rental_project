@@ -107,7 +107,9 @@
         <div class="row">
             <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
                 <div class="section">
-
+                    <form  action="/danh-sach-nha-cua-ban">
+                        <input type="hidden" name="houseId" value="${requestScope.houseId}">
+                        <input type="hidden" name="id" value="${requestScope.id}">
                     <div id="list-type" class="proerty-th-list">
                         <c:forEach items="${pagedList}" var="house">
                             <div class="col-md-4 p0">
@@ -135,8 +137,7 @@
                                             <img src="assets/img/icon/bed.png">(${house.numberBed})|
                                             <img src="assets/img/icon/shawer.png">(${house.numberBath})
                                             <div class="dealer-action pull-right">
-                                                <a href="#" class="button">Edit </a>
-                                                <a href="#" class="button delete_user_car">Delete</a>
+                                                <a href="/danh-sach-nha-cua-ban?action=deleteHouse&houseId=${house.houseId}" class="button delete_user_car">Delete</a>
                                             </div>
                                         </div>
                                     </div>
@@ -144,6 +145,7 @@
                             </div>
                         </c:forEach>
                     </div>
+                    </form>
                 </div>
                 <div class="section">
                     <div class="pull-right">

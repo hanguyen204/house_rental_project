@@ -24,4 +24,5 @@ public interface IUserService {
     List<User> selectLandLord(int id) throws ClassNotFoundException, SQLException;
 
 
+
 }

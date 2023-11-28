@@ -12,7 +12,7 @@ import java.util.List;
 public class RentalBillService implements IRentalBillService {
     private String url = "jdbc:mysql://localhost:3306/homerental";
     private String user = "root";
-    private String password = "anhnam2005";
+    private String password = "1";
 
     private static final String UPDATE_STATUS_RENTALBILL = "UPDATE RentalBill JOIN user ON RentalBill.rentalId = user.id JOIN House ON RentalBill.houseId = House.houseId SET House.housename = ?, RentalBill.status = ? WHERE RentalBill.rentalId = ?";
 

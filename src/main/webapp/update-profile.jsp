@@ -101,7 +101,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1 profiel-container">
-                <form action="/update-profile" method="post">
+                <form action="/update-profile?action=edit" method="post">
                     <div class="clear">
                         <div class="col-sm-3 col-sm-offset-1">
                             <div class="picture-container">
