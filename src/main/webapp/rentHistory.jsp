@@ -146,10 +146,10 @@
       <td>
         <c:choose>
           <c:when test="${list.status eq 'Đang cho thuê'}">
-            <a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" class="btn btn-danger">Hủy thuê</a>
+            <a  class="btn btn-danger">Đã hủy thành công</a>
           </c:when>
           <c:otherwise>
-            <a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" class="btn btn-success">Đã hủy thành công</a>
+            <a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" class="btn btn-success">Hủy thuê</a>
           </c:otherwise>
         </c:choose>
       </td>
