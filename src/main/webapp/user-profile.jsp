@@ -5,8 +5,9 @@
   Time: 21:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -122,37 +123,36 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1 profiel-container">
-
                 <form action="" method="">
                     <div class="clear">
                         <div class="col-sm-3 col-sm-offset-1">
                             <div class="picture-container">
                                 <div class="picture">
-                                    <img src="${urlImage}" class="picture-src" id="wizardPicturePreview" title="avatar"/>
+                                    <img src="${requestScope.user.urlImage}" class="picture-src" id="wizardPicturePreview" title="avatar"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-sm-5 padding-top-25" style="padding-top: 60px">
                             <div class="form-group">
-                                <label>Full Name: ${fullname}</label>
+                                <label>Full Name: ${requestScope.user.fullName}</label>
                             </div>
                             <div class="form-group">
-                                <label>Phone: ${phone}</label>
+                                <label>Phone: ${requestScope.user.phone}</label>
                             </div>
                             <div class="form-group">
-                                <label>Address: ${address}</label>
+                                <label>Address: ${requestScope.user.address}</label>
                             </div>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
                                 <div class="form-group">
-                                    <label>Number House For Rent:  ${numberHouseForRent}</label>
+                                    <label>Number House For Rent:  ${requestScope.user.numberHouseForRent}</label>
                                 </div>
                             </c:if>
                         </div>
                     </div>
                     <div class="col-sm-5 col-sm-offset-4">
                         <br>
-                        <input type='button' class='btn btn-finish btn-primary' name='finish' value='Update' onclick="window.location.href='update-profile.jsp'"/>
+                        <input type='button'  class='btn btn-finish btn-primary' name='finish' value='Update' onclick="window.location.href='update-profile?action=edit&'"/>
                     </div>
                     <br>
                 </form>
