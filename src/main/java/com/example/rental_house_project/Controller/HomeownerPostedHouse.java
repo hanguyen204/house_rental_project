@@ -81,7 +81,7 @@ public class HomeownerPostedHouse extends HttpServlet {
         String houseName = req.getParameter("houseName");
         List<House> list = homeowner.searchByName(houseName);
         req.setAttribute("list", list);
-        req.getRequestDispatcher("search.jsp").forward(req, resp);
+        req.getRequestDispatcher("properties.jsp").forward(req, resp);
     }
 
     private void listHouse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException, ClassNotFoundException {

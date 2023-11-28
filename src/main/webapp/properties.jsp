@@ -31,47 +31,8 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-
-    .listPage {
-        padding: 10px;
-        text-align: center;
-        list-style: none;
-    }
-
-    .listPage li {
-        background-color: #ffffffBD;
-        padding: 20px;
-        display: inline-block;
-        margin: 0 10px;
-        cursor: pointer;
-    }
-
-    .listPage .active {
-        background-color: #B192EF;
-        color: #fff;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -87,25 +48,32 @@
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>

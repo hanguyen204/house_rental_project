@@ -38,24 +38,8 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
-<style>
-    .error {
-        color: red;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">

@@ -31,35 +31,13 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap/css/style.css">
     <script>
         function confirmUpdate() {
             return confirm("Bạn có chắc chắn muốn cập nhật trạng thái?");
         }
     </script>
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-
-</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -77,15 +55,13 @@
                             <li class="dropdown ymm-sw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
-                                         id="avatar"><span
-                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/rentalHistory">Quản lý nhà</a></li>
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
 
                                         <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
 
@@ -95,15 +71,14 @@
                                         <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
-                                </button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -122,6 +97,8 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<!-- End of nav bar -->
+
 <center>
     <form method="post" onsubmit="return confirmUpdate()">
         <table border="1" cellpadding="5">
@@ -155,6 +132,7 @@
         </table>
     </form>
 </center>
+
 <div class="footer-area">
     <div class=" footer">
         <div class="container">

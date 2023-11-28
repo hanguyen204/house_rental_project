@@ -27,37 +27,11 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-    .item {
-        width: 1000px;
-        height: 290px;
-        margin-left: 425px;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-</style>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-navbar">
@@ -73,18 +47,25 @@
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
@@ -123,6 +104,7 @@
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li>
                                         <img src="/assets/img/demo/house/${house.imgHouse}"/>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -139,36 +121,29 @@
 
                         <div class="section additional-details">
                             <h4 class="s-property-title">THÔNG TIN CHI TIẾT</h4>
-
                             <ul class="additional-details-list clearfix">
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">ĐỊA CHỈ</span>
                                     <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.address}</span>
                                 </li>
-
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">DIỆN TÍCH</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.width}</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.width}m<sup>2</sup></span>
                                 </li>
-
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG TẮM (NHÀ VỆ SINH)</span>
                                     <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBath} phòng</span>
                                 </li>
-
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">PHÒNG NGỦ</span>
                                     <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.numberBed} phòng</span>
                                 </li>
-
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">TRẠNG THÁI CHO THUÊ</span>
                                     <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry" style="color: black">${house.status}</span>
                                 </li>
-
                             </ul>
                         </div>
-
                         <div class="section" >
                             <h4 class="s-property-title">MÔ TẢ CHUNG</h4>
                             <div class="s-property-content">
@@ -187,14 +162,13 @@
                                 <div class="clear">
                                     <div class="col-xs-4 col-sm-4 dealer-face">
                                         <a href="">
-                                            <img src="${user.urlImage}" class="img-circle">
+                                            <img src="/assets/img/demo/avata/${user.urlImage}" class="img-circle">
                                         </a>
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
                                             <a href="" style="color: black">${user.fullName}</a><br>
                                             <span><i class="pe-7s-call strong" style="padding-right: 5px; padding-top: 10px"> </i> ${user.phone}</span>
-                                            <%--<span>Real Estate Agent</span>--%>
                                         </h3>
                                         <div class="dealer-social-media">
                                         </div>

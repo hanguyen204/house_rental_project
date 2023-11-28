@@ -27,42 +27,12 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
 <style>
-    #avatar {
-        width: 50px;
-    }
-
-    .item {
-        width: 900px;
-        height: 290px;
-        margin-left: 475px;
-    }
-
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-
     .cart-button {
         position: relative;
         background-color: #ff5722;
@@ -95,7 +65,7 @@
 <nav class="navbar navbar-default">
     <div class="container-navbar">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="    navbar-header">
+        <div class="navbar-header">
             <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
@@ -108,15 +78,13 @@
                             <li class="dropdown ymm-sw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
-                                         id="avatar"><span
-                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/rentalHistory">Quản lý nhà</a></li>
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
 
                                         <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
 
@@ -126,15 +94,14 @@
                                         <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
-                                </button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -184,9 +151,8 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-center padding-top-25">
                 <!-- /.feature title -->
-                <h2 style="font-weight: bold; color: black;">NHỮNG NHÀ CHO THUÊ HÀNG ĐẦU</h2>
-                <p>Đây là bảng xếp hạng được đánh giá theo tiêu chuẩn đã được đưa ra. Bạn cũng có thể tìm kiếm những
-                    ngôi nhà khác ưng ý hơn.</p>
+                <h2 style="font-weight: bold; color: black;">TOP 5 NHÀ CHO THUÊ CÓ DOANH THU CAO NHẤT</h2>
+                <p>Đây là bảng xếp hạng được đánh giá theo đánh giá chỉ tiêu doanh thu của 1 năm. Bạn cũng có thể tìm kiếm những ngôi nhà khác ưng ý hơn.</p>
             </div>
         </div>
         <div class="row">
@@ -288,38 +254,17 @@
 </div>
 
 <script src="assets/js/modernizr-2.6.2.min.js"></script>
-
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bootstrap-select.min.js"></script>
 <script src="assets/js/bootstrap-hover-dropdown.js"></script>
-
 <script src="assets/js/easypiechart.min.js"></script>
 <script src="assets/js/jquery.easypiechart.min.js"></script>
-
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/wow.js"></script>
-
 <script src="assets/js/icheck.min.js"></script>
 <script src="assets/js/price-range.js"></script>
-
 <script src="assets/js/main.js"></script>
-<script>
-    function redirectToLogin() {
-        window.location.href = "login.jsp";
-    }
-
-    function redirectToRegister() {
-        window.location.href = "register.jsp";
-    }
-
-    function redirectToProperties() {
-        window.location.href = "/listHouse";
-    }
-
-    function redirectToSubmitProperties() {
-        window.location.href = "/submit-properties.jsp";
-    }
-</script>
+<script src="bootstrap/js/script.js"></script>
 </body>
 </html>

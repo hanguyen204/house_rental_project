@@ -38,71 +38,49 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-    .description {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 600px; /* Điều chỉnh độ rộng tối đa của phần mô tả */
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-</style>
 <body>
-
 <nav class="navbar navbar-default">
     <div class="container-navbar">
-
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/home-page"><img src="assets/img/logo.png" alt=""></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-
         <div class="collapse navbar-collapse yamm" id="navigation">
             <c:choose>
                 <c:when test="${not empty sessionScope.username}">
                     <div class="button navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown ymm-sw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
-                                        <li><a href="/landlordlist">Quản lý chủ nhà.</a></li>
+                                        <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.userType eq 'User'}">
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="">Đăng tin</button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -117,7 +95,6 @@
             <ul class="main-nav nav navbar-nav navbar-left" style="padding-top: 18px">
                 <li><a href="/home-page" style="color: black; font-weight: 500;">Trang chủ</a></li>
                 <li><a href="/listHouse" style="color: black; font-weight: 500;">Thuê nhà</a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -198,12 +175,11 @@
                 </div>
             </div>
 
-            <div class="col-md-3 pl0 padding-top-40">
+            <div class="col-md-3 pl0 padding-top-40" >
                 <div class="blog-asside-right pl0">
                     <div class="panel panel-default sidebar-menu">
-
                         <div class="panel-heading">
-                            <h3 class="panel-title">Mục tìm kiếm</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Mục tìm kiếm</h3>
                         </div>
                         <div class="panel-body search-widget">
                             <form action="/HomeownerPostedHouse?action=search" method="post" class=" form-inline">
@@ -228,72 +204,66 @@
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo giá</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Lọc theo giá</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 2 - 5 triệu </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 5 - 10 triệu </a>
-
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 2 - 5 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 10 - 50 triệu </a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100 triệu </a>
-
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 5 - 10 triệu </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> Thỏa thuận</a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 10 - 50 triệu </a>
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 50 - 100 triệu </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> Thỏa thuận</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Lọc theo diện tích nhà</h3>
+                            <h3 class="panel-title" style="font-weight: bold">Lọc theo diện tích</h3>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 50 - 100m<sup>2</sup></a>
-
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 50 - 100m<sup>2</sup></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 100 - 300m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 100 - 300m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="checkbox">
-                                    <a href="#"> 300 - 500m<sup>2</sup> </a>
+                                <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px">
+                                    <a href="#" style="color: black;font-weight: 500"> 300 - 500m<sup>2</sup> </a>
                                 </div>
                             </div>
                         </div>

@@ -27,33 +27,11 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
-<style>
-    #avatar {
-        width: 50px;
-    }
-    .container-navbar {
-        padding-top: 7px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .margin-top {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .padding-bottom-5 {
-        padding-bottom: 5px;
-    }
-    #padding-top-but {
-        padding-top: 8px;
-        padding-bottom: 0;
-    }
-
-</style>
 <script>
     function confirmUpdate() {
         return confirm("Bạn xác nhận đăng kí ?");
@@ -79,15 +57,13 @@
                             <li class="dropdown ymm-sw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
-                                         id="avatar"><span
-                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/rentalHistory">Quản lý nhà</a></li>
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
 
                                         <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
 
@@ -97,15 +73,14 @@
                                         <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
-                                </button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -126,7 +101,7 @@
 </nav>
 <!-- End of nav bar -->
 
-<div class="container padding-top-40" style="padding-bottom: 25px">
+<div class="container padding-top-40" style="padding-bottom: 80px">
 
     <form action="/BookHouse?action=BookAHouse" method="POST" onsubmit="return confirmUpdate();">
 
@@ -136,20 +111,29 @@
 
             <p class="center" style="color: black; font-size: 26px; font-weight: bold;padding-bottom: 5px;">THÔNG TIN NHÀ VÀ CHỦ NHÀ</p>
             <hr style="margin-top: 5px; color: black;">
-            <p style="color: black; font-weight: 500;">Tên nhà: ${requestScope.houseName}</p>
-            <p style="color: black; font-weight: 500;">Địa chỉ nhà: ${requestScope.address}</p>
-            <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: ${requestScope.fullName}</p>
-            <p style="color: black; font-weight: 500;">Số điện thoại: ${requestScope.phone}</p>
+            <p style="color: black;">Tên nhà: <span style="font-weight: bold; font-size: 18px; text-transform: uppercase;">${requestScope.houseName}</span></p>
+            <p style="color: black;">Địa chỉ nhà: <span style="font-weight: bold; font-size: 18px;">${requestScope.address}</span></p>
+            <p style="color: black;">Họ và tên chủ nhà: <span style="font-weight: bold; font-size: 18px; text-transform: uppercase;">${requestScope.fullName}</span></p>
+            <p style="color: black;">Số điện thoại: <span style="font-weight: bold; font-size: 18px; text-transform: uppercase;">${requestScope.phone}</span></p>
             <input type="hidden" id="price" value="${requestScope.price}">
-            <form id="myForm">
-                <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
-                <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
-                <button type="button" onclick="countMoney()">Ấn vào để kiểm tra số tiền cần thanh toán : </button>
-                <span style="color: black; font-weight: 500;"><p id="result"></p></span>
 
+            <form id="myForm">
+                <p style="display: inline; color: black; font-weight: 500;">
+                    Đặt thuê từ ngày:
+                    <input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn">
+                </p>
+                <p style="color: black; font-weight: 500;">
+                    Ngày trả nhà (phòng):
+                    <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn">
+                </p>
+                <button type="button" onclick="countMoney()" class="col-md-6" style="color: black;font-weight: bold; font-size: 24px">KIỂM TRA SỐ TIỀN CẦN THANH TOÁN</button>
+                <span  class="col-md-6 right"><p style="color: black; font-weight: 500;font-size: 24px" id="result"></p></span>
             </form>
 
             <script>
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById("rentalDate").setAttribute('min', today);
+                document.getElementById("payDate").setAttribute('min', today);
                 function countMoney() {
                     const rentalDate = new Date(document.getElementById("rentalDate").value);
                     const payDate = new Date(document.getElementById("payDate").value);
@@ -164,14 +148,7 @@
                     event.preventDefault();
                 });
             </script>
-            <div class="col-md-12" style="padding-top: 10px;">
-                <div class="col-md-6 left">
-                </div>
-                <div class="col-md-6 right">
-                    <p class="right" style="color: black; font-weight: bold; font-size: 26px;"></p>
-                </div>
-            </div>
-            <input type="submit" class="button btn-default" value="ĐẶT THUÊ NGAY">
+            <input type="submit" class="button btn-default" style="margin-top: 10px" value="ĐẶT THUÊ NGAY">
         </div>
     </form>
     <% if (request.getAttribute("successMessage") != null) { %>
@@ -234,5 +211,20 @@
         </div>
     </div>
 </div>
+<script src="assets/js/modernizr-2.6.2.min.js"></script>
+<script src="assets/js/jquery-1.10.2.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="assets/js/easypiechart.min.js"></script>
+<script src="assets/js/jquery.easypiechart.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/wow.js"></script>
+<script src="assets/js/icheck.min.js"></script>
+<script src="assets/js/price-range.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="bootstrap/js/script.js"></script>
+<script>
+</script>
 </body>
 </html>

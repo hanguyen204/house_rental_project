@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+}
+#avatar {
+    width: 50px;
+}
+.item {
+    margin-left: 300px;
+}
+.container-navbar {
+    padding-top: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.margin-top {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.padding-bottom-5 {
+    padding-bottom: 5px;
+}
+#padding-top-but {
+    padding-top: 8px;
+    padding-bottom: 0;
+}
+.avatar-img {
+    max-width: 50px;
+    max-height: 50px;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+button a {
+    color: white;
+    text-decoration: none;
+}
+th {
+    background-color: yellow;
+    color: black;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.owner-info {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.owner-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.owner-info h4 {
+    margin-top: 0;
+}
+.house-info {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.house-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.house-info h4 {
+    margin-top: 0;
+}
+
+.listPage li {
+    background-color: #ffffffBD;
+    padding: 20px;
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.listPage .active {
+    background-color: #B192EF;
+    color: #fff;
+}
+.th-vertical {
+    background-color: #FFF;
+}
+.error {
+    color: red;
+}
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 600px; /* Điều chỉnh độ rộng tối đa của phần mô tả */
+}

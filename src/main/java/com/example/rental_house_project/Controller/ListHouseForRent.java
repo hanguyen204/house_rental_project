@@ -54,7 +54,6 @@ public class ListHouseForRent extends HttpServlet {
     private void listHouse(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         HttpSession session = req.getSession();
         int userId = (int) session.getAttribute("id");
-        System.out.println(userId);
         List<House> listHouse = house.showAllHouse(userId);
         req.setAttribute("list", listHouse);
         RequestDispatcher dispatcher = req.getRequestDispatcher("user-properties.jsp");

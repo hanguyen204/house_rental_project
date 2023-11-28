@@ -2,11 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>GARO ESTATE | ...</title>
@@ -32,41 +27,11 @@
   <link rel="stylesheet" href="assets/css/icheck.min_all.css">
   <link rel="stylesheet" href="assets/css/price-range.css">
   <link rel="stylesheet" href="assets/css/owl.carousel.css">
-  <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
   <link rel="stylesheet" href="assets/css/owl.transitions.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/responsive.css"></head>
-<style>
-  #avatar {
-    width: 50px;
-  }
-
-  .item {
-    width: 900px;
-    height: 290px;
-    margin-left: 475px;
-  }
-
-  .container-navbar {
-    padding-top: 7px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .margin-top {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .padding-bottom-5 {
-    padding-bottom: 5px;
-  }
-
-  #padding-top-but {
-    padding-top: 8px;
-    padding-bottom: 0;
-  }
-</style>
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="bootstrap/css/style.css">
+</head>
 <body>
 <nav class="navbar navbar-default">
   <div class="container-navbar">
@@ -84,31 +49,30 @@
               <li class="dropdown ymm-sw">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                  <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
-                       id="avatar"><span
-                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
+                  <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu navbar-nav">
                   <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                   <c:if test="${sessionScope.userType eq 'Landlord'}">
-                    <li><a href="/rentalHistory">Quản lý nhà</a></li>
+                    <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+
                     <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                   </c:if>
                   <c:if test="${sessionScope.userType eq 'Admin'}">
                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
                     <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                   </c:if>
                   <c:if test="${sessionScope.userType eq 'User'}">
-                    <li><a href="/rentalHistory">Quản lý thuê nhà</a></li>
+                    <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                   </c:if>
                   <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                   <li><a href="logout">Đăng xuất</a></li>
                 </ul>
               </li>
               <c:if test="${sessionScope.userType eq 'Landlord'}">
-                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
-                </button>
+                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
               </c:if>
             </ul>
           </div>
@@ -128,6 +92,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 <!-- End of nav bar -->
+
 <c:forEach items="${rentHistory}" var="list">
   <div class="card">
     <div class="card-body">
@@ -157,52 +122,45 @@
 </body>
 </html>
 
-<%--
-  Created by IntelliJ IDEA.
-  User: LENOVO
-  Date: 17/11/2023
-  Time: 1:17 CH
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title>Title</title>--%>
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>--%>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>--%>
 
-</head>
-<body>
-<c:forEach items="${rentHistory}" var="list">
-<div class="card">
-    <div class="card-body">
-        <a hidden="hidden">${list.rentalId}</a>
-        <h5 class="card-title">${list.houseName}</h5>
-        <p class="card-text">Ngày Thuê: ${list.rentalDate}</p>
-        <p class="card-text">Tổng đơn: ${list.price}</p>
-        <p class="card-text">Địa chỉ: ${list.address}</p>
-        <p class="card-text">Trạng thái đơn: ${list.status}</p>
+<%--</head>--%>
+<%--<body>--%>
+<%--<c:forEach items="${rentHistory}" var="list">--%>
+<%--<div class="card">--%>
+<%--    <div class="card-body">--%>
+<%--        <a hidden="hidden">${list.rentalId}</a>--%>
+<%--        <h5 class="card-title">${list.houseName}</h5>--%>
+<%--        <p class="card-text">Ngày Thuê: ${list.rentalDate}</p>--%>
+<%--        <p class="card-text">Tổng đơn: ${list.price}</p>--%>
+<%--        <p class="card-text">Địa chỉ: ${list.address}</p>--%>
+<%--        <p class="card-text">Trạng thái đơn: ${list.status}</p>--%>
 
-        <c:choose>
-            <c:when test="${list.status eq 'Đang cho thuê'}">
-                <input type="hidden" name="action" value="cancel">
-                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                <button style="background-color: red; color: white;"><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none; ">Hủy thuê</a></button>
-            </c:when>
-            <c:otherwise>
-                <input type="hidden" name="action" value="rentAgain">
-                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Thuê lại</a></button>
-            </c:otherwise>
-        </c:choose>
+<%--        <c:choose>--%>
+<%--            <c:when test="${list.status eq 'Đang cho thuê'}">--%>
+<%--                <input type="hidden" name="action" value="cancel">--%>
+<%--                <input type="hidden" name="rentalId" value="${list.rentalId}">--%>
+<%--                <button style="background-color: red; color: white;"><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none; ">Hủy thuê</a></button>--%>
+<%--            </c:when>--%>
+<%--            <c:otherwise>--%>
+<%--                <input type="hidden" name="action" value="rentAgain">--%>
+<%--                <input type="hidden" name="rentalId" value="${list.rentalId}">--%>
+<%--                <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Thuê lại</a></button>--%>
+<%--            </c:otherwise>--%>
+<%--        </c:choose>--%>
 
-<%--        <button class="btn btn-danger" id="cancel-btn" ><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none;">Hủy thuê</a></button>--%>
-    </div>
-</div>
-</c:forEach>
+<%--&lt;%&ndash;        <button class="btn btn-danger" id="cancel-btn" ><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none;">Hủy thuê</a></button>&ndash;%&gt;--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--</c:forEach>--%>
 
-</body>
-</html>
+<%--</body>--%>
+<%--</html>--%>
 

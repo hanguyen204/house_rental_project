@@ -30,48 +30,7 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <style>
-        #avatar {
-            width: 50px;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: yellow;
-            color: black;
-        }
-
-        .item {
-            width: 1000px;
-            height: 290px;
-            margin-left: 425px;
-        }
-
-        .container-navbar {
-            padding-top: 7px;
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .margin-top {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .padding-bottom-5 {
-            padding-bottom: 5px;
-        }
-
-        #padding-top-but {
-            padding-top: 8px;
-            padding-bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -90,31 +49,28 @@
                             <li class="dropdown ymm-sw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                                    <img src="${sessionScope.urlImage}" alt="Avatar" class="img-circle"
-                                         id="avatar"><span
-                                        style="color: black;text-transform: none;"> ${sessionScope.username}</span>
+                                    <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
                                     <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                        <li><a href="/HouseForRentServlet">Quản lý nhà</a>
-                                        <li><a href="">Quản lý đặt lịch</a></li>
+                                        <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
+                                        <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'Admin'}">
                                         <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
                                         <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.userType eq 'User'}">
-                                        <li><a href="#">Quản lý thuê nhà</a></li>
+                                        <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                                     </c:if>
                                     <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                                     <li><a href="logout">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <c:if test="${sessionScope.userType eq 'Landlord'}">
-                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin
-                                </button>
+                                <button class="navbar-btn nav-button" onclick="redirectToSubmitProperties()">Đăng tin</button>
                             </c:if>
                         </ul>
                     </div>
@@ -132,7 +88,10 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-</nav><div class="home-lager-shearch" style="background-color: #FFF;">
+</nav>
+<!-- End of nav bar -->
+
+<div class="home-lager-shearch" style="background-color: #FFF;">
     <div class="container padding-bottom-40">
         <div class="col-md-12 large-search">
             <div class="search-form wow pulse">

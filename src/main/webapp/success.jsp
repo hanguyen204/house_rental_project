@@ -54,22 +54,25 @@
           <div class="button navbar-right">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown ymm-sw">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="padding-top-but">
-                  <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;">  ${sessionScope.username}</span>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false" id="padding-top-but">
+                  <img src="/assets/img/demo/avata/${sessionScope.urlImage}" alt="Avatar" class="img-circle" id="avatar"><span style="color: black;text-transform: none;"> ${sessionScope.username}</span>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu navbar-nav">
                   <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                   <c:if test="${sessionScope.userType eq 'Landlord'}">
                     <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
-                    <li><a href="">Quản lý đặt lịch</a></li>
+
+                    <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                   </c:if>
                   <c:if test="${sessionScope.userType eq 'Admin'}">
                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
                     <li><a href="/landlordlist">Quản lý chủ nhà</a></li>
                   </c:if>
                   <c:if test="${sessionScope.userType eq 'User'}">
-                    <li><a href="#">Quản lý thuê nhà</a></li>
+                    <li><a href="/rentalHistory">Lịch sử thuê nhà</a></li>
                   </c:if>
                   <li><a href="change-password.jsp">Thay đổi mật khẩu</a></li>
                   <li><a href="logout">Đăng xuất</a></li>
