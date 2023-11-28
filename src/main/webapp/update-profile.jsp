@@ -1,12 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: vang
-  Date: 30/10/2023
-  Time: 00:14
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -121,27 +114,33 @@
                         <div class="col-sm-3 padding-top-25">
                             <div class="form-group">
                                 <label>User name: ${username}</label>
+                                <input type="hidden" name="id" value="${id}">
                             </div>
                             <div class="form-group">
                                 <label>Full Name <small>(required)</small></label>
-                                <input name="fullName" type="text" class="form-control" placeholder="Andrew..." value="<c:out value='${fullname}' />">
+                                <input name="fullName" type="text" class="form-control" placeholder="Andrew..." value="<c:out value='${fullName}' />" required>
                             </div>
                             <div class="form-group">
                                 <label>phone <small>(required)</small></label>
-                                <input name="phone" type="text" class="form-control" placeholder="0999..." value="<c:out value='${phone}' />">
+                                <input name="phone" type="text" class="form-control" placeholder="0999..." value="<c:out value='${phone}' />" required>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input name="address" type="text" class="form-control" value="<c:out value='${address}' />">
+                                <input name="address" type="text" class="form-control" value="<c:out value='${address}' />" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
-                            <span>${error}</span>
+                            <% if (request.getAttribute("error") != null) { %>
+                            <p style="color: red;"><c:out value="${error}" /></p>
+                            <% } %>
+                            <% if (request.getAttribute("success") != null) { %>
+                            <p style="color: green;"><c:out value="${success}" /></p>
+                            <% } %>
                         </div>
                         <br>
-                        <input type='submit' class='btn btn-finish btn-primary' name='finish' value='Finish' />
+                        <input type="submit" class="btn btn-finish btn-primary" name="finish" value="Finish" />
                     </div>
                     <br>
                 </form>

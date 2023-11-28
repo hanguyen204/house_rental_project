@@ -137,7 +137,6 @@
                                             <div class="dealer-action pull-right">
                                                 <a href="#" class="button">Edit </a>
                                                 <a href="#" class="button delete_user_car">Delete</a>
-                                                <a href="#" class="button">View</a>
                                             </div>
                                         </div>
                                     </div>

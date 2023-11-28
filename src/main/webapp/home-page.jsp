@@ -82,7 +82,7 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu navbar-nav">
-                                    <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
+                                    <li><a href="update-profile?action=show&id=${sessionScope.id}">Quản lý thông tin</a></li>
                                     <c:if test="${sessionScope.userType eq 'Landlord'}">
                                         <li><a href="/danh-sach-nha-cua-ban">Quản lý nhà</a></li>
 

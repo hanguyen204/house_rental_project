@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="bootstrap/css/style.css">
+    <title>Title</title>
     <script>
         function confirmUpdate() {
             return confirm("Bạn có chắc chắn muốn cập nhật trạng thái?");

@@ -105,7 +105,7 @@
     <img src="/assets/img/check.png" style="width: 50px">
   </div>
   <div class="center">
-    <h3>${sessionScope.success}</h3>
+    <h3>${success}</h3>
   </div>
   <div class="center">
     <button class="btn btn-primary" onclick="redirectToHomePage()">Quay về trang chủ</button>

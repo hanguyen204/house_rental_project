@@ -27,11 +27,33 @@
     <link rel="stylesheet" href="assets/css/icheck.min_all.css">
     <link rel="stylesheet" href="assets/css/price-range.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="bootstrap/css/style.css">
 </head>
+<style>
+    #avatar {
+        width: 50px;
+    }
+    .container-navbar {
+        padding-top: 7px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .margin-top {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .padding-bottom-5 {
+        padding-bottom: 5px;
+    }
+    #padding-top-but {
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
+
+</style>
 <script>
     function confirmUpdate() {
         return confirm("Bạn xác nhận đăng kí ?");
@@ -116,7 +138,6 @@
             <p style="color: black;">Họ và tên chủ nhà: <span style="font-weight: bold; font-size: 18px; text-transform: uppercase;">${requestScope.fullName}</span></p>
             <p style="color: black;">Số điện thoại: <span style="font-weight: bold; font-size: 18px; text-transform: uppercase;">${requestScope.phone}</span></p>
             <input type="hidden" id="price" value="${requestScope.price}">
-
             <form id="myForm">
                 <p style="display: inline; color: black; font-weight: 500;">
                     Đặt thuê từ ngày:
@@ -224,7 +245,5 @@
 <script src="assets/js/price-range.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="bootstrap/js/script.js"></script>
-<script>
-</script>
 </body>
 </html>

@@ -18,8 +18,9 @@ public class UserService implements IUserService {
     private static final String INSERT_USER = "insert into user (urlImage, username, phone, password,numberHouseForRent,userType,status) values (?,?,?,?,?,?,?);";
     private static final String UPDATE_USERS_SQL = "update user set username = ?,urlImage= ?, fullName =?, address =?,phone=?  where id = ?;";
     private static final String UPDATE_PASSWORD = "UPDATE user SET password = ? WHERE username = ?;";
-    private static final String UPDATE_PROFILE = "UPDATE user SET urlImage = ?, fullName = ?, phone = ?, address =? where username = ?;";
-    private static final String SELECT_USER_BY_ID = "select username,urlImage,fullName,address,phone from user where id =?";
+    private static final String UPDATE_PROFILE = "UPDATE user SET urlImage = ?, fullName = ?, phone = ?, address =? where username = ?";
+    private static final String SELECT_USER_BY_USERNAME = "select urlImage,fullName,address,phone from user where username = ?";
+    private static final String SELECT_USER_BY_ID = "select username,urlImage,fullName,address,phone from user where id = ?";
     private static final String SELECT_USER_EXIST = "SELECT COUNT(*) FROM user WHERE username = ?";
     private static final String SELECT_USER_TYPE = "SELECT userType FROM user WHERE username = ?;";
     private static final String SELECT_USER = "SELECT * FROM user where username = ?";
@@ -255,13 +256,12 @@ public class UserService implements IUserService {
         return totalUsers;
     }
 
-    public User showEditProfileUser(int id) throws SQLException, ClassNotFoundException {
+    public User showEditProfileUser(String username) throws SQLException, ClassNotFoundException {
         User user1 = null;
-        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_ID);
-        preparedStatement.setInt(1, id);
+        PreparedStatement preparedStatement = connection().prepareStatement(SELECT_USER_BY_USERNAME);
+        preparedStatement.setString(1, username);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
-            String username = rs.getString("username");
             String urlImage = rs.getString("urlImage");
             String fullName = rs.getString("fullName");
             String address = rs.getString("address");
@@ -482,7 +482,5 @@ public class UserService implements IUserService {
         }
         return list;
     }
-
-
 }
 
