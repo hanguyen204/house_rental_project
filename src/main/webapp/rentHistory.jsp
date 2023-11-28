@@ -2,14 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GARO ESTATE | ...</title>
+  <title>GARO ESTATE | QUẢN LÝ NHÀ</title>
   <meta name="description" content="GARO is a real-estate template">
   <meta name="author" content="Kimarotec">
   <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -32,10 +27,11 @@
   <link rel="stylesheet" href="assets/css/icheck.min_all.css">
   <link rel="stylesheet" href="assets/css/price-range.css">
   <link rel="stylesheet" href="assets/css/owl.carousel.css">
-  <%--    <link rel="stylesheet" href="assets/css/owl.theme.css">--%>
+  <link rel="stylesheet" href="assets/css/owl.theme.css">
   <link rel="stylesheet" href="assets/css/owl.transitions.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/responsive.css"></head>
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
 <style>
   #avatar {
     width: 50px;
@@ -67,7 +63,6 @@
     padding-bottom: 0;
   }
 </style>
-<body>
 <nav class="navbar navbar-default">
   <div class="container-navbar">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -93,7 +88,9 @@
                   <li><a href="user-profile.jsp">Quản lý thông tin</a></li>
                   <c:if test="${sessionScope.userType eq 'Landlord'}">
                     <li><a href="/rentalHistory">Quản lý nhà</a></li>
+
                     <li><a href="/HouseForRentServlet">Quản lý đặt lịch</a></li>
+
                   </c:if>
                   <c:if test="${sessionScope.userType eq 'Admin'}">
                     <li><a href="/toggleStatus">Quản lý nguời dùng</a></li>
@@ -127,82 +124,91 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<!-- End of nav bar -->
-<c:forEach items="${rentHistory}" var="list">
-  <div class="card">
-    <div class="card-body">
-      <a hidden="hidden">${list.rentalId}</a>
-      <h5 class="card-title">${list.houseName}</h5>
-      <p class="card-text">Ngày Thuê: ${list.rentalDate}</p>
-      <p class="card-text">Tổng đơn: ${list.price}</p>
-      <p class="card-text">Địa chỉ: ${list.address}</p>
-      <p class="card-text">Trạng thái đơn: ${list.status}</p>
-
-      <c:choose>
-        <c:when test="${list.status eq 'Đang cho thuê'}">
-          <input type="hidden" name="action" value="cancel">
-          <input type="hidden" name="rentalId" value="${list.rentalId}">
-          <button style="background-color: red; color: white;"><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none; ">Hủy thuê</a></button>
-        </c:when>
-        <c:otherwise>
-          <input type="hidden" name="action" value="rentAgain">
-          <input type="hidden" name="rentalId" value="${list.rentalId}">
-          <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Đã hủy thành công</a></button>
-        </c:otherwise>
-      </c:choose>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Tên nhà</th>
+    <th>Ngày thuê</th>
+    <th>Tổng đơn</th>
+    <th>Địa chỉ</th>
+    <th>Trạng thái đơn</th>
+    <th>Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${rentHistory}" var="list">
+    <tr>
+      <td>${list.houseName}</td>
+      <td>${list.rentalDate}</td>
+      <td>${list.price}</td>
+      <td>${list.address}</td>
+      <td>${list.status}</td>
+      <td>
+        <c:choose>
+          <c:when test="${list.status eq 'Đang cho thuê'}">
+            <a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" class="btn btn-danger">Hủy thuê</a>
+          </c:when>
+          <c:otherwise>
+            <a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" class="btn btn-success">Đã hủy thành công</a>
+          </c:otherwise>
+        </c:choose>
+      </td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+<div class="footer-area">
+  <div class=" footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="">
+            <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
+            <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
+            <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
+            <ul class="footer-adress" style="color: black; font-size: 16px;">
+              <li><i class="pe-7s-map-marker strong"> </i>QL32, Kim Chung, Hoài Đức, Hà Nội</li>
+              <li><i class="pe-7s-mail strong"> </i> garoestate@gmail.com</li>
+              <li><i class="pe-7s-call strong"> </i> (033) 617 2381</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="single-footer">
+            <h4 style="color: black; font-weight: 700;">MỤC LỤC</h4>
+            <ul class="footer-menu">
+              <li><a href="index.html" style="color: black; font-size: 14px;">Trang chủ</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Nhà đất cho thuê</a>  </li>
+              <li><a href="#" style="color: black; font-size: 14px;">Dịch vụ</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Hỗ trợ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="single-footer">
+            <h4 style="color: black; font-weight: 700;">QUY ĐỊNH</h4>
+            <ul class="footer-menu">
+              <li><a href="#" style="color: black; font-size: 14px;">Quy định đăng tin</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Quy chế hoạt động</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Điều khoản thỏa thuận</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Chính sách bảo mật</a></li>
+              <li><a href="#" style="color: black; font-size: 14px;">Giải quyết khiếu nại</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</c:forEach>
-
-</body>
-</html>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: LENOVO
-  Date: 17/11/2023
-  Time: 1:17 CH
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-</head>
-<body>
-<c:forEach items="${rentHistory}" var="list">
-<div class="card">
-    <div class="card-body">
-        <a hidden="hidden">${list.rentalId}</a>
-        <h5 class="card-title">${list.houseName}</h5>
-        <p class="card-text">Ngày Thuê: ${list.rentalDate}</p>
-        <p class="card-text">Tổng đơn: ${list.price}</p>
-        <p class="card-text">Địa chỉ: ${list.address}</p>
-        <p class="card-text">Trạng thái đơn: ${list.status}</p>
-
-        <c:choose>
-            <c:when test="${list.status eq 'Đang cho thuê'}">
-                <input type="hidden" name="action" value="cancel">
-                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                <button style="background-color: red; color: white;"><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none; ">Hủy thuê</a></button>
-            </c:when>
-            <c:otherwise>
-                <input type="hidden" name="action" value="rentAgain">
-                <input type="hidden" name="rentalId" value="${list.rentalId}">
-                <button style="background-color: #0C9C14; color: black"><a href="rentalHistory?action=rentAgain&rentalId=${list.rentalId}" style="text-decoration: none;">Thuê lại</a></button>
-            </c:otherwise>
-        </c:choose>
-
-<%--        <button class="btn btn-danger" id="cancel-btn" ><a href="rentalHistory?action=cancel&rentalId=${list.rentalId}" style="text-decoration: none;">Hủy thuê</a></button>--%>
+  <div class="footer-copy text-center">
+    <div class="container">
+      <div class="row">
+        <div class="pull-left">
+          <span><a href="http://www.KimaroTec.com" style="font-size: 18px;">Copyright © 2023 garoestate.com.vn</a></span>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-</c:forEach>
-
 </body>
 </html>
 

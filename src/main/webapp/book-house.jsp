@@ -141,15 +141,26 @@
             <p style="color: black; font-weight: 500;">Họ và tên chủ nhà: ${requestScope.fullName}</p>
             <p style="color: black; font-weight: 500;">Số điện thoại: ${requestScope.phone}</p>
             <input type="hidden" id="price" value="${requestScope.price}">
-            <form id="myForm">
-                <p style="display: inline; color: black; font-weight: 500;">Đặt thuê từ ngày:<input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn"></p>
-                <p style="color: black; font-weight: 500;">Ngày trả nhà (phòng): <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn"></p>
-                <button type="button" onclick="countMoney()">Ấn vào để kiểm tra số tiền cần thanh toán : </button>
-                <span style="color: black; font-weight: 500;"><p id="result"></p></span>
 
+            <form id="myForm">
+                <p style="display: inline; color: black; font-weight: 500;">
+                    Đặt thuê từ ngày:
+                    <input type="date" id="rentalDate" name="rentalDate" style="width: 200px;height: 25px; margin-top: 0; padding-left: 10px;margin-left: 30px;" class="border-btn">
+                </p>
+                <p style="color: black; font-weight: 500;">
+                    Ngày trả nhà (phòng):
+                    <input type="date" id="payDate" name="payDate" style="width: 200px;height: 25px;padding-left: 10px;" class="border-btn">
+                </p>
+                <button type="button" onclick="countMoney()">Ấn vào để kiểm tra số tiền cần thanh toán :</button>
+                <span style="color: black; font-weight: 500;">
+        <p id="result"></p>
+    </span>
             </form>
 
             <script>
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById("rentalDate").setAttribute('min', today);
+                document.getElementById("payDate").setAttribute('min', today);
                 function countMoney() {
                     const rentalDate = new Date(document.getElementById("rentalDate").value);
                     const payDate = new Date(document.getElementById("payDate").value);

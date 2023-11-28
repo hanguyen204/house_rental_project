@@ -58,7 +58,10 @@
         padding-top: 8px;
         padding-bottom: 0;
     }
-
+    .t {
+        padding-top: 100px;
+        padding-bottom: 380px;
+    }
 </style>
 <body>
 <nav class="navbar navbar-default">
@@ -122,7 +125,11 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<center>
+<div class="t" >
+    <center>
+        <h2>
+            UPDATE HOUSE NAME AND STATUS
+        </h2>
     <form method="post" onsubmit="return confirmUpdate()">
         <table border="1" cellpadding="5">
             <c:if test="${bill != null}">
@@ -155,12 +162,14 @@
         </table>
     </form>
 </center>
+</div>
+
 <div class="footer-area">
     <div class=" footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <div class="single-footer">
+                    <div class="">
                         <h4 style="color: black; font-weight: 700;">VỀ CHÚNG TÔI</h4>
                         <img src="assets/img/footer-logo.png" alt="" class="wow pulse margin-top">
                         <p style="color: black; font-weight: bold; font-size: 16px;" class="padding-bottom-5">CÔNG TY NHÀ ĐẤT GARO ESTATE VIỆT NAM</p>
